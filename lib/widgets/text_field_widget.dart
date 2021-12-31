@@ -80,8 +80,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       },
     );
   }
-
-
+  
   void _revealObscureText() {
     setState(() {
       _textFieldParamaters.obscureText = !_textFieldParamaters.obscureText;
