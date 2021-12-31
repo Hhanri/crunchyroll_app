@@ -52,20 +52,21 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       style: MyTextStyles.body1,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
-          hintText: _textFieldParamaters.hintText,
-          hintStyle: _textFieldParamaters.textStyle ?? MyTextStyles.hintText,
-          suffixIcon: GestureDetector(
-            onTap: _textFieldParamaters.iconTap,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 21.0),
-              child:
-              (_textFieldParamaters is PasswordTextFieldParameters)
-                  ?  (_textFieldParamaters.obscureText)
-                  ? IconWidget(icon: Icons.visibility)
-                  : IconWidget(icon: Icons.visibility_off)
-                  :_textFieldParamaters.iconWidget,
-            ),
-          )
+        contentPadding: EdgeInsets.all(10),
+        hintText: _textFieldParamaters.hintText,
+        hintStyle: _textFieldParamaters.textStyle ?? MyTextStyles.hintText,
+        suffixIcon: GestureDetector(
+          onTap: _textFieldParamaters.iconTap,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 21.0),
+            child:
+            (_textFieldParamaters is PasswordTextFieldParameters)
+                ?  (_textFieldParamaters.obscureText)
+                ? IconWidget(icon: Icons.visibility)
+                : IconWidget(icon: Icons.visibility_off)
+                :_textFieldParamaters.iconWidget,
+          ),
+        )
       ),
       obscureText: _textFieldParamaters.obscureText,
       autocorrect: _textFieldParamaters.autoCorrect,
@@ -134,9 +135,9 @@ class TextFieldParamaters {
   });
 }
 
-class usernameTextFieldParameters extends TextFieldParamaters {
+class UsernameTextFieldParameters extends TextFieldParamaters {
   final String? hintText;
-  usernameTextFieldParameters({
+  UsernameTextFieldParameters({
     this.hintText = Strings.username
   }) : super(
     hintText: hintText,

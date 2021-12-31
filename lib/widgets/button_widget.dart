@@ -18,7 +18,6 @@ class ButtonWidget extends StatelessWidget {
           alignment: Alignment.center,
           width: double.infinity,
           constraints: BoxConstraints(
-            minWidth: double.infinity,
             minHeight: MySizes.minimumHeightInput,
           ),
           child: Text(

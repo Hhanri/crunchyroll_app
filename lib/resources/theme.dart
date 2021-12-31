@@ -18,6 +18,7 @@ ThemeData theme = ThemeData(
     buttonColor: Colors.white,
   ),
   inputDecorationTheme: InputDecorationTheme(
+
     fillColor: MyColors.containerColor,
     filled: true,
     hintStyle: MyTextStyles.hintText,
@@ -33,9 +34,9 @@ ThemeData theme = ThemeData(
       ),
     ),
     border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-            MyShapes.radiusCircular
-        )
+      borderRadius: BorderRadius.all(
+        MyShapes.radiusCircular
+      )
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -45,6 +46,13 @@ ThemeData theme = ThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: MyShapes.circularBorders
       )
+    )
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      padding: EdgeInsets.zero,
+      textStyle: MyTextStyles.link1,
+      primary: MyColors.primaryColor
     )
   )
 
@@ -104,11 +112,11 @@ class MyTextStyles {
 }
 
 class MyShapes {
-
+  static BorderRadiusGeometry checkboxBorders = BorderRadius.circular(5.0);
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(8.0);
   static Radius radiusCircular = Radius.circular(8.0);
 }
 
 class MySizes {
-  static double minimumHeightInput = 55;
+  static double minimumHeightInput = 40;
 }

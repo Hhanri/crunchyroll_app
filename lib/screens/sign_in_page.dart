@@ -1,18 +1,19 @@
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   String _password = "";
   String _email = "";
@@ -81,13 +82,30 @@ class _SignInPageState extends State<SignInPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("test")
+                  Text(
+                    Strings.dontHaveAnAccount,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  TextButton(
+                    child: Text(" " + Strings.signUpTitle),
+                    onPressed: () => Navigator.of(context).pushNamed(SIGN_UP_PAGE),
+                  )
                 ],
               ),
               Spacer(
                 flex: 3
               ),
-              Text("test")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    child: Text(
+                      Strings.forgottenPassword
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              )
             ],
           ),
         ),

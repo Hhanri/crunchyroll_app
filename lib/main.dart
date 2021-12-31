@@ -1,5 +1,8 @@
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
+import 'package:crunchyroll_app/screens/sign_up_page.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,13 +12,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
+      home: SignInScreen(),
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
