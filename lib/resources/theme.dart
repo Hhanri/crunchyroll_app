@@ -14,8 +14,9 @@ ThemeData theme = ThemeData(
   iconTheme: IconThemeData(
       color: MyColors.iconColor
   ),
-
-
+  buttonTheme: ButtonThemeData(
+    buttonColor: Colors.white,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: MyColors.containerColor,
     filled: true,
@@ -37,6 +38,15 @@ ThemeData theme = ThemeData(
         )
     ),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: TextButton.styleFrom(
+      backgroundColor: MyColors.primaryColor,
+      textStyle: MyTextStyles.body1,
+      shape: RoundedRectangleBorder(
+        borderRadius: MyShapes.circularBorders
+      )
+    )
+  )
 
 
 
@@ -97,4 +107,8 @@ class MyShapes {
 
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(8.0);
   static Radius radiusCircular = Radius.circular(8.0);
+}
+
+class MySizes {
+  static double minimumHeightInput = 55;
 }
