@@ -1,3 +1,4 @@
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
@@ -12,10 +13,9 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
+  final _formKey = GlobalKey<FormState>();
   String _password = "";
   String _email = "";
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,33 +36,47 @@ class _SignInPageState extends State<SignInPage> {
               Expanded(
                 flex: 2,
                 child: Text(
-                  'test',
+                  Strings.signInTitle,
                   style: Theme.of(context).textTheme.headline1
                 )
               ),
               //Spacer(),
               Expanded(
                 flex: 7,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    TextFieldWidget(
-                      textFieldParameters: EmailTextFieldParameters(),
-                      valueChanged: (String value) {
-                        _email = value;
-                      },
-                    ),
-                    TextFieldWidget(
-                      textFieldParameters: PasswordTextFieldParameters(),
-                      valueChanged: (String value) {
-                        _email = value;
-                      }
-                    ),
-                    ButtonWidget(buttonText: "test", onPressed: () {})
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextFieldWidget(
+                        textFieldParameters: EmailTextFieldParameters(),
+                        valueChanged: (String value) {
+                          _email = value;
+                        },
+                      ),
+                      TextFieldWidget(
+                        textFieldParameters: PasswordTextFieldParameters(),
+                        valueChanged: (String value) {
+                          _password = value;
+                        }
+                      ),
+                      ButtonWidget(
+                        buttonText: Strings.signInTitle,
+                        onPressed: () {
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          if (_formKey.currentState!.validate()) {
+                            print("email: ${_email}\npassword: ${_password}");
+                            _email = "";
+                            _password = "";
+                          }
+                        }
+                      )
+                    ],
+                  ),
                 )
               ),
               SizedBox(
+                height: 20
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

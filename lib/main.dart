@@ -1,6 +1,5 @@
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
-import 'package:crunchyroll_app/test.dart';
 import 'package:flutter/material.dart';
 
 void main() {

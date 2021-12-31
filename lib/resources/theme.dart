@@ -41,7 +41,7 @@ ThemeData theme = ThemeData(
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: TextButton.styleFrom(
       backgroundColor: MyColors.primaryColor,
-      textStyle: MyTextStyles.body1,
+      textStyle: MyTextStyles.title1,
       shape: RoundedRectangleBorder(
         borderRadius: MyShapes.circularBorders
       )
