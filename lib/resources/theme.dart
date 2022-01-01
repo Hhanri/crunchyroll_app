@@ -40,8 +40,12 @@ ThemeData theme = ThemeData(
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
-    style: TextButton.styleFrom(
-      backgroundColor: MyColors.primaryColor,
+    style: ElevatedButton.styleFrom(
+      side: BorderSide(
+        width: 2,
+        color: Colors.black
+      ),
+      primary: MyColors.primaryColor,
       textStyle: MyTextStyles.title1,
       shape: RoundedRectangleBorder(
         borderRadius: MyShapes.circularBorders
@@ -113,8 +117,8 @@ class MyTextStyles {
 
 class MyShapes {
   static BorderRadiusGeometry checkboxBorders = BorderRadius.circular(5.0);
-  static BorderRadiusGeometry circularBorders = BorderRadius.circular(8.0);
-  static Radius radiusCircular = Radius.circular(8.0);
+  static BorderRadiusGeometry circularBorders = BorderRadius.circular(2.0);
+  static Radius radiusCircular = Radius.circular(2.0);
 }
 
 class MySizes {

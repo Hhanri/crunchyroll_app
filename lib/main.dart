@@ -1,8 +1,10 @@
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/screens/home_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/sign_up_page.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: SignInScreen(),
+      home: HomeScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

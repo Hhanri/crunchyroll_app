@@ -29,3 +29,7 @@ class Strings {
   static const String dontHaveAnAccount = "Don't have an account yet ?";
 
 }
+
+class ImagePath {
+  static const String thumbnail = "assets/images/thumbnail.jpg";
+}
