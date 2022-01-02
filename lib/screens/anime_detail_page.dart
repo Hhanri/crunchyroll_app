@@ -25,13 +25,14 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
         Image.asset(widget.featuredAnimeArgument.ImageURL),
         SingleChildScrollView(
           child: Container(
-            constraints: BoxConstraints(
-              minHeight: AppConfig.heightScreen(context)
-            ),
             child: Column(
               children: [
                 AnimeDetailHeader(featuredAnime: widget.featuredAnimeArgument),
                 Container(
+                  constraints: BoxConstraints(
+                    minHeight: AppConfig.heightScreen(context),
+                    minWidth: AppConfig.widthScreen(context)
+                  ),
                   decoration: BoxDecoration(
                     color: MyColors.backgroundColor
                   ),

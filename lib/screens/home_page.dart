@@ -28,15 +28,16 @@ class _HomeScreenState extends State<HomeScreen> {
         Image.asset(widget.featuredAnime.ImageURL),
         SingleChildScrollView(
           child: Container(
-            constraints: BoxConstraints(
-              minHeight: AppConfig.heightScreen(context)
-            ),
             child: Column(
               children: [
                 ContentHeaderWidget(
                   featuredAnime: widget.featuredAnime,
                 ),
                 Container(
+                  constraints: BoxConstraints(
+                    minHeight: AppConfig.heightScreen(context),
+                    minWidth: AppConfig.widthScreen(context)
+                  ),
                   decoration: BoxDecoration(
                     color: MyColors.backgroundColor
                   ),
