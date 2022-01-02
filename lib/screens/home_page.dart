@@ -1,4 +1,5 @@
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
@@ -9,10 +10,8 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  final Content featuredAnime;
-
   const HomeScreen({Key? key,
-    required this.featuredAnime
+
   }) : super(key: key);
 
   @override
@@ -25,13 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext homeContext) {
     return Stack(
       children: [
-        Image.asset(widget.featuredAnime.ImageURL),
+        Image.asset(trendingAnime.ImageURL),
         SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
                 ContentHeaderWidget(
-                  featuredAnime: widget.featuredAnime,
+                  featuredAnime: trendingAnime,
                 ),
                 Container(
                   constraints: BoxConstraints(

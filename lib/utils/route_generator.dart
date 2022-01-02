@@ -1,7 +1,9 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
+import 'package:crunchyroll_app/screens/know_more_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/sign_up_page.dart';
+
 import 'package:flutter/material.dart';
 import '../main.dart';
 
@@ -16,6 +18,7 @@ class RouteGenerator {
       case SIGN_IN_PAGE : return MaterialPageRoute(builder: (_) => SignInScreen());
       case SIGN_UP_PAGE : return MaterialPageRoute(builder: (_) => SignUpScreen());
       case ANIME_DETAIL_PAGE : return MaterialPageRoute(builder: (_) => AnimeDetailScreen(featuredAnimeArgument: _arguments));
+      case KNOW_MORE_PAGE : return MaterialPageRoute(builder: (_) => KnowMoreScreen(featuredAnimeArgument: _arguments));
       default : return MaterialPageRoute(builder: (_) => SignInScreen());
     }
 
@@ -25,4 +28,5 @@ class RouteGenerator {
 const String SIGN_IN_PAGE = "/SignIn";
 const String SIGN_UP_PAGE = "/SignUp";
 const String ANIME_DETAIL_PAGE = "/AnimeDetail";
+const String KNOW_MORE_PAGE = "/KnowMore";
 const String MAIN_APP = "/";

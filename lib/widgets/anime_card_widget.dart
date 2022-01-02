@@ -1,3 +1,4 @@
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
@@ -16,7 +17,7 @@ class _AnimeCardWidgetState extends State<AnimeCardWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(ImagePath.thumbnail),
+          Image.asset(trendingAnime.ImageURL),
           Container(
             height: 70,
             alignment: Alignment.center,
@@ -25,7 +26,7 @@ class _AnimeCardWidgetState extends State<AnimeCardWidget> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Kimetsu no Yaiba",
+                trendingAnime.title,
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),

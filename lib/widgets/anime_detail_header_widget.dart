@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetailHeader extends StatelessWidget {
@@ -25,7 +26,7 @@ class AnimeDetailHeader extends StatelessWidget {
         )
       ),
       child: SizedBox(
-        height: 580,
+        height: 570,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15.0,
@@ -34,24 +35,39 @@ class AnimeDetailHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 430,
-                width: double.infinity,
+              Spacer(
+                flex: 7,
               ),
-              Text(
-                featuredAnime.title.toUpperCase(),
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              Spacer(),
-              Text(
-                featuredAnime.description,
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                  color: Colors.grey.shade500
+              Expanded(
+                flex: 1,
+                child: Text(
+                  featuredAnime.title.toUpperCase(),
+                  style: Theme.of(context).textTheme.headline1,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
               ),
-              Center(child: _KnowMoreButton(featuredAnime: featuredAnime))
+              Expanded(
+                flex: 1,
+                child: Center(
+                  child: Text(
+                    featuredAnime.description,
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      color: Colors.grey.shade500
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Center(
+                  child: _KnowMoreButton(
+                    featuredAnime: featuredAnime
+                  )
+                ),
+              )
             ],
           ),
         ),
@@ -72,7 +88,7 @@ class _KnowMoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-
+        Navigator.of(context).pushNamed(KNOW_MORE_PAGE, arguments: featuredAnime);
       },
       label: const Icon(
         Icons.arrow_forward_ios,
@@ -88,3 +104,4 @@ class _KnowMoreButton extends StatelessWidget {
     );
   }
 }
+

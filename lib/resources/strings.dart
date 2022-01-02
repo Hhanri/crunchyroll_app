@@ -28,8 +28,16 @@ class Strings {
   static const String alreadyHaveAnAccount = "Already have an account ?";
   static const String dontHaveAnAccount = "Don't have an account yet ?";
 
+
+  //anime details
+  static const String numberOfEpisodes = "Number of Episodes";
+  static const String editorName = "Editor";
+
 }
 
 class ImagePath {
-  static const String thumbnail = "assets/images/thumbnail.jpg";
+  static const String KimetsuNoYaibaThumbnail = "assets/images/kimetsu_no_yaiba.jpg";
+  static const String NarutoThumbnail = "assets/images/naruto.jpg";
+  static const String KarakaiJouzuNoTakagiSanThumbnail = "assets/images/karakai_jouzu_no_takagi_san.jpg";
+  static const String QuintessentialQuintupletsThumbnail = "assets/images/quintessential_quintuplets.jpg";
 }

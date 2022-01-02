@@ -27,7 +27,9 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
           child: Container(
             child: Column(
               children: [
-                AnimeDetailHeader(featuredAnime: widget.featuredAnimeArgument),
+                AnimeDetailHeader(
+                  featuredAnime: widget.featuredAnimeArgument
+                ),
                 Container(
                   constraints: BoxConstraints(
                     minHeight: AppConfig.heightScreen(context),
@@ -58,3 +60,5 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     );
   }
 }
+
+

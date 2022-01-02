@@ -23,7 +23,7 @@ class ContentHeaderWidget extends StatelessWidget {
         )
       ),
       child: SizedBox(
-        height: 400,
+        height: 450,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15.0,
@@ -32,22 +32,29 @@ class ContentHeaderWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 250,
-                width: double.infinity,
+              Spacer(
+                flex: 5
               ),
-              Text(
-                featuredAnime.title.toUpperCase(),
-                style: Theme.of(context).textTheme.headline1,
+              Expanded(
+                flex: 1,
+                child: Text(
+                  featuredAnime.title.toUpperCase(),
+                  style: Theme.of(context).textTheme.headline1,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              Spacer(),
-              Text(
-                featuredAnime.description,
-                style: Theme.of(context).textTheme.bodyText1,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
+              Expanded(
+                flex: 2,
+                child: Center(
+                  child: Text(
+                    featuredAnime.description,
+                    style: Theme.of(context).textTheme.bodyText1,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                  ),
+                ),
               ),
-              Spacer(),
               _PlayButtonWidget()
             ],
           ),

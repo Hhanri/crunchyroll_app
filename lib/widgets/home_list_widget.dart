@@ -33,11 +33,12 @@ class HomeListWidget extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: 270,
+        Container(
+          height: 274,
           child: ListView.builder(
+            //shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
-              vertical: 6,
+              vertical: 8,
               horizontal: 0
             ),
             scrollDirection: Axis.horizontal,
@@ -51,40 +52,56 @@ class HomeListWidget extends StatelessWidget {
                     arguments: content
                   );
                 },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Image.asset(
-                        content.ImageURL,
-                        width: 139,
-                        height: 208,
-                      ),
-                      Container(
-                        width: 139,
-                        height: 50,
-                        color: MyColors.containerColor,
-                        child: Center(
-                          child: Text(
-                            content.title,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline1!.copyWith(
-                              fontSize: 18,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                child: _AnimeCardWidget(featuredAnime: content),
               );
             },
           ),
         )
       ],
+    );
+  }
+}
+
+
+
+
+class _AnimeCardWidget extends StatelessWidget {
+  final Content featuredAnime;
+  const _AnimeCardWidget({
+    Key? key,
+    required this.featuredAnime,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Image.asset(
+            featuredAnime.ImageURL,
+            width: 139,
+            height: 208,
+          ),
+          Container(
+            width: 139,
+            height: 50,
+            color: MyColors.containerColor,
+            child: Center(
+              child: Text(
+                featuredAnime.title,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                  fontSize: 18,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

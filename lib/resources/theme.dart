@@ -18,7 +18,6 @@ ThemeData theme = ThemeData(
     buttonColor: Colors.white,
   ),
   inputDecorationTheme: InputDecorationTheme(
-
     fillColor: MyColors.containerColor,
     filled: true,
     hintStyle: MyTextStyles.hintText,
@@ -58,7 +57,7 @@ ThemeData theme = ThemeData(
       textStyle: MyTextStyles.link1,
       primary: MyColors.primaryColor
     )
-  )
+  ),
 
 
 

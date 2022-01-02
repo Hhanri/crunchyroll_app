@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(featuredAnime: animes[0]),
+      home: HomeScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
