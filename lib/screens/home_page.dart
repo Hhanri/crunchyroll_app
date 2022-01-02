@@ -31,32 +31,30 @@ class _HomeScreenState extends State<HomeScreen> {
             constraints: BoxConstraints(
               minHeight: AppConfig.heightScreen(context)
             ),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.transparent,
-                  MyColors.backgroundColor
-                ],
-                stops: [0,0.25]
-              )
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15.0,
-                vertical: 20
-              ),
-              child: Column(
-                children: [
-                  ContentHeaderWidget(
-                    featuredAnime: widget.featuredAnime,
+            child: Column(
+              children: [
+                ContentHeaderWidget(
+                  featuredAnime: widget.featuredAnime,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: MyColors.backgroundColor
                   ),
-                  HomeListWidget(listTitle: "List 1"),
-                  HomeListWidget(listTitle: "List 1"),
-                  HomeListWidget(listTitle: "List 1"),
-                ]
-              ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                        vertical: 10
+                    ),
+                    child: Column(
+                      children: [
+                        HomeListWidget(listTitle: "List 1"),
+                        HomeListWidget(listTitle: "List 1"),
+                        HomeListWidget(listTitle: "List 1"),
+                      ],
+                    ),
+                  ),
+                )
+              ]
             ),
           ),
         ),

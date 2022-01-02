@@ -1,8 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
-import 'package:crunchyroll_app/screens/anime_detail_page.dart';
-import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +18,7 @@ class HomeListWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Row(
@@ -54,7 +52,7 @@ class HomeListWidget extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

@@ -2,9 +2,11 @@ import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
-class ContentHeaderWidget extends StatelessWidget {
+class AnimeDetailHeader extends StatelessWidget {
+
   final Content featuredAnime;
-  const ContentHeaderWidget({Key? key,
+
+  const AnimeDetailHeader({Key? key,
     required this.featuredAnime
   }) : super(key: key);
 
@@ -19,11 +21,11 @@ class ContentHeaderWidget extends StatelessWidget {
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: [0,0.95]
+          stops: [0,0.9]
         )
       ),
       child: SizedBox(
-        height: 400,
+        height: 580,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15.0,
@@ -33,7 +35,7 @@ class ContentHeaderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 250,
+                height: 430,
                 width: double.infinity,
               ),
               Text(
@@ -43,12 +45,13 @@ class ContentHeaderWidget extends StatelessWidget {
               Spacer(),
               Text(
                 featuredAnime.description,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                  color: Colors.grey.shade500
+                ),
                 overflow: TextOverflow.ellipsis,
-                maxLines: 3,
+                maxLines: 2,
               ),
-              Spacer(),
-              _PlayButtonWidget()
+              Center(child: _KnowMoreButton(featuredAnime: featuredAnime))
             ],
           ),
         ),
@@ -57,29 +60,31 @@ class ContentHeaderWidget extends StatelessWidget {
   }
 }
 
-class _PlayButtonWidget extends StatelessWidget {
-  const _PlayButtonWidget({Key? key}) : super(key: key);
+class _KnowMoreButton extends StatelessWidget {
+
+  final Content featuredAnime;
+
+  const _KnowMoreButton({Key? key,
+    required this.featuredAnime
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(5, 0, 15, 0)),
-      ),
+    return TextButton.icon(
       onPressed: () {
-        print("play");
+
       },
-      icon: const Icon(
-        Icons.play_arrow_outlined,
-        size: 30,
-        color: Colors.black,
+      label: const Icon(
+        Icons.arrow_forward_ios,
+        size: 18,
+        color: MyColors.primaryColor
       ),
-      label: Text(
-        "PLAY",
+      icon: Text(
+        "En savoir plus",
         style: Theme.of(context).textTheme.headline1!.copyWith(
-          color: Colors.black
+          color: MyColors.primaryColor
         ),
-      )
+      ),
     );
   }
 }
