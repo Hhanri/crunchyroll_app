@@ -1,3 +1,4 @@
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: HomeScreen(featuredAnime: animes[0]),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

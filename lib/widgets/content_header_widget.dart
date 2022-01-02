@@ -1,8 +1,12 @@
+import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentHeaderWidget extends StatelessWidget {
-  const ContentHeaderWidget({Key? key}) : super(key: key);
+  final Content featuredAnime;
+  const ContentHeaderWidget({Key? key,
+    required this.featuredAnime
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +20,12 @@ class ContentHeaderWidget extends StatelessWidget {
             width: double.infinity,
           ),
           Text(
-            "KIMETSU NO YAIBA",
+            featuredAnime.title.toUpperCase(),
             style: Theme.of(context).textTheme.headline1,
           ),
           Spacer(),
           Text(
-            "une tres longue description",
+            featuredAnime.description,
             style: Theme.of(context).textTheme.bodyText1,
             overflow: TextOverflow.ellipsis,
             maxLines: 3,
