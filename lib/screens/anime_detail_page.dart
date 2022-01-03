@@ -45,9 +45,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     ),
                     child: Column(
                       children: [
-                        HomeListWidget(listTitle: "List 1"),
-                        HomeListWidget(listTitle: "List 1"),
-                        HomeListWidget(listTitle: "List 1"),
+
                       ],
                     ),
                   ),

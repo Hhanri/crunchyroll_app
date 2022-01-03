@@ -10,8 +10,10 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  const HomeScreen({Key? key,
+  final List<HomeList> homePlaylist;
 
+  const HomeScreen({Key? key,
+    required this.homePlaylist,
   }) : super(key: key);
 
   @override
@@ -46,10 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         vertical: 10
                     ),
                     child: Column(
-                      children: [
-                        HomeListWidget(listTitle: "List 1"),
-                        HomeListWidget(listTitle: "List 1"),
-                        HomeListWidget(listTitle: "List 1"),
+                      children: <HomeListWidget>[
+                        ...List.generate(widget.homePlaylist.length, (index) {
+                          return HomeListWidget(
+                            listTitle: widget.homePlaylist[index].listTitle,
+                            animeList: widget.homePlaylist[index].animes
+                          );
+                        })
                       ],
                     ),
                   ),
@@ -62,3 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+
+//HomeListWidget(listTitle: widget.homePlaylist[0].listTitle, animeList: widget.homePlaylist[0].animes,),
+//HomeListWidget(listTitle: widget.homePlaylist[1].listTitle, animeList: widget.homePlaylist[1].animes,),
+//HomeListWidget(listTitle: widget.homePlaylist[2].listTitle, animeList: widget.homePlaylist[2].animes,),

@@ -32,6 +32,10 @@ class Strings {
   //anime details
   static const String numberOfEpisodes = "Number of Episodes";
   static const String editorName = "Editor";
+  static const String KimetsuNoYaibaTitle = "Kimetsu no Yaiba";
+  static const String NarutoTitle = "Naruto";
+  static const String QuintessentialQuintupletsTitle = "Quintessential Quintuplets";
+  static const String KarakaiJouzuNoTakagisanTitle = "Karakai Jouzu no Takagi-san";
 
 }
 

@@ -11,3 +11,15 @@ class Content {
   });
 
 }
+
+class HomeList {
+
+  final String listTitle;
+  final List<Content> animes;
+
+  HomeList({
+    required this.listTitle,
+    required this.animes
+  });
+
+}

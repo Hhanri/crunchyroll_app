@@ -4,12 +4,15 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
+
 class HomeListWidget extends StatelessWidget {
 
   final String listTitle;
+  final List<Content> animeList;
 
   const HomeListWidget({Key? key,
     required this.listTitle,
+    required this.animeList,
 
   }) : super(key: key);
 
@@ -42,9 +45,9 @@ class HomeListWidget extends StatelessWidget {
               horizontal: 0
             ),
             scrollDirection: Axis.horizontal,
-            itemCount: animes.length,
+            itemCount: animeList.length,
             itemBuilder: (BuildContext context, int index) {
-              final Content content = animes[index];
+              final Content content = animeList[index];
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushNamed(
