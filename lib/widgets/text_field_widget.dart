@@ -52,7 +52,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       style: MyTextStyles.body1,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(10),
         hintText: _textFieldParamaters.hintText,
         hintStyle: _textFieldParamaters.textStyle ?? MyTextStyles.hintText,
         suffixIcon: GestureDetector(
@@ -62,8 +62,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             child:
             (_textFieldParamaters is PasswordTextFieldParameters)
                 ?  (_textFieldParamaters.obscureText)
-                ? IconWidget(icon: Icons.visibility)
-                : IconWidget(icon: Icons.visibility_off)
+                ? const IconWidget(icon: Icons.visibility)
+                : const IconWidget(icon: Icons.visibility_off)
                 :_textFieldParamaters.iconWidget,
           ),
         )
@@ -89,7 +89,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 
   String? _validateForm(String value) {
-    if (_textFieldParamaters != SearchTextFieldParameters) {
+    if (_textFieldParamaters != SearchTextFieldParameters()) {
       if (value == "" || value.replaceAll(" ", "") == "") {
         return Strings.errorEmptyField;
       } else {

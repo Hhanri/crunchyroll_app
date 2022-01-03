@@ -31,7 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Spacer(
+              const Spacer(
                 flex: 4,
               ),
               Expanded(
@@ -76,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 )
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20
               ),
               Row(
@@ -87,12 +87,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                   TextButton(
-                    child: Text(" " + Strings.signUpTitle),
+                    child: Text(
+                      " " + Strings.signUpTitle,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                     onPressed: () => Navigator.of(context).pushNamed(SIGN_UP_PAGE),
                   )
                 ],
               ),
-              Spacer(
+              const Spacer(
                 flex: 3
               ),
               Row(
@@ -100,7 +103,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   TextButton(
                     child: Text(
-                      Strings.forgottenPassword
+                      Strings.forgottenPassword,
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {},
                   )

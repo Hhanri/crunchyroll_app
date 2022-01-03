@@ -11,15 +11,15 @@ class ContentHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
+          colors: const [
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: [0,0.9]
+          stops: const [0,0.9]
         )
       ),
       child: SizedBox(
@@ -32,7 +32,7 @@ class ContentHeaderWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(
+              const Spacer(
                 flex: 6
               ),
               Expanded(
@@ -55,7 +55,7 @@ class ContentHeaderWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              _PlayButtonWidget()
+              const _PlayButtonWidget()
             ],
           ),
         ),
@@ -71,7 +71,7 @@ class _PlayButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       style: ButtonStyle(
-        padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(5, 0, 15, 0)),
+        padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(5, 0, 15, 0)),
       ),
       onPressed: () {
         print("play");

@@ -1,7 +1,6 @@
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:crunchyroll_app/resources/strings.dart';
 
 class AnimeCardWidget extends StatefulWidget {
   const AnimeCardWidget({Key? key}) : super(key: key);

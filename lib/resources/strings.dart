@@ -32,7 +32,7 @@ class Strings {
   //anime details
   static const String numberOfEpisodes = "Number of Episodes";
   static const String episodeTitle = "Episode";
-  static const String editorName = "Editor";
+  static const String publisherName = "Editor";
   static const String KimetsuNoYaibaTitle = "Kimetsu no Yaiba";
   static const String KimetsuNoYaibaS2Title = "Kimetsu no Yaiba : Yuukaku-hen";
   static const String NarutoTitle = "Naruto";

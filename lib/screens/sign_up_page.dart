@@ -36,12 +36,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Spacer(),
+              const Spacer(),
               Text(
                 Strings.signUpTitle,
                 style: Theme.of(context).textTheme.headline1,
               ),
-              Spacer(),
+              const Spacer(),
               Expanded(
                 flex: 15,
                 child: Form(
@@ -100,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   )
                 )
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -120,22 +120,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                     child: Text(
                       Strings.acceptTOS,
-                      style: TextStyle(
-                        fontSize: 15
-                      )
+                      style: Theme.of(context).textTheme.bodyText2
                     ),
                   )
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    Strings.alreadyHaveAnAccount
+                    Strings.alreadyHaveAnAccount,
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                   TextButton(
-                    child: Text(" " + Strings.signInTitle),
+                    child: Text(
+                      " " + Strings.signInTitle,
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         MAIN_APP,

@@ -4,26 +4,27 @@ ThemeData theme = ThemeData(
   fontFamily: 'TCM',
   primaryColor: MyColors.primaryColor,
   scaffoldBackgroundColor: MyColors.backgroundColor,
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     headline1: MyTextStyles.title1,
+    headline2: MyTextStyles.title2,
     bodyText1: MyTextStyles.body1,
     bodyText2: MyTextStyles.link1
   ),
   hoverColor: MyColors.hover,
   unselectedWidgetColor: MyColors.primaryColor,
-  iconTheme: IconThemeData(
+  iconTheme: const IconThemeData(
       color: MyColors.iconColor
   ),
-  buttonTheme: ButtonThemeData(
+  buttonTheme: const ButtonThemeData(
     buttonColor: Colors.white,
   ),
   inputDecorationTheme: InputDecorationTheme(
     fillColor: MyColors.containerColor,
     filled: true,
     hintStyle: MyTextStyles.hintText,
-    contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 17),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 17),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
           color: MyColors.primaryColor,
           style: BorderStyle.solid,
           width: 1
@@ -40,7 +41,7 @@ ThemeData theme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      side: BorderSide(
+      side: const BorderSide(
         width: 2,
         color: Colors.black
       ),
@@ -52,11 +53,14 @@ ThemeData theme = ThemeData(
     )
   ),
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(
+    style:
+      TextButton.styleFrom(
       padding: EdgeInsets.zero,
       textStyle: MyTextStyles.link1,
-      primary: MyColors.primaryColor
-    )
+      primary: Colors.white,
+    ),
+
+
   ),
 
 
@@ -118,7 +122,7 @@ class MyTextStyles {
 class MyShapes {
   static BorderRadiusGeometry checkboxBorders = BorderRadius.circular(5.0);
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(2.0);
-  static Radius radiusCircular = Radius.circular(2.0);
+  static Radius radiusCircular = const Radius.circular(2.0);
 }
 
 class MySizes {

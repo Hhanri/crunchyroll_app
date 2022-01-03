@@ -1,5 +1,4 @@
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +77,7 @@ class _AnimeCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

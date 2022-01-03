@@ -1,6 +1,7 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
+import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
 
 class KnowMoreScreen extends StatefulWidget {
@@ -19,8 +20,8 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
   @override
   Widget build(BuildContext context) {
     
-    final Content _featureAnime = widget.featuredAnimeArgument;
-    final AnimeEpisodesList _animeEpisodesList = animesEpisodesList[_featureAnime]!;
+    final Content _featuredAnime = widget.featuredAnimeArgument;
+    final AnimeEpisodesList _animeEpisodesList = animesEpisodesList[_featuredAnime]!;
     int _numberOfEpisodes = 0;
     _animeEpisodesList.seasons.forEach((key, value) {
       _numberOfEpisodes += value.length;
@@ -33,12 +34,13 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
           child: Column(
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
                     onPressed: (){
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       color: Colors.white,
                     )
@@ -54,14 +56,16 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               _DescriptionBox(description: widget.featuredAnimeArgument.description),
-              SizedBox(
+              const SizedBox(
                 height: 20
               ),
-              _DetailRows(numberOfEpisodes: _numberOfEpisodes,)
+              _DetailRows(
+                numberOfEpisodes: _numberOfEpisodes,
+                publisherName: _featuredAnime.publisher,)
             ],
           ),
         ),
@@ -98,9 +102,11 @@ class _DescriptionBox extends StatelessWidget {
 class _DetailRows extends StatelessWidget {
   
   final int numberOfEpisodes;
+  final String publisherName;
   
   const _DetailRows({Key? key, 
-    required this.numberOfEpisodes
+    required this.numberOfEpisodes,
+    required this.publisherName
   }) : super(key: key);
 
   @override
@@ -108,25 +114,10 @@ class _DetailRows extends StatelessWidget {
     return Column(
       children: [
         _RowsInfos(leading: Strings.numberOfEpisodes, trailing: numberOfEpisodes.toString()),
-        _DividerWidget(),
-        _RowsInfos(leading: Strings.editorName, trailing: "universal"),
-        _DividerWidget()
+        const DividerWidget(),
+        _RowsInfos(leading: Strings.publisherName, trailing: publisherName),
+        const DividerWidget()
       ],
-    );
-  }
-}
-
-
-
-class _DividerWidget extends StatelessWidget {
-  const _DividerWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      color: Colors.grey.shade500,
-      height: 0,
-      thickness: 1,
     );
   }
 }

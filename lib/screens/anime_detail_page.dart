@@ -1,9 +1,10 @@
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
-import 'package:crunchyroll_app/widgets/home_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetailScreen extends StatefulWidget {
@@ -23,7 +24,12 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
   @override
   Widget build(BuildContext homeContext) {
 
-    final _featuredAnime = widget.featuredAnimeArgument;
+    final Content _featuredAnime = widget.featuredAnimeArgument;
+    List<AnimeSeason> _availableSeasons = [];
+    animesEpisodesList[_featuredAnime]!.seasons.keys.forEach((key) {
+      _availableSeasons.add(key);
+    });
+    AnimeSeason _selectedSeason = _availableSeasons[0];
 
     return Stack(
       children: [
@@ -41,12 +47,20 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     minHeight: AppConfig.heightScreen(context),
                     minWidth: AppConfig.widthScreen(context)
                   ),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: MyColors.backgroundColor
                   ),
                   child: Column(
                     children: [
-                      _EpisodesGridWidget()
+                      _EpisodesGridWidget(
+                        selectedSeason: _selectedSeason,
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            SELECT_SEASON_PAGE,
+                            arguments: _availableSeasons
+                          );
+                        },
+                      )
                     ],
                   ),
                 )
@@ -61,10 +75,17 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
 
 
 class _EpisodesGridWidget extends StatelessWidget {
-  const _EpisodesGridWidget({Key? key}) : super(key: key);
+  final VoidCallback onTap;
+  final AnimeSeason selectedSeason;
+  const _EpisodesGridWidget({
+    Key? key,
+    required this.selectedSeason,
+    required this.onTap
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Container(
@@ -79,7 +100,23 @@ class _EpisodesGridWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.headline1
           ),
         ),
+        TextButton(
+          onPressed: onTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Text(
+                  selectedSeason.season + " - " + selectedSeason.seasonTitle,
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+              ),
+            ],
+          )
+        )
       ],
     );
   }
 }
+

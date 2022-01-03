@@ -14,7 +14,7 @@ class AnimeDetailHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -22,7 +22,7 @@ class AnimeDetailHeader extends StatelessWidget {
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: [0,0.9]
+          stops: const [0,0.9]
         )
       ),
       child: SizedBox(
@@ -35,7 +35,7 @@ class AnimeDetailHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(
+              const Spacer(
                 flex: 7,
               ),
               Expanded(
@@ -68,7 +68,7 @@ class AnimeDetailHeader extends StatelessWidget {
                   )
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               )
             ],
