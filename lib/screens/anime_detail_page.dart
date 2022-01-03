@@ -1,4 +1,5 @@
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
@@ -18,18 +19,23 @@ class AnimeDetailScreen extends StatefulWidget {
 }
 
 class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
+
   @override
   Widget build(BuildContext homeContext) {
+
+    final _featuredAnime = widget.featuredAnimeArgument;
+
     return Stack(
       children: [
-        Image.asset(widget.featuredAnimeArgument.ImageURL),
+        Image.asset(widget.featuredAnimeArgument.imageURL),
         SingleChildScrollView(
           child: Container(
             child: Column(
               children: [
                 AnimeDetailHeader(
-                  featuredAnime: widget.featuredAnimeArgument
+                  featuredAnime: _featuredAnime
                 ),
+
                 Container(
                   constraints: BoxConstraints(
                     minHeight: AppConfig.heightScreen(context),
@@ -38,16 +44,10 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                   decoration: BoxDecoration(
                     color: MyColors.backgroundColor
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                        vertical: 10
-                    ),
-                    child: Column(
-                      children: [
-
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      _EpisodesGridWidget()
+                    ],
                   ),
                 )
               ]
@@ -60,3 +60,26 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
 }
 
 
+class _EpisodesGridWidget extends StatelessWidget {
+  const _EpisodesGridWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 50,
+          decoration: BoxDecoration(
+            color: MyColors.containerColor2
+          ),
+          child: Text(
+            Strings.episodeTitle,
+            style: Theme.of(context).textTheme.headline1
+          ),
+        ),
+      ],
+    );
+  }
+}

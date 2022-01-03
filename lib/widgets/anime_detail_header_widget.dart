@@ -67,6 +67,9 @@ class AnimeDetailHeader extends StatelessWidget {
                     featuredAnime: featuredAnime
                   )
                 ),
+              ),
+              SizedBox(
+                height: 10,
               )
             ],
           ),

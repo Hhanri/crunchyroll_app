@@ -64,9 +64,10 @@ ThemeData theme = ThemeData(
 );
 
 class MyColors {
-  static const Color backgroundColor = const Color(0xff0e1623);
+  static const Color backgroundColor = Colors.black; //const Color(0xff0e1623);
   static const Color primaryColor = const Color(0xffff6600);
   static Color containerColor = const Color(0xff486181).withOpacity(0.69);
+  static Color containerColor2 = const Color(0xFF303030);
   static const Color fontColor2 = const Color(0xff0080ff);//.withOpacity(0.8);
   static const fontColor1 = const Color(0xffffffff);
   static const hintTextColor = const Color(0xff5b6f8e);

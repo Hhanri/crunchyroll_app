@@ -17,7 +17,7 @@ class _AnimeCardWidgetState extends State<AnimeCardWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(trendingAnime.ImageURL),
+          Image.asset(trendingAnime.imageURL),
           Container(
             height: 70,
             alignment: Alignment.center,

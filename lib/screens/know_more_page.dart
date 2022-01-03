@@ -1,8 +1,9 @@
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:flutter/material.dart';
 
-class KnowMoreScreen extends StatelessWidget {
+class KnowMoreScreen extends StatefulWidget {
 
   final dynamic featuredAnimeArgument;
 
@@ -11,7 +12,20 @@ class KnowMoreScreen extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<KnowMoreScreen> createState() => _KnowMoreScreenState();
+}
+
+class _KnowMoreScreenState extends State<KnowMoreScreen> {
+  @override
   Widget build(BuildContext context) {
+    
+    final Content _featureAnime = widget.featuredAnimeArgument;
+    final AnimeEpisodesList _animeEpisodesList = animesEpisodesList[_featureAnime]!;
+    int _numberOfEpisodes = 0;
+    _animeEpisodesList.seasons.forEach((key, value) {
+      _numberOfEpisodes += value.length;
+    });
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -33,7 +47,7 @@ class KnowMoreScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        featuredAnimeArgument.title,
+                        widget.featuredAnimeArgument.title,
                         style: Theme.of(context).textTheme.headline1,
                       ),
                     ),
@@ -43,11 +57,11 @@ class KnowMoreScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              _DescriptionBox(description: featuredAnimeArgument.description),
+              _DescriptionBox(description: widget.featuredAnimeArgument.description),
               SizedBox(
                 height: 20
               ),
-              _DetailRows()
+              _DetailRows(numberOfEpisodes: _numberOfEpisodes,)
             ],
           ),
         ),
@@ -82,13 +96,18 @@ class _DescriptionBox extends StatelessWidget {
 
 
 class _DetailRows extends StatelessWidget {
-  const _DetailRows({Key? key}) : super(key: key);
+  
+  final int numberOfEpisodes;
+  
+  const _DetailRows({Key? key, 
+    required this.numberOfEpisodes
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _RowsInfos(leading: Strings.numberOfEpisodes, trailing: "12"),
+        _RowsInfos(leading: Strings.numberOfEpisodes, trailing: numberOfEpisodes.toString()),
         _DividerWidget(),
         _RowsInfos(leading: Strings.editorName, trailing: "universal"),
         _DividerWidget()

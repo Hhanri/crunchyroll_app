@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext homeContext) {
     return Stack(
       children: [
-        Image.asset(trendingAnime.ImageURL),
+        Image.asset(trendingAnime.imageURL),
         SingleChildScrollView(
           child: Container(
             child: Column(

@@ -83,7 +83,7 @@ class _AnimeCardWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Image.asset(
-            featuredAnime.ImageURL,
+            featuredAnime.imageURL,
             width: 139,
             height: 208,
           ),

@@ -19,11 +19,11 @@ class ContentHeaderWidget extends StatelessWidget {
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: [0,0.95]
+          stops: [0,0.9]
         )
       ),
       child: SizedBox(
-        height: 450,
+        height: 500,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 15.0,
@@ -33,7 +33,7 @@ class ContentHeaderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Spacer(
-                flex: 5
+                flex: 6
               ),
               Expanded(
                 flex: 1,
