@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class AnimeDetailHeader extends StatelessWidget {
 
-  final Content featuredAnime;
+  final AnimeContent featuredAnime;
 
   const AnimeDetailHeader({Key? key,
     required this.featuredAnime
@@ -81,7 +81,7 @@ class AnimeDetailHeader extends StatelessWidget {
 
 class _KnowMoreButton extends StatelessWidget {
 
-  final Content featuredAnime;
+  final AnimeContent featuredAnime;
 
   const _KnowMoreButton({Key? key,
     required this.featuredAnime

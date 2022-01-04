@@ -3,7 +3,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class ContentHeaderWidget extends StatelessWidget {
-  final Content featuredAnime;
+  final AnimeContent featuredAnime;
   const ContentHeaderWidget({Key? key,
     required this.featuredAnime
   }) : super(key: key);

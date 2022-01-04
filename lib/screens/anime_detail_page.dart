@@ -3,8 +3,10 @@ import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
+import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetailScreen extends StatefulWidget {
@@ -24,7 +26,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
   @override
   Widget build(BuildContext homeContext) {
 
-    final Content _featuredAnime = widget.featuredAnimeArgument;
+    final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
     List<AnimeSeason> _availableSeasons = [];
     animesEpisodesList[_featuredAnime]!.seasons.keys.forEach((key) {
       _availableSeasons.add(key);
@@ -34,7 +36,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(widget.featuredAnimeArgument.imageURL),
+          Image.asset(_featuredAnime.getAnimeThumbail()),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -54,6 +56,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                       _EpisodesGridWidget(
                         selectedSeason: _selectedSeason,
                         availableSeasons: _availableSeasons,
+                        featuredAnime: _featuredAnime,
                       )
                     ],
                   ),
@@ -69,12 +72,14 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
 
 
 class _EpisodesGridWidget extends StatefulWidget {
+  final AnimeContent featuredAnime;
   final List<AnimeSeason> availableSeasons;
   AnimeSeason selectedSeason;
   _EpisodesGridWidget({
     Key? key,
     required this.selectedSeason,
     required this.availableSeasons,
+    required this.featuredAnime,
   }) : super(key: key);
 
   @override
@@ -84,6 +89,7 @@ class _EpisodesGridWidget extends StatefulWidget {
 class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
   @override
   Widget build(BuildContext context) {
+    List<AnimeEpisode> _animeEpisodes = animesEpisodesList[widget.featuredAnime]!.seasons[widget.selectedSeason]!;
 
     return Column(
       children: [
@@ -118,16 +124,53 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
-                  widget.selectedSeason.season + " - " + widget.selectedSeason.seasonTitle,
+                  widget.selectedSeason.displaySeasonTitle(),
                   style: Theme.of(context).textTheme.headline2,
                 ),
               ),
             ],
           )
-        )
+        ),
+        ...List.generate(_animeEpisodes.length, (index) {
+          return _EpisodeCardWidget(animeEpisode: _animeEpisodes[index]);
+        })
       ],
     );
   }
 }
 
+class _EpisodeCardWidget extends StatelessWidget {
 
+  final AnimeEpisode animeEpisode;
+
+  const _EpisodeCardWidget({
+    Key? key,
+    required this.animeEpisode
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 4,
+            child: Image.asset(animeEpisode.getEpisodeThumbnail())
+          ),
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                animeEpisode.displayEpisodeTitle(),
+                style: Theme.of(context).textTheme.headline3
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

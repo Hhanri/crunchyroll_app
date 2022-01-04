@@ -1,11 +1,11 @@
 import 'package:crunchyroll_app/resources/strings.dart';
 
-class Content {
+class AnimeContent {
   final String title;
   final String imageURL;
   final String description;
   final String publisher;
-  const Content({
+  const AnimeContent({
     required this.title,
     required this.imageURL,
     required this.description,
@@ -15,7 +15,7 @@ class Content {
 
 class HomeList {
   final String listTitle;
-  final List<Content> animes;
+  final List<AnimeContent> animes;
   HomeList({
     required this.listTitle,
     required this.animes
@@ -23,11 +23,13 @@ class HomeList {
 }
 
 class AnimeEpisode {
+  final String animeTitle;
   final String season;
   final String episode;
   final String episodeTitle;
   final String thumbnail = ImagePath.whiteThumbnail;
   AnimeEpisode({
+    required this.animeTitle,
     required this.season,
     required this.episode,
     required this.episodeTitle
@@ -49,6 +51,4 @@ class AnimeSeason {
     required this.season,
     required this.seasonTitle
   });
-
-
 }

@@ -7,6 +7,7 @@ ThemeData theme = ThemeData(
   textTheme: const TextTheme(
     headline1: MyTextStyles.title1,
     headline2: MyTextStyles.title2,
+    headline3: MyTextStyles.title3,
     bodyText1: MyTextStyles.body1,
     bodyText2: MyTextStyles.link1
   ),
@@ -58,10 +59,14 @@ ThemeData theme = ThemeData(
       padding: EdgeInsets.zero,
       textStyle: MyTextStyles.link1,
       primary: Colors.white,
-    ),
-
-
+    )
   ),
+  cardTheme: CardTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: MyShapes.cardBorders
+    ),
+    color: MyColors.containerColor
+  )
 
 
 
@@ -104,6 +109,14 @@ class MyTextStyles {
     color: MyColors.fontColor2
   );
 
+  static const TextStyle title3 = TextStyle(
+      fontFamily: 'TCM',
+      fontStyle: FontStyle.normal,
+      fontWeight: FontWeight.bold,
+      fontSize: 19,
+      color: MyColors.fontColor1
+  );
+
   static const TextStyle body1 = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.italic,
@@ -123,6 +136,7 @@ class MyShapes {
   static BorderRadiusGeometry checkboxBorders = BorderRadius.circular(5.0);
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(2.0);
   static Radius radiusCircular = const Radius.circular(2.0);
+  static BorderRadiusGeometry cardBorders = BorderRadius.zero;
 }
 
 class MySizes {

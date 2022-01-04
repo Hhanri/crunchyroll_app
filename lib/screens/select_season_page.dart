@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class _SelectSeasonScreenState extends State<SelectSeasonScreen> {
                             _selectSeason(_availableSeasons[index]);
                             Navigator.of(context).pop();
                           },
-                          seasonTitle: _availableSeasons[index].season + " - " + _availableSeasons[index].seasonTitle,
+                          seasonTitle: _availableSeasons[index].displaySeasonTitle(),
                           isSelectedSeason: _availableSeasons[index] == _selectedSeason ? true : false,
                         ),
                         const DividerWidget()

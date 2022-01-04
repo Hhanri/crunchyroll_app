@@ -2,12 +2,13 @@ import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:crunchyroll_app/utils/format_utils.dart';
 
 
 class HomeListWidget extends StatelessWidget {
 
   final String listTitle;
-  final List<Content> animeList;
+  final List<AnimeContent> animeList;
 
   const HomeListWidget({Key? key,
     required this.listTitle,
@@ -46,15 +47,15 @@ class HomeListWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: animeList.length,
             itemBuilder: (BuildContext context, int index) {
-              final Content content = animeList[index];
+              final AnimeContent animeContent = animeList[index];
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     ANIME_DETAIL_PAGE,
-                    arguments: content
+                    arguments: animeContent
                   );
                 },
-                child: _AnimeCardWidget(featuredAnime: content),
+                child: _AnimeCardWidget(featuredAnime: animeContent),
               );
             },
           ),
@@ -68,7 +69,7 @@ class HomeListWidget extends StatelessWidget {
 
 
 class _AnimeCardWidget extends StatelessWidget {
-  final Content featuredAnime;
+  final AnimeContent featuredAnime;
   const _AnimeCardWidget({
     Key? key,
     required this.featuredAnime,
@@ -82,7 +83,7 @@ class _AnimeCardWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Image.asset(
-            featuredAnime.imageURL,
+            featuredAnime.getAnimeThumbail(),
             width: 139,
             height: 208,
           ),

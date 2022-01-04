@@ -20,7 +20,7 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
   @override
   Widget build(BuildContext context) {
     
-    final Content _featuredAnime = widget.featuredAnimeArgument;
+    final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
     final AnimeEpisodesList _animeEpisodesList = animesEpisodesList[_featuredAnime]!;
     int _numberOfEpisodes = 0;
     _animeEpisodesList.seasons.forEach((key, value) {
