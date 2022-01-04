@@ -96,7 +96,7 @@ class HomeListWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 316,
+            height: 346,
             child: ListView.builder(
               //shrinkWrap: true,
               padding: const EdgeInsets.symmetric(
@@ -141,29 +141,46 @@ class _AnimeCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: MyColors.containerColor
       ),
-      width: 160,
+      width: 165, // ((SizedBoxHeight - padding) / imageHeight) * imageWidth * (imageFlex / (imageFlex+textFlex))
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
+      child: Stack(
         children: [
-          Expanded(
-            flex: 4,
-            child: Image.asset(
-              featuredAnime.getAnimeThumbail(),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text(
-                featuredAnime.title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline3,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 3,
+                child: Image.asset(
+                  featuredAnime.getAnimeThumbail(),
+                ),
               ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
+                  child: Text(
+                    featuredAnime.title,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.headline3,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+              )
+            ],
+          ),
+          Positioned(
+            left: 125,
+            top: 285,
+            child: IconButton(
+              icon: Icon(
+                  Icons.more_vert
+              ),
+              onPressed: () {  },
+
             ),
           )
-        ],
+        ]
       ),
     );
   }

@@ -166,6 +166,8 @@ class _EpisodeCardWidget extends StatelessWidget {
               child: Text(
                 animeEpisode.displayEpisodeTitle(),
                 style: Theme.of(context).textTheme.headline3,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
