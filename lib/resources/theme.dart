@@ -113,7 +113,7 @@ class MyTextStyles {
       fontFamily: 'TCM',
       fontStyle: FontStyle.normal,
       fontWeight: FontWeight.bold,
-      fontSize: 19,
+      fontSize: 17,
       color: MyColors.fontColor1
   );
 
