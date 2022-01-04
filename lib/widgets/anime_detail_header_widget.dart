@@ -22,7 +22,7 @@ class AnimeDetailHeader extends StatelessWidget {
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: const [0,0.9]
+          stops: [0,0.9]
         )
       ),
       child: SizedBox(

@@ -14,13 +14,16 @@ class RouteGenerator {
     final _arguments = settings.arguments;
 
     switch (settings.name) {
-      case MAIN_APP : return MaterialPageRoute(builder: (_) => MyApp());
-      case SIGN_IN_PAGE : return MaterialPageRoute(builder: (_) => SignInScreen());
-      case SIGN_UP_PAGE : return MaterialPageRoute(builder: (_) => SignUpScreen());
+      case MAIN_APP : return MaterialPageRoute(builder: (_) => const MyApp());
+      case SIGN_IN_PAGE : return MaterialPageRoute(builder: (_) => const SignInScreen());
+      case SIGN_UP_PAGE : return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case ANIME_DETAIL_PAGE : return MaterialPageRoute(builder: (_) => AnimeDetailScreen(featuredAnimeArgument: _arguments));
       case KNOW_MORE_PAGE : return MaterialPageRoute(builder: (_) => KnowMoreScreen(featuredAnimeArgument: _arguments));
-      case SELECT_SEASON_PAGE : return MaterialPageRoute(builder: (_) => SelectSeasonScreen(availableSeasonsArgument: _arguments));
-      default : return MaterialPageRoute(builder: (_) => SignInScreen());
+      case SELECT_SEASON_PAGE : return MaterialPageRoute(builder: (_) => SelectSeasonScreen(
+          availableSeasonsAndSelectSeasonArgument: _arguments,
+
+      ));
+      default : return MaterialPageRoute(builder: (_) => const MyApp());
     }
 
   }

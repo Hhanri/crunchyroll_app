@@ -15,11 +15,11 @@ class ContentHeaderWidget extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: const [
+          colors: [
             Colors.transparent,
             MyColors.backgroundColor
           ],
-          stops: const [0,0.9]
+          stops: [0,0.9]
         )
       ),
       child: SizedBox(

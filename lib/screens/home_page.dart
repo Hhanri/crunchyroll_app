@@ -22,11 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   Widget build(BuildContext homeContext) {
-    return Stack(
-      children: [
-        Image.asset(trendingAnime.imageURL),
-        SingleChildScrollView(
-          child: Container(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Image.asset(trendingAnime.imageURL),
+          SingleChildScrollView(
             child: Column(
               children: [
                 ContentHeaderWidget(
@@ -60,14 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ]
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
-
-
-
-//HomeListWidget(listTitle: widget.homePlaylist[0].listTitle, animeList: widget.homePlaylist[0].animes,),
-//HomeListWidget(listTitle: widget.homePlaylist[1].listTitle, animeList: widget.homePlaylist[1].animes,),
-//HomeListWidget(listTitle: widget.homePlaylist[2].listTitle, animeList: widget.homePlaylist[2].animes,),

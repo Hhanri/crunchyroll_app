@@ -69,26 +69,26 @@ ThemeData theme = ThemeData(
 
 class MyColors {
   static const Color backgroundColor = Colors.black; //const Color(0xff0e1623);
-  static const Color primaryColor = const Color(0xffff6600);
-  static Color containerColor = const Color(0xff486181).withOpacity(0.69);
-  static Color containerColor2 = const Color(0xFF303030);
-  static const Color fontColor2 = const Color(0xff0080ff);//.withOpacity(0.8);
-  static const fontColor1 = const Color(0xffffffff);
-  static const hintTextColor = const Color(0xff5b6f8e);
-  static const hover = const Color(0xffff9100);
+  static const Color primaryColor = Color(0xffff6600);
+  static Color containerColor =  const Color(0xff486181).withOpacity(0.69);
+  static const Color containerColor2 = Color(0xFF303030);
+  static const Color fontColor2 = Color(0xff0080ff);//.withOpacity(0.8);
+  static const fontColor1 = Color(0xffffffff);
+  static const hintTextColor = Color(0xff5b6f8e);
+  static const hover = Color(0xffff9100);
   static const iconColor = primaryColor;
 }
 
 class MyTextStyles {
 
-  static const TextStyle hintText = const TextStyle(
+  static const TextStyle hintText = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.italic,
     fontSize: 26,
     color: MyColors.hintTextColor
   );
 
-  static const TextStyle title1 = const TextStyle(
+  static const TextStyle title1 = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class MyTextStyles {
     color: MyColors.fontColor1
   );
 
-  static const TextStyle title2 = const TextStyle(
+  static const TextStyle title2 = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
@@ -104,14 +104,14 @@ class MyTextStyles {
     color: MyColors.fontColor2
   );
 
-  static const TextStyle body1 = const TextStyle(
+  static const TextStyle body1 = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.italic,
     fontSize: 18,
     color: MyColors.fontColor1
   );
 
-  static const TextStyle link1 = const TextStyle(
+  static const TextStyle link1 = TextStyle(
     fontFamily: 'TCM',
     fontStyle: FontStyle.italic,
     fontSize: 18,

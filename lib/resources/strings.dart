@@ -33,19 +33,19 @@ class Strings {
   static const String numberOfEpisodes = "Number of Episodes";
   static const String episodeTitle = "Episode";
   static const String publisherName = "Editor";
-  static const String KimetsuNoYaibaTitle = "Kimetsu no Yaiba";
-  static const String KimetsuNoYaibaS2Title = "Kimetsu no Yaiba : Yuukaku-hen";
-  static const String NarutoTitle = "Naruto";
-  static const String QuintessentialQuintupletsTitle = "Quintessential Quintuplets";
-  static const String QuintessentialQuintupletsS2Title = "Quintessential Quintuplets 2";
-  static const String KarakaiJouzuNoTakagisanTitle = "Karakai Jouzu no Takagi-san";
+  static const String kimetsuNoYaibaTitle = "Kimetsu no Yaiba";
+  static const String kimetsuNoYaibaS2Title = "Kimetsu no Yaiba : Yuukaku-hen";
+  static const String narutoTitle = "Naruto";
+  static const String quintessentialQuintupletsTitle = "Quintessential Quintuplets";
+  static const String quintessentialQuintupletsS2Title = "Quintessential Quintuplets 2";
+  static const String karakaiJouzuNoTakagisanTitle = "Karakai Jouzu no Takagi-san";
 
 }
 
 class ImagePath {
-  static const String KimetsuNoYaibaThumbnail = "assets/images/kimetsu_no_yaiba.jpg";
-  static const String NarutoThumbnail = "assets/images/naruto.jpg";
-  static const String KarakaiJouzuNoTakagiSanThumbnail = "assets/images/karakai_jouzu_no_takagi_san.jpg";
-  static const String QuintessentialQuintupletsThumbnail = "assets/images/quintessential_quintuplets.jpg";
+  static const String kimetsuNoYaibaThumbnail = "assets/images/kimetsu_no_yaiba.jpg";
+  static const String narutoThumbnail = "assets/images/naruto.jpg";
+  static const String karakaiJouzuNoTakagiSanThumbnail = "assets/images/karakai_jouzu_no_takagi_san.jpg";
+  static const String quintessentialQuintupletsThumbnail = "assets/images/quintessential_quintuplets.jpg";
   static const String whiteThumbnail = "assets/images/white-thumbnail.jpg";
 }

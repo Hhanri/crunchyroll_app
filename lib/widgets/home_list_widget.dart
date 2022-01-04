@@ -35,7 +35,7 @@ class HomeListWidget extends StatelessWidget {
             ),
           ],
         ),
-        Container(
+        SizedBox(
           height: 274,
           child: ListView.builder(
             //shrinkWrap: true,

@@ -86,12 +86,10 @@ class _DescriptionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        description,
-        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-          color: Colors.grey.shade500
-        ),
+    return Text(
+      description,
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+        color: Colors.grey.shade500
       ),
     );
   }

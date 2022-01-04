@@ -31,17 +31,16 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     });
     AnimeSeason _selectedSeason = _availableSeasons[0];
 
-    return Stack(
-      children: [
-        Image.asset(widget.featuredAnimeArgument.imageURL),
-        SingleChildScrollView(
-          child: Container(
+    return Scaffold(
+      body: Stack(
+        children: [
+          Image.asset(widget.featuredAnimeArgument.imageURL),
+          SingleChildScrollView(
             child: Column(
               children: [
                 AnimeDetailHeader(
                   featuredAnime: _featuredAnime
                 ),
-
                 Container(
                   constraints: BoxConstraints(
                     minHeight: AppConfig.heightScreen(context),
@@ -54,12 +53,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     children: [
                       _EpisodesGridWidget(
                         selectedSeason: _selectedSeason,
-                        onTap: () {
-                          Navigator.of(context).pushNamed(
-                            SELECT_SEASON_PAGE,
-                            arguments: _availableSeasons
-                          );
-                        },
+                        availableSeasons: _availableSeasons,
                       )
                     ],
                   ),
@@ -67,22 +61,27 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ]
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
 
-class _EpisodesGridWidget extends StatelessWidget {
-  final VoidCallback onTap;
-  final AnimeSeason selectedSeason;
-  const _EpisodesGridWidget({
+class _EpisodesGridWidget extends StatefulWidget {
+  final List<AnimeSeason> availableSeasons;
+  AnimeSeason selectedSeason;
+  _EpisodesGridWidget({
     Key? key,
     required this.selectedSeason,
-    required this.onTap
+    required this.availableSeasons,
   }) : super(key: key);
 
+  @override
+  State<_EpisodesGridWidget> createState() => _EpisodesGridWidgetState();
+}
+
+class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
   @override
   Widget build(BuildContext context) {
 
@@ -92,7 +91,7 @@ class _EpisodesGridWidget extends StatelessWidget {
           alignment: Alignment.center,
           width: double.infinity,
           height: 50,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: MyColors.containerColor2
           ),
           child: Text(
@@ -101,14 +100,25 @@ class _EpisodesGridWidget extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: onTap,
+          onPressed: () => Navigator.of(context).pushNamed(
+            SELECT_SEASON_PAGE,
+            arguments: {
+              "availableSeasons" : widget.availableSeasons,
+              "function" : (newSelectedSeason) {
+                setState(() {
+                 widget.selectedSeason = newSelectedSeason;
+                });
+              },
+              "selectedSeason" : widget.selectedSeason
+              },
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
-                  selectedSeason.season + " - " + selectedSeason.seasonTitle,
+                  widget.selectedSeason.season + " - " + widget.selectedSeason.seasonTitle,
                   style: Theme.of(context).textTheme.headline2,
                 ),
               ),
@@ -119,4 +129,5 @@ class _EpisodesGridWidget extends StatelessWidget {
     );
   }
 }
+
 

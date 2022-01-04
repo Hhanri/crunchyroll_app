@@ -66,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           FocusScope.of(context).requestFocus(FocusNode());
                           if (_formKey.currentState!.validate()) {
-                            print("email: ${_email}\npassword: ${_password}");
+                            print("email: $_email\npassword: $_password");
                             _email = "";
                             _password = "";
                           }
