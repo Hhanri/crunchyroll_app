@@ -28,6 +28,8 @@ class Strings {
   static const String alreadyHaveAnAccount = "Already have an account ?";
   static const String dontHaveAnAccount = "Don't have an account yet ?";
 
+  //search
+  static const String noResultFound = "No Result Found";
 
   //anime details
   static const String numberOfEpisodes = "Number of Episodes";

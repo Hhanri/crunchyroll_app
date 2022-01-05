@@ -1,6 +1,8 @@
+import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +53,7 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        print(tag);
+        Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
       },
       child: Stack(
         children: [
@@ -72,7 +74,7 @@ class _GenresContainer extends StatelessWidget {
                       Colors.grey.shade400.withOpacity(0.6),
                       Colors.black.withOpacity(0.8)
                     ]
-                  )
+                  ),
                 ),
               ),
             )
@@ -91,34 +93,63 @@ class _GenresContainer extends StatelessWidget {
 
 
 class BrowseAnimesScreenWidget extends StatelessWidget {
-  const BrowseAnimesScreenWidget({Key? key}) : super(key: key);
+
+  final dynamic searchedItem;
+  const BrowseAnimesScreenWidget({
+    Key? key,
+    required this.searchedItem
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(8),
-        child: GridView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return TextButton(
-              onPressed: () {
-                print(animes[index].title);
-              },
-              child: AnimeCardWidget(
-                featuredAnime: animes[index],
-                listViewHeight: 380
+
+    final String _searchedItem = searchedItem;
+    List<AnimeContent> _listToDisplay = [];
+    animes.forEach((element) {
+      if (element.tags.contains(_searchedItem)) {
+        _listToDisplay.add(element);
+      }
+    });
+    if (_listToDisplay == []) {
+      animes.forEach((element) {
+        if(element.title.contains(_searchedItem.toUpperCase())) {
+          _listToDisplay.add(element);
+        }
+      });
+    }
+
+    return _listToDisplay.length < 1
+        ? Scaffold(
+            body: Center(
+              child: Text(
+                Strings.noResultFound
+              ),
+            ),
+          )
+        : Scaffold(
+            body: Padding(
+              padding: EdgeInsets.all(8),
+              child: GridView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: _listToDisplay[index]);
+                    },
+                    child: AnimeCardWidget(
+                      featuredAnime: _listToDisplay[index],
+                      listViewHeight: 380
+                    )
+                  );
+                },
+                itemCount: _listToDisplay.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: (((380)/960)*640*(10/13)+16)/380,
+                  mainAxisSpacing: 17,
+                  crossAxisSpacing: 3,
+                  crossAxisCount: 2,
+                ),
               )
-            );
-          },
-          itemCount: animes.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: (((380)/960)*640*(10/13)+16)/380,
-            mainAxisSpacing: 17,
-            crossAxisSpacing: 3,
-            crossAxisCount: 2,
-          ),
-        )
-      ),
-    );
+            ),
+          );
   }
 }

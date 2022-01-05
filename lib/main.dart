@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: BrowseAnimesScreenWidget(), // HomeScreen(homePlaylist: homePlaylists),
+      home: BrowseGenresScreenWidget(), // HomeScreen(homePlaylist: homePlaylists),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

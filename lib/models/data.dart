@@ -252,5 +252,4 @@ final List<Map<String,String>> tagsList = [
   {Tags.tagTitle: Tags.sport, Tags.tagThumbnail: ImagePath.whiteThumbnail},
   {Tags.tagTitle: Tags.supernatural, Tags.tagThumbnail: ImagePath.whiteThumbnail},
   {Tags.tagTitle: Tags.thriller, Tags.tagThumbnail: ImagePath.whiteThumbnail},
-
 ];
