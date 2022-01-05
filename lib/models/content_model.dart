@@ -1,15 +1,15 @@
-import 'package:crunchyroll_app/resources/strings.dart';
-
 class AnimeContent {
   final String title;
   final String imageURL;
   final String description;
   final String publisher;
+  final List<String> tags;
   const AnimeContent({
     required this.title,
     required this.imageURL,
     required this.description,
-    required this.publisher
+    required this.publisher,
+    required this.tags
   });
 }
 
@@ -27,12 +27,13 @@ class AnimeEpisode {
   final String season;
   final String episode;
   final String episodeTitle;
-  final String thumbnail = ImagePath.whiteThumbnail;
+  final String thumbnail;
   AnimeEpisode({
     required this.animeTitle,
     required this.season,
     required this.episode,
-    required this.episodeTitle
+    required this.episodeTitle,
+    required this.thumbnail
   });
 }
 

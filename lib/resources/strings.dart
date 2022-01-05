@@ -49,3 +49,32 @@ class ImagePath {
   static const String quintessentialQuintupletsThumbnail = "assets/images/anime_thumbnails/Quintessential_Quintuplets/Quintessential_Quintuplets.jpg";
   static const String whiteThumbnail = "assets/images/white-thumbnail.jpg";
 }
+
+class Tags {
+  static const String tagTitle = "Tag";
+  static const String tagThumbnail = "Tag Thumbnail";
+  static const String action = "Action";
+  static const String adventure = "Aventure";
+  static const String comedy = "Comedie";
+  static const String drama = "Drama";
+  static const String fantastic = "Fantastique";
+  static const String harem = "Harem";
+  static const String historic = "Historique";
+  static const String idols = "Idoles";
+  static const String isekai = "Isekai";
+  static const String magicalGirls = "Magical Girls";
+  static const String mecha = "Mecha";
+  static const String music = "Musique";
+  static const String mystery = "Mystere";
+  static const String postApocalyptic = "Post Apocalyptique";
+  static const String romantic = "Romantique";
+  static const String sciFi = "Sci-Fi";
+  static const String seinen = "Seinen";
+  static const String schoolLife = "School Life";
+  static const String shoujo = "Shoujo";
+  static const String shonen = "Shonen";
+  static const String sliceOfLife = "Tranches de vie";
+  static const String sport = "Sport";
+  static const String supernatural = "Surnaturel";
+  static const String thriller = "Thriller";
+}

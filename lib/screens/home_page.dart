@@ -2,8 +2,8 @@ import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
-import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:crunchyroll_app/widgets/content_header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +81,7 @@ class HomeListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final double _listViewHeight =  380;//AppConfig.heightScreen(context)*(5/9);
+    const double _listViewHeight = 380;//AppConfig.heightScreen(context)*(5/9);
 
     return Card(
       color: MyColors.backgroundColor,
@@ -110,14 +110,14 @@ class HomeListWidget extends StatelessWidget {
               itemCount: animeList.length,
               itemBuilder: (BuildContext context, int index) {
                 final AnimeContent animeContent = animeList[index];
-                return GestureDetector(
-                  onTap: () {
+                return TextButton(
+                  onPressed: () {
                     Navigator.of(context).pushNamed(
                         ANIME_DETAIL_PAGE,
                         arguments: animeContent
                     );
                   },
-                  child: _AnimeCardWidget(
+                  child: AnimeCardWidget(
                     featuredAnime: animeContent,
                     listViewHeight: _listViewHeight,
                   ),
@@ -132,74 +132,4 @@ class HomeListWidget extends StatelessWidget {
 }
 
 
-class _AnimeCardWidget extends StatelessWidget {
-  final double listViewHeight;
-  final AnimeContent featuredAnime;
-  const _AnimeCardWidget({
-    Key? key,
-    required this.featuredAnime,
-    required this.listViewHeight,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-
-    return Container(
-      decoration: BoxDecoration(
-        color: MyColors.containerColor
-      ),
-      width: ((listViewHeight-16)/960)*640*(10/13), // ((SizedBoxHeight - padding) / imageHeight) * imageWidth * (imageFlex / (imageFlex+textFlex))
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 10,
-            child: Image.asset(
-              featuredAnime.getAnimeThumbail(),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
-              child: Column(
-                children: [
-                  Text(
-                    featuredAnime.title,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.headline3,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4.0),
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    visualDensity: VisualDensity.compact,
-                    iconSize: 20,
-                    icon: Icon(
-                        Icons.more_vert
-                    ),
-                    onPressed: () {
-                    },
-                  ),
-                ),
-              ],
-            )
-          )
-        ],
-      ),
-    );
-  }
-}

@@ -36,7 +36,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(_featuredAnime.getAnimeThumbail()),
+          Image.asset(_featuredAnime.imageURL),//getAnimeThumbail()),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -151,13 +151,13 @@ class _EpisodeCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             flex: 4,
-            child: Image.asset(animeEpisode.getEpisodeThumbnail())
+            child: Image.asset(animeEpisode.thumbnail)//getEpisodeThumbnail())
           ),
           Expanded(
             flex: 5,
