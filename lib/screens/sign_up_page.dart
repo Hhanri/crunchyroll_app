@@ -139,10 +139,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {
+                      Navigator.of(context).pop();
+                      /*
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         MAIN_APP,
                         (Route<dynamic> route) => false
                       );
+                      */
                     },
                   )
                 ],

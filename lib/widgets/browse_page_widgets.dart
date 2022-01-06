@@ -119,7 +119,7 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
     }
 
     return _listToDisplay.length < 1
-        ? Scaffold(
+        ? const Scaffold(
             body: Center(
               child: Text(
                 Strings.noResultFound
@@ -143,9 +143,8 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
                 },
                 itemCount: _listToDisplay.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: (((380)/960)*640*(10/13)+16)/380,
-                  mainAxisSpacing: 17,
-                  crossAxisSpacing: 3,
+                  childAspectRatio: (((380+16)/960)*640*(10/13))/(380-16),
+                  mainAxisSpacing: 10,
                   crossAxisCount: 2,
                 ),
               )

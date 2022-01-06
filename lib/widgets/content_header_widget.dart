@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
 class ContentHeaderWidget extends StatelessWidget {
@@ -10,53 +11,58 @@ class ContentHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            MyColors.backgroundColor
-          ],
-          stops: [0,0.9]
-        )
-      ),
-      child: SizedBox(
-        height: 500,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15.0,
-            vertical: 0
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Spacer(
-                flex: 6
-              ),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  featuredAnime.title.toUpperCase(),
-                  style: Theme.of(context).textTheme.headline1,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.transparent,
+              MyColors.backgroundColor
+            ],
+            stops: [0,0.9]
+          )
+        ),
+        child: SizedBox(
+          height: 500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 0
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Spacer(
+                  flex: 6
                 ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Center(
+                Expanded(
+                  flex: 1,
                   child: Text(
-                    featuredAnime.description,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    featuredAnime.title.toUpperCase(),
+                    style: Theme.of(context).textTheme.headline1,
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
                   ),
                 ),
-              ),
-              const _PlayButtonWidget()
-            ],
+                Expanded(
+                  flex: 2,
+                  child: Center(
+                    child: Text(
+                      featuredAnime.description,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
+                  ),
+                ),
+                const _PlayButtonWidget()
+              ],
+            ),
           ),
         ),
       ),

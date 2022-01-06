@@ -31,6 +31,12 @@ class Strings {
   //search
   static const String noResultFound = "No Result Found";
 
+  //navigationBar
+  static const String home = "Home";
+  static const String myLists = "My Lists";
+  static const String browse = "Browse";
+  static const String settings = "Settings";
+
   //anime details
   static const String numberOfEpisodes = "Number of Episodes";
   static const String episodeTitle = "Episode";
