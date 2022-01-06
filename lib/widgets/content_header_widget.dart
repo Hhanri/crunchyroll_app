@@ -16,7 +16,9 @@ class ContentHeaderWidget extends StatelessWidget {
     return TextButton(
       onPressed: () {
         context.router.push(
-          AnimeRouter(featuredAnimeArgument: featuredAnime)
+          AnimeRouter(
+            featuredAnimeArgument: featuredAnime
+          )
         );
         //Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
       },

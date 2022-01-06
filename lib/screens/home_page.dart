@@ -120,7 +120,9 @@ class HomeListWidget extends StatelessWidget {
                 return TextButton(
                   onPressed: () {
                     context.router.push(
-                      AnimeRouter(featuredAnimeArgument: animeContent)
+                      AnimeRouter(
+                        featuredAnimeArgument: animeContent
+                      )
                     );
                     /*Navigator.of(context).pushNamed(
                         ANIME_DETAIL_PAGE,

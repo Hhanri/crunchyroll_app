@@ -1,13 +1,18 @@
+// **************************************************************************
+// AutoRouteGenerator
+// **************************************************************************
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
 // AutoRouteGenerator
 // **************************************************************************
+//
+// ignore_for_file: type=lint
 
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i11;
 
-import '../models/content_model.dart' as _i12;
 import '../screens/anime_detail_page.dart' as _i2;
 import '../screens/home_page.dart' as _i3;
 import '../screens/know_more_page.dart' as _i9;
@@ -59,7 +64,7 @@ class AppRouter extends _i5.RootStackRouter {
           routeData: routeData, child: const _i6.BrowseGenresScreenWidget());
     },
     BrowseAnimesRouteWidget.name: (routeData) {
-      final pathParams = routeData.pathParams;
+      final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<BrowseAnimesRouteWidgetArgs>(
           orElse: () => BrowseAnimesRouteWidgetArgs(
               searchedItem: pathParams.get('searchedItem')));
@@ -77,7 +82,10 @@ class AppRouter extends _i5.RootStackRouter {
           routeData: routeData, child: const _i8.SignUpScreen());
     },
     KnowMoreRoute.name: (routeData) {
-      final args = routeData.argsAs<KnowMoreRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<KnowMoreRouteArgs>(
+          orElse: () => KnowMoreRouteArgs(
+              featuredAnimeArgument: pathParams.get('featuredAnimeArgument')));
       return _i5.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i9.KnowMoreScreen(
@@ -85,7 +93,12 @@ class AppRouter extends _i5.RootStackRouter {
               featuredAnimeArgument: args.featuredAnimeArgument));
     },
     SelectSeasonRoute.name: (routeData) {
-      final args = routeData.argsAs<SelectSeasonRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<SelectSeasonRouteArgs>(
+          orElse: () => SelectSeasonRouteArgs(
+              availableSeasons: pathParams.get('availableSeasons'),
+              selectSeason: pathParams.get('selectSeason'),
+              selectedSeason: pathParams.get('selectedSeason')));
       return _i5.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i10.SelectSeasonScreen(
@@ -99,28 +112,43 @@ class AppRouter extends _i5.RootStackRouter {
   @override
   List<_i5.RouteConfig> get routes => [
         _i5.RouteConfig(ViewRoute.name, path: '/', children: [
-          _i5.RouteConfig(HomeRouter.name, path: 'home'),
-          _i5.RouteConfig(MyListsRouter.name, path: 'MyLists'),
-          _i5.RouteConfig(BrowseRouter.name, path: 'browse', children: [
-            _i5.RouteConfig(BrowseGenresRouteWidget.name, path: ''),
-            _i5.RouteConfig(BrowseAnimesRouteWidget.name, path: ':animes')
-          ]),
-          _i5.RouteConfig(SettingsRouter.name, path: 'settings', children: [
-            _i5.RouteConfig(SignInRoute.name, path: ''),
-            _i5.RouteConfig(SignUpRoute.name, path: 'signup')
-          ])
+          _i5.RouteConfig(HomeRouter.name,
+              path: 'home', parent: ViewRoute.name),
+          _i5.RouteConfig(MyListsRouter.name,
+              path: 'MyLists', parent: ViewRoute.name),
+          _i5.RouteConfig(BrowseRouter.name,
+              path: 'browse',
+              parent: ViewRoute.name,
+              children: [
+                _i5.RouteConfig(BrowseGenresRouteWidget.name,
+                    path: '', parent: BrowseRouter.name),
+                _i5.RouteConfig(BrowseAnimesRouteWidget.name,
+                    path: ':animes', parent: BrowseRouter.name)
+              ]),
+          _i5.RouteConfig(SettingsRouter.name,
+              path: 'settings',
+              parent: ViewRoute.name,
+              children: [
+                _i5.RouteConfig(SignInRoute.name,
+                    path: '', parent: SettingsRouter.name),
+                _i5.RouteConfig(SignUpRoute.name,
+                    path: 'signup', parent: SettingsRouter.name)
+              ])
         ]),
         _i5.RouteConfig(AnimeRouter.name, path: 'anime', children: [
-          _i5.RouteConfig(KnowMoreRoute.name, path: 'knowmore'),
-          _i5.RouteConfig(SelectSeasonRoute.name, path: 'selectseason')
+          _i5.RouteConfig(KnowMoreRoute.name,
+              path: 'knowmore', parent: AnimeRouter.name),
+          _i5.RouteConfig(SelectSeasonRoute.name,
+              path: 'selectseason', parent: AnimeRouter.name)
         ])
       ];
 }
 
-/// generated route for [_i1.ViewScreen]
+/// generated route for
+/// [_i1.ViewScreen]
 class ViewRoute extends _i5.PageRouteInfo<ViewRouteArgs> {
   ViewRoute({_i11.Key? key, List<_i5.PageRouteInfo>? children})
-      : super(name,
+      : super(ViewRoute.name,
             path: '/',
             args: ViewRouteArgs(key: key),
             initialChildren: children);
@@ -132,15 +160,21 @@ class ViewRouteArgs {
   const ViewRouteArgs({this.key});
 
   final _i11.Key? key;
+
+  @override
+  String toString() {
+    return 'ViewRouteArgs{key: $key}';
+  }
 }
 
-/// generated route for [_i2.AnimeDetailScreen]
+/// generated route for
+/// [_i2.AnimeDetailScreen]
 class AnimeRouter extends _i5.PageRouteInfo<AnimeRouterArgs> {
   AnimeRouter(
       {_i11.Key? key,
       required dynamic featuredAnimeArgument,
       List<_i5.PageRouteInfo>? children})
-      : super(name,
+      : super(AnimeRouter.name,
             path: 'anime',
             args: AnimeRouterArgs(
                 key: key, featuredAnimeArgument: featuredAnimeArgument),
@@ -155,50 +189,62 @@ class AnimeRouterArgs {
   final _i11.Key? key;
 
   final dynamic featuredAnimeArgument;
+
+  @override
+  String toString() {
+    return 'AnimeRouterArgs{key: $key, featuredAnimeArgument: $featuredAnimeArgument}';
+  }
 }
 
-/// generated route for [_i3.HomeScreen]
+/// generated route for
+/// [_i3.HomeScreen]
 class HomeRouter extends _i5.PageRouteInfo<void> {
-  const HomeRouter() : super(name, path: 'home');
+  const HomeRouter() : super(HomeRouter.name, path: 'home');
 
   static const String name = 'HomeRouter';
 }
 
-/// generated route for [_i4.UnknownScreen]
+/// generated route for
+/// [_i4.UnknownScreen]
 class MyListsRouter extends _i5.PageRouteInfo<void> {
-  const MyListsRouter() : super(name, path: 'MyLists');
+  const MyListsRouter() : super(MyListsRouter.name, path: 'MyLists');
 
   static const String name = 'MyListsRouter';
 }
 
-/// generated route for [_i5.EmptyRouterPage]
+/// generated route for
+/// [_i5.EmptyRouterPage]
 class BrowseRouter extends _i5.PageRouteInfo<void> {
   const BrowseRouter({List<_i5.PageRouteInfo>? children})
-      : super(name, path: 'browse', initialChildren: children);
+      : super(BrowseRouter.name, path: 'browse', initialChildren: children);
 
   static const String name = 'BrowseRouter';
 }
 
-/// generated route for [_i5.EmptyRouterPage]
+/// generated route for
+/// [_i5.EmptyRouterPage]
 class SettingsRouter extends _i5.PageRouteInfo<void> {
   const SettingsRouter({List<_i5.PageRouteInfo>? children})
-      : super(name, path: 'settings', initialChildren: children);
+      : super(SettingsRouter.name, path: 'settings', initialChildren: children);
 
   static const String name = 'SettingsRouter';
 }
 
-/// generated route for [_i6.BrowseGenresScreenWidget]
+/// generated route for
+/// [_i6.BrowseGenresScreenWidget]
 class BrowseGenresRouteWidget extends _i5.PageRouteInfo<void> {
-  const BrowseGenresRouteWidget() : super(name, path: '');
+  const BrowseGenresRouteWidget()
+      : super(BrowseGenresRouteWidget.name, path: '');
 
   static const String name = 'BrowseGenresRouteWidget';
 }
 
-/// generated route for [_i6.BrowseAnimesScreenWidget]
+/// generated route for
+/// [_i6.BrowseAnimesScreenWidget]
 class BrowseAnimesRouteWidget
     extends _i5.PageRouteInfo<BrowseAnimesRouteWidgetArgs> {
   BrowseAnimesRouteWidget({_i11.Key? key, required dynamic searchedItem})
-      : super(name,
+      : super(BrowseAnimesRouteWidget.name,
             path: ':animes',
             args: BrowseAnimesRouteWidgetArgs(
                 key: key, searchedItem: searchedItem),
@@ -213,29 +259,38 @@ class BrowseAnimesRouteWidgetArgs {
   final _i11.Key? key;
 
   final dynamic searchedItem;
+
+  @override
+  String toString() {
+    return 'BrowseAnimesRouteWidgetArgs{key: $key, searchedItem: $searchedItem}';
+  }
 }
 
-/// generated route for [_i7.SignInScreen]
+/// generated route for
+/// [_i7.SignInScreen]
 class SignInRoute extends _i5.PageRouteInfo<void> {
-  const SignInRoute() : super(name, path: '');
+  const SignInRoute() : super(SignInRoute.name, path: '');
 
   static const String name = 'SignInRoute';
 }
 
-/// generated route for [_i8.SignUpScreen]
+/// generated route for
+/// [_i8.SignUpScreen]
 class SignUpRoute extends _i5.PageRouteInfo<void> {
-  const SignUpRoute() : super(name, path: 'signup');
+  const SignUpRoute() : super(SignUpRoute.name, path: 'signup');
 
   static const String name = 'SignUpRoute';
 }
 
-/// generated route for [_i9.KnowMoreScreen]
+/// generated route for
+/// [_i9.KnowMoreScreen]
 class KnowMoreRoute extends _i5.PageRouteInfo<KnowMoreRouteArgs> {
   KnowMoreRoute({_i11.Key? key, required dynamic featuredAnimeArgument})
-      : super(name,
+      : super(KnowMoreRoute.name,
             path: 'knowmore',
             args: KnowMoreRouteArgs(
-                key: key, featuredAnimeArgument: featuredAnimeArgument));
+                key: key, featuredAnimeArgument: featuredAnimeArgument),
+            rawPathParams: {'featuredAnimeArgument': featuredAnimeArgument});
 
   static const String name = 'KnowMoreRoute';
 }
@@ -246,22 +301,33 @@ class KnowMoreRouteArgs {
   final _i11.Key? key;
 
   final dynamic featuredAnimeArgument;
+
+  @override
+  String toString() {
+    return 'KnowMoreRouteArgs{key: $key, featuredAnimeArgument: $featuredAnimeArgument}';
+  }
 }
 
-/// generated route for [_i10.SelectSeasonScreen]
+/// generated route for
+/// [_i10.SelectSeasonScreen]
 class SelectSeasonRoute extends _i5.PageRouteInfo<SelectSeasonRouteArgs> {
   SelectSeasonRoute(
       {_i11.Key? key,
-      required List<_i12.AnimeSeason> availableSeasons,
-      required dynamic Function(_i12.AnimeSeason) selectSeason,
-      required _i12.AnimeSeason selectedSeason})
-      : super(name,
+      required dynamic availableSeasons,
+      required dynamic selectSeason,
+      required dynamic selectedSeason})
+      : super(SelectSeasonRoute.name,
             path: 'selectseason',
             args: SelectSeasonRouteArgs(
                 key: key,
                 availableSeasons: availableSeasons,
                 selectSeason: selectSeason,
-                selectedSeason: selectedSeason));
+                selectedSeason: selectedSeason),
+            rawPathParams: {
+              'availableSeasons': availableSeasons,
+              'selectSeason': selectSeason,
+              'selectedSeason': selectedSeason
+            });
 
   static const String name = 'SelectSeasonRoute';
 }
@@ -275,9 +341,14 @@ class SelectSeasonRouteArgs {
 
   final _i11.Key? key;
 
-  final List<_i12.AnimeSeason> availableSeasons;
+  final dynamic availableSeasons;
 
-  final dynamic Function(_i12.AnimeSeason) selectSeason;
+  final dynamic selectSeason;
 
-  final _i12.AnimeSeason selectedSeason;
+  final dynamic selectedSeason;
+
+  @override
+  String toString() {
+    return 'SelectSeasonRouteArgs{key: $key, availableSeasons: $availableSeasons, selectSeason: $selectSeason, selectedSeason: $selectedSeason}';
+  }
 }

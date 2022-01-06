@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
@@ -10,7 +11,7 @@ class KnowMoreScreen extends StatefulWidget {
   final dynamic featuredAnimeArgument;
 
   const KnowMoreScreen({Key? key,
-    required this.featuredAnimeArgument
+    @PathParam() required this.featuredAnimeArgument
   }) : super(key: key);
 
   @override

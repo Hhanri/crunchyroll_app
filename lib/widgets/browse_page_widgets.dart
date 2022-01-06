@@ -140,7 +140,9 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
                   return TextButton(
                     onPressed: () {
                       context.router.push(
-                        AnimeRouter(featuredAnimeArgument: _listToDisplay[index])
+                        AnimeRouter(
+                          featuredAnimeArgument: _listToDisplay[index]
+                        )
                       );
                       //Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: _listToDisplay[index]);
                     },
