@@ -15,7 +15,7 @@ class RouteGenerator {
     final _arguments = settings.arguments;
 
     switch (settings.name) {
-      case MAIN_APP : return MaterialPageRoute(builder: (_) => const MyApp());
+      case MAIN_APP : return MaterialPageRoute(builder: (_) => MyApp());
       case SIGN_IN_PAGE : return MaterialPageRoute(builder: (_) => const SignInScreen());
       case SIGN_UP_PAGE : return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case ANIME_DETAIL_PAGE : return MaterialPageRoute(builder: (_) => AnimeDetailScreen(featuredAnimeArgument: _arguments));
@@ -25,7 +25,7 @@ class RouteGenerator {
       //));
       case BROWSE_GENRES_PAGE : return MaterialPageRoute(builder: (_) => BrowseGenresScreenWidget());
       case BROWSE_ANIMES_PAGE : return MaterialPageRoute(builder: (_) => BrowseAnimesScreenWidget(searchedItem: _arguments,));
-      default : return MaterialPageRoute(builder: (_) => const MyApp());
+      default : return MaterialPageRoute(builder: (_) => MyApp());
     }
 
   }

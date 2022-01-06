@@ -33,7 +33,6 @@ class _ViewScreenState extends State<ViewScreen> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      extendBody: true,
       extendBodyBehindAppBar: true,
       backgroundColor: MyColors.containerColor,
       appBarBuilder: (_, tabsRouter) => AppBar(
@@ -49,7 +48,6 @@ class _ViewScreenState extends State<ViewScreen> {
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return SalomonBottomBar(
-
           margin: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 10

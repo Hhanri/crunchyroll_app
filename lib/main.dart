@@ -9,16 +9,16 @@ import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
+  final _appRouter = AppRouter();
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
-    int currentIndex = 0;
+    //int currentIndex = 0;
     return MaterialApp.router(
       title: Strings.appTitle,
       theme: theme,
