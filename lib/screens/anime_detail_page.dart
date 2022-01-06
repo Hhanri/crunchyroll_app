@@ -132,7 +132,14 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
           )
         ),
         ...List.generate(_animeEpisodes.length, (index) {
-          return _EpisodeCardWidget(animeEpisode: _animeEpisodes[index]);
+          return _EpisodeCardWidget(
+            animeEpisode: _animeEpisodes[index],
+            hasSeen: (index == 0) ? true : false,
+
+            /*
+            hasSeen: (history.contains(AnimeEpisode)) ? true : false;
+             */
+          );
         })
       ],
     );
@@ -141,37 +148,46 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
 
 class _EpisodeCardWidget extends StatelessWidget {
 
+  final bool hasSeen;
   final AnimeEpisode animeEpisode;
 
   const _EpisodeCardWidget({
     Key? key,
-    required this.animeEpisode
+    required this.animeEpisode,
+    required this.hasSeen
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 4,
-            child: Image.asset(animeEpisode.thumbnail)//getEpisodeThumbnail())
-          ),
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                animeEpisode.displayEpisodeTitle(),
-                style: Theme.of(context).textTheme.headline3,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        hasSeen ? Colors.black.withOpacity(0.7) : Colors.transparent,
+        BlendMode.color
+      ),
+      child: Container(
+        color: MyColors.containerColor,
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 4,
+              child: Image.asset(animeEpisode.thumbnail)//getEpisodeThumbnail())
+            ),
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  animeEpisode.displayEpisodeTitle(),
+                  style: Theme.of(context).textTheme.headline3,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
