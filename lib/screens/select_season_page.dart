@@ -1,30 +1,31 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
 
-class SelectSeasonScreen extends StatefulWidget {
+class SelectSeasonScreen extends StatelessWidget {
 
-  final dynamic availableSeasonsAndSelectSeasonArgument;
-
+  final List<AnimeSeason> availableSeasons;
+  final Function(AnimeSeason) selectSeason;
+  final AnimeSeason selectedSeason;
   const SelectSeasonScreen({
+
     Key? key,
-    required this.availableSeasonsAndSelectSeasonArgument,
+    required this.availableSeasons,
+    required this.selectSeason,
+    required this.selectedSeason,
 
   }) : super(key: key);
 
-  @override
-  State<SelectSeasonScreen> createState() => _SelectSeasonScreenState();
-}
 
-class _SelectSeasonScreenState extends State<SelectSeasonScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final List<AnimeSeason> _availableSeasons = widget.availableSeasonsAndSelectSeasonArgument["availableSeasons"];
-    final Function(AnimeSeason) _selectSeason = widget.availableSeasonsAndSelectSeasonArgument["function"];
-    final AnimeSeason _selectedSeason = widget.availableSeasonsAndSelectSeasonArgument["selectedSeason"];
+    //final List<AnimeSeason> _availableSeasons = widget.availableSeasonsAndSelectSeasonArgument["availableSeasons"];
+    //final Function(AnimeSeason) _selectSeason = widget.availableSeasonsAndSelectSeasonArgument["function"];
+    //final AnimeSeason _selectedSeason = widget.availableSeasonsAndSelectSeasonArgument["selectedSeason"];
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -37,7 +38,8 @@ class _SelectSeasonScreenState extends State<SelectSeasonScreen> {
                 children: [
                   IconButton(
                     onPressed: (){
-                      Navigator.of(context).pop();
+                      context.router.pop();
+                      //Navigator.of(context).pop();
                     },
                     icon: const Icon(
                       Icons.close,
@@ -48,16 +50,16 @@ class _SelectSeasonScreenState extends State<SelectSeasonScreen> {
               ),
               Column(
                 children: [
-                  ...List.generate(_availableSeasons.length, (index) {
+                  ...List.generate(availableSeasons.length, (index) {
                     return Column(
                       children: [
                         _SelectSeasonButton(
                           onTap: (){
-                            _selectSeason(_availableSeasons[index]);
+                            selectSeason(availableSeasons[index]);
                             Navigator.of(context).pop();
                           },
-                          seasonTitle: _availableSeasons[index].displaySeasonTitle(),
-                          isSelectedSeason: _availableSeasons[index] == _selectedSeason ? true : false,
+                          seasonTitle: availableSeasons[index].displaySeasonTitle(),
+                          isSelectedSeason: availableSeasons[index] == selectedSeason ? true : false,
                         ),
                         const DividerWidget()
                       ],

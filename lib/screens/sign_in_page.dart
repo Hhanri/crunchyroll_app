@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -91,7 +93,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       " " + Strings.signUpTitle,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    onPressed: () => Navigator.of(context).pushNamed(SIGN_UP_PAGE),
+                    onPressed: () {
+                      context.router.push(
+                        SignUpRoute()
+                      );
+                      //Navigator.of(context).pushNamed(SIGN_UP_PAGE);
+                    },
                   )
                 ],
               ),

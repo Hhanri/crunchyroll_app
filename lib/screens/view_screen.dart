@@ -1,17 +1,20 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/unknown_screen.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class ViewScreen extends StatefulWidget {
-  int currentIndex;
+  //int currentIndex;
   ViewScreen({
     Key? key,
-    required this.currentIndex
+  //  required this.currentIndex
   }) : super(key: key);
 
   @override
@@ -21,7 +24,7 @@ class ViewScreen extends StatefulWidget {
 class _ViewScreenState extends State<ViewScreen> {
 
   final List<Widget> screens = [
-    HomeScreen(homePlaylist: homePlaylists),
+    HomeScreen(),
     UnknownScreen(),
     BrowseGenresScreenWidget(),
     SignInScreen()
@@ -29,23 +32,63 @@ class _ViewScreenState extends State<ViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        children: screens,
-        index: widget.currentIndex,
+    return AutoTabsScaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      backgroundColor: MyColors.containerColor,
+      appBarBuilder: (_, tabsRouter) => AppBar(
+        backgroundColor: MyColors.backgroundColor,
+        title: const Text("test"),
+        leading: const AutoBackButton(),
       ),
-      bottomNavigationBar: _BottomNavBar(
-        onTap: (index){
-          setState(() {
-            widget.currentIndex = index;
-          });
-        },
-        currentIndex: widget.currentIndex,
-      ),
+      routes: const [
+        HomeRouter(),
+        MyListsRouter(),
+        BrowseRouter(),
+        SettingsRouter()
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) {
+        return SalomonBottomBar(
+
+          margin: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10
+          ),
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+          items: [
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.home_outlined
+              ),
+              title: const Text(Strings.home)
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.bookmark_border_outlined
+              ),
+              title: const Text(Strings.myLists)
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.border_all_outlined
+              ),
+              title: const Text(Strings.browse)
+            ),
+            SalomonBottomBarItem(
+              icon: const Icon(
+                Icons.account_circle_rounded
+              ),
+              title: const Text(Strings.settings)
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
+/*
 class _BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
@@ -95,3 +138,4 @@ class _BottomNavBar extends StatelessWidget {
     );
   }
 }
+ */

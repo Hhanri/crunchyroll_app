@@ -4,6 +4,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
 import 'package:crunchyroll_app/screens/view_screen.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _appRouter = AppRouter();
     int currentIndex = 0;
-    return MaterialApp(
+    return MaterialApp.router(
       title: Strings.appTitle,
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: ViewScreen(currentIndex: currentIndex,), // HomeScreen(homePlaylist: homePlaylists),
-      onGenerateRoute: RouteGenerator.generateRoute,
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }

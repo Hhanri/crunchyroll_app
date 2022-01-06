@@ -1,18 +1,20 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:crunchyroll_app/widgets/content_header_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
 
-  final List<HomeList> homePlaylist;
+  //final List<HomeList> homePlaylist;
 
   const HomeScreen({Key? key,
-    required this.homePlaylist,
+  //  required this.homePlaylist,
   }) : super(key: key);
 
   @override
@@ -20,13 +22,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  List<HomeList>_homePlaylists = homePlaylists;
   
   @override
   Widget build(BuildContext homeContext) {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(trendingAnime.imageURL),
+          Image.asset(
+            trendingAnime.imageURL,
+            fit: BoxFit.cover,
+          ),
           SingleChildScrollView(
             child: Column(
               children: [
@@ -48,10 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Column(
                       children: <HomeListWidget>[
-                        ...List.generate(widget.homePlaylist.length, (index) {
+                        ...List.generate(_homePlaylists.length, (index) {
                           return HomeListWidget(
-                            listTitle: widget.homePlaylist[index].listTitle,
-                            animeList: widget.homePlaylist[index].animes
+                            listTitle: _homePlaylists[index].listTitle,
+                            animeList: _homePlaylists[index].animes
                           );
                         })
                       ],
@@ -112,10 +119,15 @@ class HomeListWidget extends StatelessWidget {
                 final AnimeContent animeContent = animeList[index];
                 return TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(
+                    context.router.push(
+                      AnimeRouter(featuredAnimeArgument: animeContent)
+                    );
+                    /*Navigator.of(context).pushNamed(
                         ANIME_DETAIL_PAGE,
                         arguments: animeContent
-                    );
+                     );
+                     */
+
                   },
                   child: AnimeCardWidget(
                     featuredAnime: animeContent,

@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
@@ -38,7 +39,8 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
                 children: [
                   IconButton(
                     onPressed: (){
-                      Navigator.of(context).pop();
+                      context.router.pop();
+                      //Navigator.of(context).pop();
                     },
                     icon: const Icon(
                       Icons.close,

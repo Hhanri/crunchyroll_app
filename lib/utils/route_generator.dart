@@ -20,9 +20,9 @@ class RouteGenerator {
       case SIGN_UP_PAGE : return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case ANIME_DETAIL_PAGE : return MaterialPageRoute(builder: (_) => AnimeDetailScreen(featuredAnimeArgument: _arguments));
       case KNOW_MORE_PAGE : return MaterialPageRoute(builder: (_) => KnowMoreScreen(featuredAnimeArgument: _arguments));
-      case SELECT_SEASON_PAGE : return MaterialPageRoute(builder: (_) => SelectSeasonScreen(
-          availableSeasonsAndSelectSeasonArgument: _arguments,
-      ));
+      //case SELECT_SEASON_PAGE : return MaterialPageRoute(builder: (_) => SelectSeasonScreen(
+      //    availableSeasonsAndSelectSeasonArgument: _arguments,
+      //));
       case BROWSE_GENRES_PAGE : return MaterialPageRoute(builder: (_) => BrowseGenresScreenWidget());
       case BROWSE_ANIMES_PAGE : return MaterialPageRoute(builder: (_) => BrowseAnimesScreenWidget(searchedItem: _arguments,));
       default : return MaterialPageRoute(builder: (_) => const MyApp());

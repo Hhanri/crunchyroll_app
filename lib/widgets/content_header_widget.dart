@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class ContentHeaderWidget extends StatelessWidget {
@@ -13,7 +15,10 @@ class ContentHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
+        context.router.push(
+          AnimeRouter(featuredAnimeArgument: featuredAnime)
+        );
+        //Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
       },
       child: Container(
         decoration: const BoxDecoration(

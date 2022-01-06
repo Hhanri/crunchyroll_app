@@ -1,3 +1,4 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
@@ -5,6 +6,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +108,18 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
           ),
         ),
         TextButton(
-          onPressed: () => Navigator.of(context).pushNamed(
+          onPressed: () {
+            context.router.push(
+              SelectSeasonRoute(
+                availableSeasons: widget.availableSeasons,
+                selectSeason: (newSelectedSeason) {
+                  setState(() {
+                    widget.selectedSeason = newSelectedSeason;
+                  });
+                },
+                selectedSeason: widget.selectedSeason)
+            );
+            /*Navigator.of(context).pushNamed(
             SELECT_SEASON_PAGE,
             arguments: {
               "availableSeasons" : widget.availableSeasons,
@@ -118,6 +131,8 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
               "selectedSeason" : widget.selectedSeason
               },
           ),
+          */
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

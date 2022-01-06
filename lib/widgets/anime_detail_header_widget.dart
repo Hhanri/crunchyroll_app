@@ -1,6 +1,8 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetailHeader extends StatelessWidget {
@@ -91,7 +93,10 @@ class _KnowMoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-        Navigator.of(context).pushNamed(KNOW_MORE_PAGE, arguments: featuredAnime);
+        context.router.push(
+          KnowMoreRoute(featuredAnimeArgument: featuredAnime)
+        );
+        //Navigator.of(context).pushNamed(KNOW_MORE_PAGE, arguments: featuredAnime);
       },
       label: const Icon(
         Icons.arrow_forward_ios,

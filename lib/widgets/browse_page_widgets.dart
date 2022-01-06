@@ -1,8 +1,11 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
+import 'package:crunchyroll_app/utils/router.gr.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +56,10 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
+        context.router.push(
+          BrowseAnimesRouteWidget(searchedItem: tag)
+        );
+        //Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
       },
       child: Stack(
         children: [
@@ -97,7 +103,7 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
   final dynamic searchedItem;
   const BrowseAnimesScreenWidget({
     Key? key,
-    required this.searchedItem
+    @PathParam() required this.searchedItem
   }) : super(key: key);
 
   @override
@@ -133,7 +139,10 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: _listToDisplay[index]);
+                      context.router.push(
+                        AnimeRouter(featuredAnimeArgument: _listToDisplay[index])
+                      );
+                      //Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: _listToDisplay[index]);
                     },
                     child: AnimeCardWidget(
                       featuredAnime: _listToDisplay[index],

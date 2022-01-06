@@ -19,7 +19,7 @@ class NavigationUtils {
           actions: [
             Center(
               child: ElevatedButton(
-                onPressed: onClick ?? () => Navigator.of(context).pop(),
+                onPressed: onClick ?? () => null,//Navigator.of(context).pop(),
                 child: const Text(
                   Strings.ok,
                   textAlign: TextAlign.center,
