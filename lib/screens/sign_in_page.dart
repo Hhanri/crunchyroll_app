@@ -91,7 +91,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       " " + Strings.signUpTitle,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    onPressed: () => Navigator.of(context).pushNamed(SIGN_UP_PAGE),
+                    onPressed: () {
+                      //Navigator.of(context).pushNamed(SIGN_UP_PAGE);
+                    }
                   )
                 ],
               ),
