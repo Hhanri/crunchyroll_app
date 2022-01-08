@@ -10,7 +10,6 @@ import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class BrowseWrapper extends StatelessWidget {
   const BrowseWrapper({Key? key}) : super(key: key);
 
@@ -29,7 +28,7 @@ class BrowseWrapper extends StatelessWidget {
           case BrowseController.BROWSE_ANIMES_PAGE :
             return GetPageRoute(
               routeName: BrowseController.BROWSE_ANIMES_PAGE,
-              page: () => BrowseAnimesWrapper(searchedItem: _arguments),
+              page: () => BrowseAnimesScreen(searchedItem: _arguments),
             );
           default: return GetPageRoute(
               routeName: BrowseController.BROWSE_GENRES_PAGE,
@@ -40,8 +39,6 @@ class BrowseWrapper extends StatelessWidget {
     );
   }
 }
-
-
 
 class BrowseGenresScreen extends StatefulWidget {
   const BrowseGenresScreen({
@@ -130,28 +127,6 @@ class _GenresContainer extends StatelessWidget {
     );
   }
 }
-
-class BrowseAnimesWrapper extends GetView<ViewScreenController> {
-  final dynamic searchedItem;
-  const BrowseAnimesWrapper({
-    Key? key,
-    required this.searchedItem,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        int id = BrowseController.idKey;
-        Get.back(id: id);
-        return false;
-      },
-      child: BrowseAnimesScreen(searchedItem: searchedItem),
-    );
-  }
-}
-
-
 
 class BrowseAnimesScreen extends StatelessWidget {
 
