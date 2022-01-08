@@ -93,7 +93,7 @@ class _KnowMoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-        Get.to(KnowMoreScreen(featuredAnimeArgument: featuredAnime));
+        Get.to(() => KnowMoreScreen(featuredAnimeArgument: featuredAnime));
       },
       label: const Icon(
         Icons.arrow_forward_ios,

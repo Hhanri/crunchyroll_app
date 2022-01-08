@@ -3,9 +3,11 @@ import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
+import 'package:crunchyroll_app/screens/sign_in_page.dart';
+import 'package:crunchyroll_app/screens/sign_up_page.dart';
 import 'package:crunchyroll_app/screens/view_screen.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
-import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
+import 'package:crunchyroll_app/screens/browse_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,8 +29,8 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: "/",
           page: () => ViewScreen(),
-          binding: ViewScreenBinding()
-        )
+          binding: ViewScreenBinding(),
+        ),
       ],
     );
   }

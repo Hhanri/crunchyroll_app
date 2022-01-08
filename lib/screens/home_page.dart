@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
-
   final List<HomeList> homePlaylist;
 
   const HomeScreen({Key? key,

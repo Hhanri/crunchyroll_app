@@ -3,7 +3,7 @@ import 'package:crunchyroll_app/screens/know_more_page.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/sign_up_page.dart';
-import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
+import 'package:crunchyroll_app/screens/browse_page.dart';
 
 import 'package:flutter/material.dart';
 import '../main.dart';

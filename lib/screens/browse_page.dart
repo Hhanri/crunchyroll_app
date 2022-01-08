@@ -1,20 +1,57 @@
+import 'package:crunchyroll_app/controller/view_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
+import 'package:crunchyroll_app/screens/view_screen.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BrowseGenresScreenWidget extends StatefulWidget {
-  const BrowseGenresScreenWidget({Key? key}) : super(key: key);
+
+class BrowseWrapper extends StatelessWidget {
+  const BrowseWrapper({Key? key}) : super(key: key);
 
   @override
-  _BrowseGenresScreenWidgetState createState() => _BrowseGenresScreenWidgetState();
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: Get.nestedKey(BrowseController.idKey),
+      onGenerateRoute: (settings) {
+        dynamic _arguments = settings.arguments;
+        switch (settings.name ?? BrowseController.BROWSE_GENRES_PAGE) {
+          case BrowseController.BROWSE_GENRES_PAGE :
+            return GetPageRoute(
+              routeName: BrowseController.BROWSE_GENRES_PAGE,
+              page: () => BrowseGenresScreen()
+            );
+          case BrowseController.BROWSE_ANIMES_PAGE :
+            return GetPageRoute(
+              routeName: BrowseController.BROWSE_ANIMES_PAGE,
+              page: () => BrowseAnimesWrapper(searchedItem: _arguments),
+            );
+          default: return GetPageRoute(
+              routeName: BrowseController.BROWSE_GENRES_PAGE,
+              page: () => BrowseGenresScreen()
+          );
+        }
+      },
+    );
+  }
 }
-class _BrowseGenresScreenWidgetState extends State<BrowseGenresScreenWidget> {
+
+
+
+class BrowseGenresScreen extends StatefulWidget {
+  const BrowseGenresScreen({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _BrowseGenresScreenState createState() => _BrowseGenresScreenState();
+}
+class _BrowseGenresScreenState extends State<BrowseGenresScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +92,7 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        Get.toNamed(BrowseController.BROWSE_ANIMES_PAGE, arguments: tag, id: BrowseController.idKey);
         //Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
       },
       child: Stack(
@@ -93,13 +131,34 @@ class _GenresContainer extends StatelessWidget {
   }
 }
 
+class BrowseAnimesWrapper extends GetView<ViewScreenController> {
+  final dynamic searchedItem;
+  const BrowseAnimesWrapper({
+    Key? key,
+    required this.searchedItem,
+  }) : super(key: key);
 
-class BrowseAnimesScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        int id = BrowseController.idKey;
+        Get.back(id: id);
+        return false;
+      },
+      child: BrowseAnimesScreen(searchedItem: searchedItem),
+    );
+  }
+}
+
+
+
+class BrowseAnimesScreen extends StatelessWidget {
 
   final dynamic searchedItem;
-  const BrowseAnimesScreenWidget({
+  const BrowseAnimesScreen({
     Key? key,
-    required this.searchedItem
+    required this.searchedItem,
   }) : super(key: key);
 
   @override

@@ -1,4 +1,5 @@
 import 'package:crunchyroll_app/controller/view_screen_controller.dart';
+import 'package:crunchyroll_app/screens/browse_page.dart';
 import 'package:get/get.dart';
 
 class ViewScreenBinding extends Bindings{

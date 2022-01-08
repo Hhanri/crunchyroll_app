@@ -5,7 +5,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/unknown_screen.dart';
-import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
+import 'package:crunchyroll_app/screens/browse_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
@@ -17,7 +17,7 @@ class ViewScreen extends StatelessWidget {
   final List<Widget> screens = [
     HomeScreen(homePlaylist: homePlaylists),
     UnknownScreen(),
-    BrowseGenresScreenWidget(),
+    BrowseWrapper(),
     SignInScreen()
   ];
 
