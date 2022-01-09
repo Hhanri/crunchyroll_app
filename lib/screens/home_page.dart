@@ -117,7 +117,8 @@ class HomeListWidget extends StatelessWidget {
                     Get.to(
                       AnimeDetailScreen(
                         featuredAnimeArgument: animeContent
-                      )
+                      ),
+                      transition: Transition.topLevel
                     );
                   },
                   child: AnimeCardWidget(

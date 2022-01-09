@@ -54,8 +54,12 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Get.to(BrowseAnimesScreen(searchedItem: tag));
-        //Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
+        Get.to(
+          BrowseAnimesScreen(
+            searchedItem: tag
+          ),
+          transition: Transition.topLevel
+        );
       },
       child: Stack(
         children: [
@@ -96,7 +100,7 @@ class _GenresContainer extends StatelessWidget {
 
 class BrowseAnimesScreen extends StatelessWidget {
 
-  final dynamic searchedItem;
+  final String searchedItem;
   const BrowseAnimesScreen({
     Key? key,
     required this.searchedItem
@@ -112,9 +116,9 @@ class BrowseAnimesScreen extends StatelessWidget {
         _listToDisplay.add(element);
       }
     });
-    if (_listToDisplay == []) {
+    if(_listToDisplay.isEmpty) {
       animes.forEach((element) {
-        if(element.title.contains(_searchedItem.toUpperCase())) {
+        if(element.title.toUpperCase().contains(_searchedItem.toUpperCase()) && _listToDisplay.contains(element) == false) {
           _listToDisplay.add(element);
         }
       });
@@ -135,7 +139,12 @@ class BrowseAnimesScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
                     onPressed: () {
-                      Get.to(AnimeDetailScreen(featuredAnimeArgument: _listToDisplay[index]));
+                      Get.to(
+                        AnimeDetailScreen(
+                          featuredAnimeArgument: _listToDisplay[index]
+                        ),
+                        transition: Transition.topLevel
+                      );
                     },
                     child: AnimeCardWidget(
                       featuredAnime: _listToDisplay[index],

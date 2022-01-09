@@ -4,6 +4,7 @@ import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
@@ -93,7 +94,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {
-                      Get.to(const SignUpScreen());
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      Get.to(
+                        const SignUpScreen(),
+                        transition: Transition.topLevel
+                      );
                     }
                   )
                 ],
@@ -109,7 +114,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       Strings.forgottenPassword,
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                    },
                   )
                 ],
               )

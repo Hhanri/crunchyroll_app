@@ -14,7 +14,12 @@ class ContentHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Get.to(AnimeDetailScreen(featuredAnimeArgument: featuredAnime));
+        Get.to(
+          AnimeDetailScreen(
+            featuredAnimeArgument: featuredAnime
+          ),
+          transition: Transition.topLevel
+        );
       },
       child: Container(
         decoration: const BoxDecoration(

@@ -7,5 +7,4 @@ class ViewScreenBinding extends Bindings{
     // TODO: implement dependencies
     Get.lazyPut<ViewScreenController>(() => ViewScreenController());
   }
-
 }

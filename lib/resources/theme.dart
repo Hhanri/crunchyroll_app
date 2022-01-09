@@ -137,6 +137,7 @@ class MyShapes {
   static BorderRadiusGeometry circularBorders = BorderRadius.circular(2.0);
   static Radius radiusCircular = const Radius.circular(2.0);
   static BorderRadiusGeometry cardBorders = BorderRadius.zero;
+  static BorderRadius circularBordersClipRRect = BorderRadius.circular(4);
 }
 
 class MySizes {

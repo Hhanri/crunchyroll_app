@@ -141,12 +141,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      /*
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        MAIN_APP,
-                        (Route<dynamic> route) => false
-                      );
-                      */
                     },
                   )
                 ],

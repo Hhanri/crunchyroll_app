@@ -3,10 +3,13 @@ import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
+import 'package:crunchyroll_app/screens/search_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ViewScreen extends StatelessWidget {
@@ -55,6 +58,8 @@ class ViewScreen extends StatelessWidget {
     ),
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ViewScreenController>(
@@ -72,6 +77,8 @@ class ViewScreen extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () {
+                  showSearch(context: context, delegate: AnimeSearch() );
+                  //Get.to(SearchBarScreen());
                 },
                 child: const Icon(
                   Icons.search_outlined
