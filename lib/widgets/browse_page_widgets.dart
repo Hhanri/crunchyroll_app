@@ -1,20 +1,19 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
-import 'package:crunchyroll_app/resources/theme.dart';
+
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
-import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BrowseGenresScreenWidget extends StatefulWidget {
-  const BrowseGenresScreenWidget({Key? key}) : super(key: key);
+class BrowseGenresScreen extends StatefulWidget {
+  const BrowseGenresScreen({Key? key}) : super(key: key);
 
   @override
-  _BrowseGenresScreenWidgetState createState() => _BrowseGenresScreenWidgetState();
+  _BrowseGenresScreenState createState() => _BrowseGenresScreenState();
 }
-class _BrowseGenresScreenWidgetState extends State<BrowseGenresScreenWidget> {
+class _BrowseGenresScreenState extends State<BrowseGenresScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +54,7 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
+        Get.to(BrowseAnimesScreen(searchedItem: tag));
         //Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
       },
       child: Stack(
@@ -70,7 +70,7 @@ class _GenresContainer extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
-                    stops: [0, 0.9],
+                    stops: const [0, 0.9],
                     radius: 1,
                     colors: [
                       Colors.grey.shade400.withOpacity(0.6),
@@ -94,10 +94,10 @@ class _GenresContainer extends StatelessWidget {
 }
 
 
-class BrowseAnimesScreenWidget extends StatelessWidget {
+class BrowseAnimesScreen extends StatelessWidget {
 
   final dynamic searchedItem;
-  const BrowseAnimesScreenWidget({
+  const BrowseAnimesScreen({
     Key? key,
     required this.searchedItem
   }) : super(key: key);
@@ -120,7 +120,7 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
       });
     }
 
-    return _listToDisplay.length < 1
+    return _listToDisplay.isEmpty
         ? const Scaffold(
             body: Center(
               child: Text(
@@ -130,7 +130,7 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
           )
         : Scaffold(
             body: Padding(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: GridView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(

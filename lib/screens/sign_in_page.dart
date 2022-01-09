@@ -1,10 +1,11 @@
 import 'package:crunchyroll_app/resources/strings.dart';
+import 'package:crunchyroll_app/screens/sign_up_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
-import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -92,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     onPressed: () {
-                      //Navigator.of(context).pushNamed(SIGN_UP_PAGE);
+                      Get.to(const SignUpScreen());
                     }
                   )
                 ],

@@ -51,8 +51,11 @@ class AnimeCardWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
+                Spacer(
+                  flex: 5
+                ),
+                Expanded(
+                  flex: 1,
                   child: IconButton(
                     padding: EdgeInsets.zero,
                     iconSize: 20,

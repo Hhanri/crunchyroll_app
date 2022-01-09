@@ -14,11 +14,45 @@ class ViewScreen extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  final List<String> appBarTitles = [
+    Strings.home,
+    Strings.myLists,
+    Strings.browse,
+    Strings.settings
+  ];
+
   final List<Widget> screens = [
     HomeScreen(homePlaylist: homePlaylists),
-    UnknownScreen(),
-    BrowseGenresScreenWidget(),
-    SignInScreen()
+    const UnknownScreen(),
+    const BrowseGenresScreen(),
+    const SignInScreen()
+  ];
+
+  final List<BottomNavigationBarItem> bottomNavBarItems = const[
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.home_outlined
+      ),
+      label: Strings.home
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.bookmark_border_outlined
+      ),
+      label: Strings.myLists
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.border_all_outlined
+      ),
+      label: Strings.browse
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.account_circle_rounded
+      ),
+      label: Strings.settings
+    ),
   ];
 
   @override
@@ -26,6 +60,25 @@ class ViewScreen extends StatelessWidget {
     return GetBuilder<ViewScreenController>(
       builder: (controller) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: MyColors.backgroundColor,
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                appBarTitles[controller.tabIndex]
+              )
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                },
+                child: const Icon(
+                  Icons.search_outlined
+                )
+              )
+            ],
+          ),
           body: IndexedStack(
             children: screens,
             index: controller.tabIndex,
@@ -37,32 +90,7 @@ class ViewScreen extends StatelessWidget {
             backgroundColor: MyColors.containerColor,
             selectedItemColor: MyColors.primaryColor,
             unselectedItemColor: Colors.white.withOpacity(0.8),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home_outlined
-                ),
-                label: Strings.home
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.bookmark_border_outlined
-                ),
-                label: Strings.myLists
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.border_all_outlined
-                ),
-                label: Strings.browse
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_circle_rounded
-                ),
-                label: Strings.settings
-              ),
-            ],
+            items: bottomNavBarItems
           )
         );
       }

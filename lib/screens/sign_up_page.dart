@@ -1,7 +1,6 @@
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/navigation_utils.dart';
-import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/checkbox_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
@@ -109,7 +108,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   CheckboxWidget(
                     checked: _TOScheck,
                     valueChanged: (value) {
-                      _TOScheck = value;
+                      setState(() {
+                        _TOScheck = value;
+                      });
                     }
                   ),
                   TextButton(

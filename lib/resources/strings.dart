@@ -31,7 +31,7 @@ class Strings {
   //search
   static const String noResultFound = "No Result Found";
 
-  //navigationBar
+  //tabs
   static const String home = "Home";
   static const String myLists = "My Lists";
   static const String browse = "Browse";

@@ -1,11 +1,7 @@
 import 'package:crunchyroll_app/controller/view_screen_binding.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
-import 'package:crunchyroll_app/screens/home_page.dart';
 import 'package:crunchyroll_app/screens/view_screen.dart';
-import 'package:crunchyroll_app/utils/route_generator.dart';
-import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

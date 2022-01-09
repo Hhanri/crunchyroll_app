@@ -5,9 +5,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
-import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
