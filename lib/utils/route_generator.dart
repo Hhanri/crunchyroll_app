@@ -8,7 +8,7 @@ import 'package:crunchyroll_app/widgets/browse_page_widgets.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
-class RouteGenerator {
+/*class RouteGenerator {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
 
@@ -39,3 +39,5 @@ const String SELECT_SEASON_PAGE = "/SelectSeason";
 const String BROWSE_GENRES_PAGE = "/BrowseGenres";
 const String BROWSE_ANIMES_PAGE = "/BrowseAnimes";
 const String MAIN_APP = "/";
+
+ */

@@ -4,27 +4,27 @@ import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
 
-class SelectSeasonScreen extends StatefulWidget {
+class SelectSeasonScreen extends StatelessWidget {
 
-  final dynamic availableSeasonsAndSelectSeasonArgument;
+  final List<AnimeSeason> availableSeasons ;
+  final Function(AnimeSeason) onSelectSeason;
+  final AnimeSeason selectedSeason;
 
   const SelectSeasonScreen({
     Key? key,
-    required this.availableSeasonsAndSelectSeasonArgument,
+    required this.availableSeasons,
+    required this.onSelectSeason,
+    required this.selectedSeason,
+
 
   }) : super(key: key);
 
   @override
-  State<SelectSeasonScreen> createState() => _SelectSeasonScreenState();
-}
-
-class _SelectSeasonScreenState extends State<SelectSeasonScreen> {
-  @override
   Widget build(BuildContext context) {
 
-    final List<AnimeSeason> _availableSeasons = widget.availableSeasonsAndSelectSeasonArgument["availableSeasons"];
-    final Function(AnimeSeason) _selectSeason = widget.availableSeasonsAndSelectSeasonArgument["function"];
-    final AnimeSeason _selectedSeason = widget.availableSeasonsAndSelectSeasonArgument["selectedSeason"];
+    final List<AnimeSeason> _availableSeasons = availableSeasons;
+    final Function(AnimeSeason) _selectSeason = onSelectSeason;
+    final AnimeSeason _selectedSeason = selectedSeason;
 
     return Scaffold(
       body: SingleChildScrollView(

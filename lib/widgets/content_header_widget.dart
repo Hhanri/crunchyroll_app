@@ -1,7 +1,9 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ContentHeaderWidget extends StatelessWidget {
   final AnimeContent featuredAnime;
@@ -13,7 +15,8 @@ class ContentHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
+        Get.to(AnimeDetailScreen(featuredAnimeArgument: featuredAnime));
+        //Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: featuredAnime);
       },
       child: Container(
         decoration: const BoxDecoration(

@@ -2,9 +2,11 @@ import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/utils/route_generator.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BrowseGenresScreenWidget extends StatefulWidget {
   const BrowseGenresScreenWidget({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
+        //Navigator.of(context).pushNamed(BROWSE_ANIMES_PAGE, arguments: tag);
       },
       child: Stack(
         children: [
@@ -133,7 +135,7 @@ class BrowseAnimesScreenWidget extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(ANIME_DETAIL_PAGE, arguments: _listToDisplay[index]);
+                      Get.to(AnimeDetailScreen(featuredAnimeArgument: _listToDisplay[index]));
                     },
                     child: AnimeCardWidget(
                       featuredAnime: _listToDisplay[index],
