@@ -92,50 +92,52 @@ class AnimeTileWidget extends StatelessWidget {
         },
         child: Container(
           color: MyColors.containerColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Image.asset(
-                  anime.imageURL
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Image.asset(
+                    anime.imageURL,
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        anime.title,
-                        style: Theme.of(context).textTheme.headline1,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(14.0),
+                        child: Text(
+                          anime.title,
+                          style: Theme.of(context).textTheme.headline1,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Spacer(
-                          flex: 4,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: IconButton(
-                            onPressed: () {
-                            },
-                            icon: Icon(Icons.more_vert)),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              )
-            ],
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Spacer(
+                            flex: 4,
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: IconButton(
+                              onPressed: () {
+                              },
+                              icon: const Icon(Icons.more_vert)),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

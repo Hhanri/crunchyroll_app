@@ -1,6 +1,5 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:get/get.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class SearchScreenController extends GetxController{
   static const int searchHistoryLength = 10;
