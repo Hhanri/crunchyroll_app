@@ -1,4 +1,9 @@
-class AnimeContent {
+import 'dart:convert';
+
+import 'package:crunchyroll_app/resources/strings.dart';
+import 'package:equatable/equatable.dart';
+
+class AnimeContent extends Equatable {
   final String title;
   final String imageURL;
   final String description;
@@ -11,6 +16,46 @@ class AnimeContent {
     required this.publisher,
     required this.tags
   });
+
+  factory AnimeContent.fromJson(Map<String, dynamic> jsonData) {
+    return AnimeContent(
+      title: jsonData[Strings.titleFormat],
+      imageURL: jsonData[Strings.imageURLFormat],
+      description: jsonData[Strings.descriptionFormat],
+      publisher: jsonData[Strings.publisherFormat],
+      tags: jsonData[Strings.tagsFormat].cast<String>().toList()
+    );
+  }
+  static Map<String, dynamic> toMap(AnimeContent animeContent) => {
+    Strings.titleFormat: animeContent.title,
+    Strings.imageURLFormat: animeContent.imageURL,
+    Strings.descriptionFormat: animeContent.description,
+    Strings.publisherFormat: animeContent.publisher,
+    Strings.tagsFormat: animeContent.tags
+  };
+
+  static String encodeAnimeContent(List<AnimeContent> animes) {
+    return json.encode(
+      animes.map(
+        (anime) => AnimeContent.toMap(anime)
+      )
+    );
+  }
+
+  static List<String> encodeAnimeContentToList(List<AnimeContent> animes) {
+    return animes.map(
+      (anime) => json.encode(AnimeContent.toMap(anime))
+    ).toList();
+  }
+  static List<AnimeContent> decodeAnimeContentToList(List<String>? jsonData) {
+    return jsonData!.map(
+      (anime) => AnimeContent.fromJson(json.decode(anime))
+    ).toList();
+  }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [title, imageURL, description, publisher, tags];
 }
 
 class HomeList {

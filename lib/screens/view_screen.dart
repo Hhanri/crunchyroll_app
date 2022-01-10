@@ -8,8 +8,6 @@ import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/screens/browse_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ViewScreen extends StatelessWidget {
@@ -57,8 +55,6 @@ class ViewScreen extends StatelessWidget {
       label: Strings.settings
     ),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {

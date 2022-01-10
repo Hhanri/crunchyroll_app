@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class KnowMoreScreen extends StatefulWidget {
 
-  final dynamic featuredAnimeArgument;
+  final AnimeContent featuredAnimeArgument;
 
   const KnowMoreScreen({Key? key,
     required this.featuredAnimeArgument

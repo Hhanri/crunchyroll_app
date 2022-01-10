@@ -57,7 +57,6 @@ class _GenresContainer extends StatelessWidget {
           BrowseAnimesScreen(
             searchedItem: tag
           ),
-          transition: Transition.topLevel
         );
       },
       child: Stack(
@@ -142,7 +141,6 @@ class BrowseAnimesScreen extends StatelessWidget {
                         AnimeDetailScreen(
                           featuredAnimeArgument: _listToDisplay[index]
                         ),
-                        transition: Transition.topLevel
                       );
                     },
                     child: AnimeCardWidget(

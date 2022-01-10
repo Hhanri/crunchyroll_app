@@ -12,7 +12,7 @@ class AnimeSearch extends SearchDelegate<AnimeContent?> {
   @override
   List<Widget> buildActions(BuildContext context) => [
     IconButton(
-      icon: Icon(Icons.clear),
+      icon: const Icon(Icons.clear),
       onPressed: () {
         if (query.isEmpty) {
           close(context, null);
@@ -26,7 +26,7 @@ class AnimeSearch extends SearchDelegate<AnimeContent?> {
   @override
   Widget buildLeading(BuildContext context) =>
     IconButton(
-      icon: Icon(Icons.arrow_back_outlined),
+      icon: const Icon(Icons.arrow_back_outlined),
       onPressed: () {
         close(context, null);
       },
@@ -174,7 +174,7 @@ class AnimeHistoryTileWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.headline3,
           ),
           trailing: IconButton(
-            icon: Icon(Icons.clear),
+            icon: const Icon(Icons.clear),
             onPressed: (){
               SearchScreenController.deleteSearchedTerm(anime);
               update();

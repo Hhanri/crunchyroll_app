@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 
 class AnimeDetailScreen extends StatefulWidget {
 
-  final dynamic featuredAnimeArgument;
+  final AnimeContent featuredAnimeArgument;
 
   const AnimeDetailScreen({Key? key,
     required this.featuredAnimeArgument

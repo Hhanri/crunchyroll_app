@@ -48,6 +48,15 @@ class Strings {
   static const String quintessentialQuintupletsS2Title = "Quintessential Quintuplets 2";
   static const String karakaiJouzuNoTakagisanTitle = "Karakai Jouzu No Takagi-san";
 
+  //formating
+  static const String titleFormat = "title";
+  static const String imageURLFormat = "imageURL";
+  static const String descriptionFormat = "description";
+  static const String publisherFormat = "publisher";
+  static const String tagsFormat = "tags";
+
+  //SharedPreferences
+  static const String historyListKey = "historyList";
 }
 
 class ImagePath {

@@ -18,7 +18,6 @@ class ContentHeaderWidget extends StatelessWidget {
           AnimeDetailScreen(
             featuredAnimeArgument: featuredAnime
           ),
-          transition: Transition.topLevel
         );
       },
       child: Container(

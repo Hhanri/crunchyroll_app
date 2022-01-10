@@ -1,3 +1,4 @@
+import 'package:crunchyroll_app/controller/search_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
@@ -113,11 +114,7 @@ class HomeListWidget extends StatelessWidget {
                 final AnimeContent animeContent = animeList[index];
                 return TextButton(
                   onPressed: () {
-                    Get.to(
-                      AnimeDetailScreen(
-                        featuredAnimeArgument: animeContent
-                      ),
-                      transition: Transition.topLevel
+                    Get.to(AnimeDetailScreen(featuredAnimeArgument: animeContent),
                     );
                   },
                   child: AnimeCardWidget(
