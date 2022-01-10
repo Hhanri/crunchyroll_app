@@ -171,7 +171,7 @@ class AnimeHistoryTileWidget extends StatelessWidget {
             anime.title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: MyTextStyles.title1,
+            style: Theme.of(context).textTheme.headline3,
           ),
           trailing: IconButton(
             icon: Icon(Icons.clear),

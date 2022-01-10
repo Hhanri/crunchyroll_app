@@ -29,8 +29,7 @@ class _BrowseGenresScreenState extends State<BrowseGenresScreen> {
           },
           padding: const EdgeInsets.all(8),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 960/640,
-            //mainAxisSpacing: 13,
+            childAspectRatio: (960)/(640),
             crossAxisSpacing: 13,
             crossAxisCount: 2,
           ),

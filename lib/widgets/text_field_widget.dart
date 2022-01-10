@@ -49,7 +49,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       inputFormatters: _textFieldParamaters.textInputFormatters,
       controller: _textEditingController,
       focusNode: _focusNode,
-      style: MyTextStyles.body1,
+      style: Theme.of(context).textTheme.bodyText1,
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(10),
