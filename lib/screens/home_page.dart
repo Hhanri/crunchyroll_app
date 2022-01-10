@@ -102,11 +102,10 @@ class HomeListWidget extends StatelessWidget {
           ),
           SizedBox(
             height: _listViewHeight,
-            child: ListView.builder(
-              //shrinkWrap: true,
+            child: GridView.builder(
               padding: const EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 0
+                vertical: 8,
+                horizontal: 0
               ),
               scrollDirection: Axis.horizontal,
               itemCount: animeList.length,
@@ -123,10 +122,14 @@ class HomeListWidget extends StatelessWidget {
                   },
                   child: AnimeCardWidget(
                     featuredAnime: animeContent,
-                    listViewHeight: _listViewHeight,
                   ),
                 );
               },
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio:(380-15)/(((380+16)/960)*640*(10/13)),
+                mainAxisSpacing: 0,
+                crossAxisCount: 1,
+              ),
             ),
           )
         ],

@@ -148,7 +148,6 @@ class BrowseAnimesScreen extends StatelessWidget {
                     },
                     child: AnimeCardWidget(
                       featuredAnime: _listToDisplay[index],
-                      listViewHeight: 380
                     )
                   );
                 },
