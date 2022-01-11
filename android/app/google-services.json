@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "958285591119",
+    "project_id": "crunchyroll-clone-app",
+    "storage_bucket": "crunchyroll-clone-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958285591119:android:c5c3791dc95471dfb2b03a",
+        "android_client_info": {
+          "package_name": "com.example.crunchyroll_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958285591119-aimscropmelclbd334ihmth59hl1vc36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3FiDmqSaHVh8JK0QpOvrdvjGoGMqR5J4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958285591119-aimscropmelclbd334ihmth59hl1vc36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

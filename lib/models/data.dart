@@ -7,7 +7,7 @@ final List<AnimeContent> animes = [
   const AnimeContent(
     title: Strings.kimetsuNoYaibaTitle,
     imageURL: ImagePath.kimetsuNoYaibaThumbnail,
-    description: "Découvrez une aventure où le sang va couler sous la lame de l’épée. Nous sommes pendant l’ère Taishô. Tanjirô, un jeune et sympathique vendeur de charbon voit son quotidien changer radicalement après le massacre de sa famille par un démon. Seule sa petite sœur Nezuko survit à l’attaque, mais elle est transformée en un démon féroce. Ils partent tous deux en voyage afin de prendre leur revanche et de rendre à Nezuko son apparence d’origine. Vivez avec eux ce périple dans lequel le destin des humains et des démons s’entremêlent. ",
+    description: "Découvrez une aventure où le sang va couler sous la lame de l’épée. Nous sommes pendant l’ère Taishô. Tanjirô, un jeune et sympathique vendeur de charbon voit son quotidien changer radicalement après le massacre de sa famille par un démon. Seule sa petite sœur Nezuko survit à l’attaque, mais elle est transformée en un démon féroce. Ils partent tous deux en voyage afin de prendre leur revanche et de rendre à Nezuko son apparence d’origine. Vivez avec eux ce périple dans lequel le destin des humains et des démons s’entremêlent.",
     publisher: "Aniplexe of America",
     tags: [
       Tags.action,
@@ -37,7 +37,7 @@ final List<AnimeContent> animes = [
   const AnimeContent(
     title: Strings.quintessentialQuintupletsTitle,
     imageURL: ImagePath.quintessentialQuintupletsThumbnail,
-    description: "Fûtarô Uesugi est un lycéen issu d'une famille modeste. Un jour, il reçoit une alléchante proposition pour un poste fort bien rémunéré en tant que professeur particulier à temps partiel. Mais voilà, les filles dont il doit s'occuper sont dans sa propre classe ! De plus, ce sont des quintuplées ! Toutes les cinq sont très séduisantes, mais ce sont des élèves à problèmes car elles détestent étudier et leurs notes s'en ressentent. La première mission de Fûtarô sera donc de gagner la confiance des sœurs Nakano... ",
+    description: "Fûtarô Uesugi est un lycéen issu d'une famille modeste. Un jour, il reçoit une alléchante proposition pour un poste fort bien rémunéré en tant que professeur particulier à temps partiel. Mais voilà, les filles dont il doit s'occuper sont dans sa propre classe ! De plus, ce sont des quintuplées ! Toutes les cinq sont très séduisantes, mais ce sont des élèves à problèmes car elles détestent étudier et leurs notes s'en ressentent. La première mission de Fûtarô sera donc de gagner la confiance des sœurs Nakano...",
     publisher: "TBS",
     tags: [
       Tags.comedy,
