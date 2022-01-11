@@ -60,43 +60,90 @@ class ViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ViewScreenController>(
       builder: (controller) {
-        return Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            backgroundColor: MyColors.backgroundColor,
-            title: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                appBarTitles[controller.tabIndex]
-              )
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  showSearch(context: context, delegate: AnimeSearch() );
-                  //Get.to(SearchBarScreen());
-                },
-                child: const Icon(
-                  Icons.search_outlined
-                )
-              )
-            ],
-          ),
-          body: IndexedStack(
-            children: screens,
-            index: controller.tabIndex,
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndex,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: MyColors.containerColor,
-            selectedItemColor: MyColors.primaryColor,
-            unselectedItemColor: Colors.white.withOpacity(0.8),
-            items: bottomNavBarItems
-          )
-        );
+        return ViewScreenScaffoldWidget(appBarTitles: appBarTitles, screens: screens, bottomNavBarItems: bottomNavBarItems, controller: controller,);
       }
+    );
+  }
+}
+
+class ViewScreenScaffoldWidget extends StatelessWidget {
+  final List<String> appBarTitles;
+  final List<Widget> screens;
+  final List<BottomNavigationBarItem> bottomNavBarItems;
+  final ViewScreenController controller;
+  const ViewScreenScaffoldWidget({
+    Key? key,
+    required this.appBarTitles,
+    required this.screens,
+    required this.bottomNavBarItems,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: MyColors.backgroundColor,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            appBarTitles[controller.tabIndex]
+          )
+        ),
+        actions: const [
+          SearchButtonWidget()
+        ],
+      ),
+      body: IndexedStack(
+        children: screens,
+        index: controller.tabIndex,
+      ),
+      bottomNavigationBar: BottomNavigationBarWidget(
+        bottomNavBarItems: bottomNavBarItems, 
+        controller: controller,
+      )
+    );
+  }
+}
+
+class SearchButtonWidget extends StatelessWidget {
+  const SearchButtonWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        showSearch(context: context, delegate: AnimeSearch() );
+      },
+      child: const Icon(
+        Icons.search_outlined
+      )
+    );
+  }
+}
+
+class BottomNavigationBarWidget extends StatelessWidget {
+  final ViewScreenController controller;
+  final List<BottomNavigationBarItem> bottomNavBarItems;
+  const BottomNavigationBarWidget({
+    Key? key,
+    required this.bottomNavBarItems,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      onTap: controller.changeTabIndex,
+      currentIndex: controller.tabIndex,
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: MyColors.containerColor,
+      selectedItemColor: MyColors.primaryColor,
+      unselectedItemColor: Colors.white.withOpacity(0.8),
+      items: bottomNavBarItems
     );
   }
 }
