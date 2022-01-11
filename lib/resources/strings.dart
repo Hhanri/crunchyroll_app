@@ -57,6 +57,14 @@ class Strings {
 
   //SharedPreferences
   static const String historyListKey = "historyList";
+
+  //Firebase error
+  static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
+
+  //Firebase collections & documents
+  static const String animesDatabaseCollection = "AnimesDatabase";
+  static const String animesDocument = "Animes";
+  static const String animesCollection = "Animes";
 }
 
 class ImagePath {

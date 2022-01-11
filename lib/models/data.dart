@@ -58,7 +58,6 @@ final List<AnimeContent> animes = [
       Tags.sliceOfLife
     ]
   ),
-
 ];
 
 final AnimeContent trendingAnime = animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)];

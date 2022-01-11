@@ -1,6 +1,4 @@
-import 'package:collection/collection.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

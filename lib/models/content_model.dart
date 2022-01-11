@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:equatable/equatable.dart';
 
@@ -50,6 +51,11 @@ class AnimeContent extends Equatable {
   static List<AnimeContent> decodeAnimeContentToList(List<String>? jsonData) {
     return jsonData!.map(
       (anime) => AnimeContent.fromJson(json.decode(anime))
+    ).toList();
+  }
+  static List<AnimeContent> decodeAnimeContentToListFromFirebase(List<QueryDocumentSnapshot<dynamic>> queryData) {
+    return queryData.map(
+      (anime) => AnimeContent.fromJson(anime.data())
     ).toList();
   }
 

@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/controller/view_screen_controller.dart';
+import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
@@ -7,6 +9,8 @@ import 'package:crunchyroll_app/screens/search_page.dart';
 import 'package:crunchyroll_app/screens/sign_in_page.dart';
 import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/screens/browse_page.dart';
+import 'package:crunchyroll_app/utils/navigation_utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
@@ -58,9 +62,34 @@ class ViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder<ViewScreenController>(
       builder: (controller) {
-        return ViewScreenScaffoldWidget(appBarTitles: appBarTitles, screens: screens, bottomNavBarItems: bottomNavBarItems, controller: controller,);
+        return FutureBuilder(
+          future: Firebase.initializeApp(),
+          builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
+            if (snapshot.hasError) {
+              NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              return StreamBuilder<QuerySnapshot<dynamic>>(
+                stream: FirebaseFirestore.instance.collection(Strings.animesDatabaseCollection).doc(Strings.animesDocument).collection(Strings.animesCollection).snapshots(),
+                builder: (context, snapshot) {
+                  List<QueryDocumentSnapshot<dynamic>> _animesListSnapshot = snapshot.data?.docs ?? [];
+                  List<AnimeContent> _animesList = AnimeContent.decodeAnimeContentToListFromFirebase(_animesListSnapshot);
+                  return ViewScreenScaffoldWidget(
+                    appBarTitles: appBarTitles,
+                    screens: screens,
+                    bottomNavBarItems: bottomNavBarItems,
+                    controller: controller
+                  );
+                }
+              );
+            }
+            return const CircularProgressIndicator();
+          }
+
+        );
       }
     );
   }
