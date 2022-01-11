@@ -62,12 +62,11 @@ class ViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return GetBuilder<ViewScreenController>(
-      builder: (controller) {
-        return FutureBuilder(
-          future: Firebase.initializeApp(),
-          builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
+        return GetBuilder<ViewScreenController>(
+          builder: (controller) {
             if (snapshot.hasError) {
               NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
             }
@@ -88,7 +87,6 @@ class ViewScreen extends StatelessWidget {
             }
             return const CircularProgressIndicator();
           }
-
         );
       }
     );
