@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/controller/view_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/home_page.dart';
@@ -13,6 +14,8 @@ import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:provider/provider.dart';
+
 
 class ViewScreen extends StatelessWidget {
   ViewScreen({
@@ -25,13 +28,15 @@ class ViewScreen extends StatelessWidget {
     Strings.browse,
     Strings.settings
   ];
-
+/*
   final List<Widget> screens = [
-    HomeScreen(homePlaylist: homePlaylists),
+    HomeScreen(homePlaylist: DataProvider.homePlaylists),
     const UnknownScreen(),
     const BrowseGenresScreen(),
     const SignInScreen()
   ];
+ */
+
 
   final List<BottomNavigationBarItem> bottomNavBarItems = const[
     BottomNavigationBarItem(
@@ -71,18 +76,15 @@ class ViewScreen extends StatelessWidget {
               NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              return StreamBuilder<QuerySnapshot<dynamic>>(
-                stream: FirebaseFirestore.instance.collection(Strings.animesDatabaseCollection).doc(Strings.animesDocument).collection(Strings.animesCollection).snapshots(),
-                builder: (context, snapshot) {
-                  List<QueryDocumentSnapshot<dynamic>> _animesListSnapshot = snapshot.data?.docs ?? [];
-                  List<AnimeContent> _animesList = AnimeContent.decodeAnimeContentToListFromFirebase(_animesListSnapshot);
-                  return ViewScreenScaffoldWidget(
-                    appBarTitles: appBarTitles,
-                    screens: screens,
-                    bottomNavBarItems: bottomNavBarItems,
-                    controller: controller
-                  );
-                }
+              return MultiProvider(
+                providers: [
+                  StreamProvider<List<AnimeContent>>.value(value: FirestoreProvider.getAnimesStream, initialData: [],)
+                ],
+                child: ViewScreenScaffoldWidget(
+                  appBarTitles: appBarTitles,
+                  bottomNavBarItems: bottomNavBarItems,
+                  controller: controller,
+                )
               );
             }
             return const CircularProgressIndicator();
@@ -95,20 +97,56 @@ class ViewScreen extends StatelessWidget {
 
 class ViewScreenScaffoldWidget extends StatelessWidget {
   final List<String> appBarTitles;
-  final List<Widget> screens;
+  //final List<Widget> screens;
   final List<BottomNavigationBarItem> bottomNavBarItems;
   final ViewScreenController controller;
+
   const ViewScreenScaffoldWidget({
     Key? key,
     required this.appBarTitles,
-    required this.screens,
+    //required this.screens,
     required this.bottomNavBarItems,
     required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    DataProvider.animes = FirestoreProvider.animeListProvider(context);
+    DataProvider.homePlaylists = [
+      HomeList(
+          listTitle: "Trending",
+          animes: [
+            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.narutoTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
+          ]
+      ),
+      HomeList(
+          listTitle: "Recently Added",
+          animes: [
+            DataProvider.animes.singleWhere((element) => element.title == Strings.narutoTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
+          ]
+      ),
+      HomeList(
+          listTitle: "Most seen",
+          animes: [
+            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
+            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
+          ]
+      ),
+    ];
+
+    DataProvider.trendingAnime = DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
+
+
+
     return Scaffold(
+
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: MyColors.backgroundColor,
@@ -123,11 +161,14 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
         ],
       ),
       body: IndexedStack(
-        children: screens,
+        children: [HomeScreen(homePlaylist: DataProvider.homePlaylists),
+          const UnknownScreen(),
+          const BrowseGenresScreen(),
+          const SignInScreen()],
         index: controller.tabIndex,
       ),
       bottomNavigationBar: BottomNavigationBarWidget(
-        bottomNavBarItems: bottomNavBarItems, 
+        bottomNavBarItems: bottomNavBarItems,
         controller: controller,
       )
     );

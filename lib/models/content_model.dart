@@ -24,7 +24,7 @@ class AnimeContent extends Equatable {
       imageURL: jsonData[Strings.imageURLFormat],
       description: jsonData[Strings.descriptionFormat],
       publisher: jsonData[Strings.publisherFormat],
-      tags: jsonData[Strings.tagsFormat].cast<String>().toList()
+      tags: jsonData[Strings.tagsFormat].cast<String>()
     );
   }
   static Map<String, dynamic> toMap(AnimeContent animeContent) => {
@@ -57,6 +57,9 @@ class AnimeContent extends Equatable {
     return queryData.map(
       (anime) => AnimeContent.fromJson(anime.data())
     ).toList();
+  }
+  static AnimeContent decodeAnimeContentFromFirebase(QueryDocumentSnapshot<dynamic> queryData) {
+    return AnimeContent.fromJson(queryData.data());
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
@@ -27,12 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(trendingAnime.imageURL),
+          Image.asset(DataProvider.trendingAnime.imageURL),
           SingleChildScrollView(
             child: Column(
               children: [
                 ContentHeaderWidget(
-                  featuredAnime: trendingAnime,
+                  featuredAnime: DataProvider.trendingAnime,
                 ),
                 Container(
                   constraints: BoxConstraints(
@@ -112,7 +113,7 @@ class HomeListWidget extends StatelessWidget {
                 final AnimeContent animeContent = animeList[index];
                 return TextButton(
                   onPressed: () {
-                    Get.to(AnimeDetailScreen(featuredAnimeArgument: animeContent),
+                    Get.to(() => AnimeDetailScreen(featuredAnimeArgument: animeContent),
                     );
                   },
                   child: AnimeCardWidget(

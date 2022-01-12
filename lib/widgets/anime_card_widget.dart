@@ -24,7 +24,7 @@ class AnimeCardWidget extends StatelessWidget {
             Expanded(
               flex: 10,
               child: Center(
-                child: Image.asset(
+                child: Image.network(
                   featuredAnime.imageURL,
                 ),
               ),

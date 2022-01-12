@@ -53,10 +53,7 @@ class _GenresContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Get.to(
-          BrowseAnimesScreen(
-            searchedItem: tag
-          ),
+        Get.to(() => BrowseAnimesScreen(searchedItem: tag),
         );
       },
       child: Stack(
@@ -137,10 +134,7 @@ class BrowseAnimesScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return TextButton(
                     onPressed: () {
-                      Get.to(
-                        AnimeDetailScreen(
-                          featuredAnimeArgument: _listToDisplay[index]
-                        ),
+                      Get.to(() => AnimeDetailScreen(featuredAnimeArgument: _listToDisplay[index]),
                       );
                     },
                     child: AnimeCardWidget(

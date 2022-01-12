@@ -107,7 +107,7 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
         ),
         TextButton(
           onPressed: () {
-            Get.to(
+            Get.to( () =>
               SelectSeasonScreen(
                 availableSeasons: widget.availableSeasons,
                 onSelectSeason: (newSelectedSeason) {

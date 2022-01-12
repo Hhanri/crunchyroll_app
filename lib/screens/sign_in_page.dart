@@ -93,9 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     onPressed: () {
                       FocusScope.of(context).requestFocus(FocusNode());
-                      Get.to(
-                        const SignUpScreen(),
-                      );
+                      Get.to(() => const SignUpScreen(),);
                     }
                   )
                 ],

@@ -1,4 +1,5 @@
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 
 import 'content_model.dart';
@@ -59,43 +60,44 @@ final List<AnimeContent> animes = [
     ]
   ),
 ];
+/*
+final AnimeContent trendingAnime = animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
 
-final AnimeContent trendingAnime = animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)];
 
-
+ */
 final List<HomeList> homePlaylists = [
   HomeList(
     listTitle: "Trending",
     animes: [
-      animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.narutoTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.quintessentialQuintupletsTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle)],
+      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
+      animes.singleWhere((element) => element.title == Strings.narutoTitle),
+      animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
+      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
     ]
   ),
   HomeList(
     listTitle: "Recently Added",
     animes: [
-      animes[animes.indexWhere((element) => element.title == Strings.narutoTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.quintessentialQuintupletsTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle)],
+      animes.singleWhere((element) => element.title == Strings.narutoTitle),
+      animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
+      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
+      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
     ]
   ),
   HomeList(
     listTitle: "Most seen",
     animes: [
-      animes[animes.indexWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)],
-     /* animes[animes.indexWhere((element) => element.title == Strings.QuintessentialQuintupletsTitle)],
-      animes[animes.indexWhere((element) => element.title == Strings.NarutoTitle)], */
+      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
+      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
     ]
   ),
 ];
 
+
+
 final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
 
-  animes[animes.indexWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle)] :
+  DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle):
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -120,7 +122,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
     ),
 
-  animes[animes.indexWhere((element) => element.title == Strings.kimetsuNoYaibaTitle)] :
+  animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle) :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -157,7 +159,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
   ),
 
-  animes[animes.indexWhere((element) => element.title == Strings.narutoTitle)] :
+  animes.singleWhere((element) => element.title == Strings.narutoTitle) :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -182,7 +184,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
   ),
 
-  animes[animes.indexWhere((element) => element.title == Strings.quintessentialQuintupletsTitle)] :
+  animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle) :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
