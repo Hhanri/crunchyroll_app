@@ -6,6 +6,7 @@ import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:crunchyroll_app/widgets/content_header_widget.dart';
+import 'package:crunchyroll_app/widgets/get_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(DataProvider.trendingAnime.imageURL),
+          GetImageWidget(imagePath: DataProvider.trendingAnime.imageURL),
           SingleChildScrollView(
             child: Column(
               children: [

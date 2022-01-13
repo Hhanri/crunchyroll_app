@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
@@ -106,13 +107,13 @@ class BrowseAnimesScreen extends StatelessWidget {
 
     final String _searchedItem = searchedItem;
     List<AnimeContent> _listToDisplay = [];
-    animes.forEach((element) {
+    DataProvider.animes.forEach((element) {
       if (element.tags.contains(_searchedItem)) {
         _listToDisplay.add(element);
       }
     });
     if(_listToDisplay.isEmpty) {
-      animes.forEach((element) {
+      DataProvider.animes.forEach((element) {
         if(element.title.toUpperCase().contains(_searchedItem.toUpperCase()) && _listToDisplay.contains(element) == false) {
           _listToDisplay.add(element);
         }

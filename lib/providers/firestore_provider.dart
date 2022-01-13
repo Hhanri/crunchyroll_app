@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/resources/strings.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class FirestoreProvider {
+class FirebaseProvider {
 
   static Stream<List<AnimeContent>> get getAnimesStream => FirebaseFirestore
       .instance
@@ -21,7 +20,16 @@ class FirestoreProvider {
 
 }
 
-class DataProvider extends GetxController{
+class FirebaseStorageProvider {
+  final firebaseStorage = FirebaseStorage.instance;
+
+  Future<String> downloadURL(String imagePath) async {
+    String downloadURL = await firebaseStorage.ref(imagePath).getDownloadURL();
+    return downloadURL;
+  }
+}
+
+class DataProvider{
   static late List<AnimeContent> animes;
 
   static late AnimeContent trendingAnime;

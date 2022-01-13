@@ -1,0 +1,32 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
+import 'package:crunchyroll_app/resources/theme.dart';
+import 'package:flutter/material.dart';
+
+class GetImageWidget extends StatelessWidget {
+  final String imagePath;
+  const GetImageWidget({
+    Key? key,
+    required this.imagePath,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: FirebaseStorageProvider().downloadURL(imagePath),
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+          return CachedNetworkImage(imageUrl: snapshot.data!);
+        }
+        if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
+          return Container(
+            color: MyColors.containerColor,
+          );
+        }
+        return Container(
+          color: MyColors.containerColor,
+        );
+      },
+    );
+  }
+}

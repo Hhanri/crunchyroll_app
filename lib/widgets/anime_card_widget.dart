@@ -1,6 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
+
+import 'get_image_widget.dart';
 
 class AnimeCardWidget extends StatelessWidget {
   final AnimeContent featuredAnime;
@@ -24,9 +28,7 @@ class AnimeCardWidget extends StatelessWidget {
             Expanded(
               flex: 10,
               child: Center(
-                child: Image.network(
-                  featuredAnime.imageURL,
-                ),
+                child: GetImageWidget(imagePath: featuredAnime.imageURL,)
               ),
             ),
             Expanded(
@@ -62,6 +64,7 @@ class AnimeCardWidget extends StatelessWidget {
                         Icons.more_vert
                       ),
                       onPressed: () {
+                        print(featuredAnime.imageURL);
                       },
                     ),
                   ),
@@ -74,3 +77,4 @@ class AnimeCardWidget extends StatelessWidget {
     );
   }
 }
+

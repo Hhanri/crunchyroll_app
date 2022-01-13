@@ -78,7 +78,7 @@ class ViewScreen extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.done) {
               return MultiProvider(
                 providers: [
-                  StreamProvider<List<AnimeContent>>.value(value: FirestoreProvider.getAnimesStream, initialData: [],)
+                  StreamProvider<List<AnimeContent>>.value(value: FirebaseProvider.getAnimesStream, initialData: [],)
                 ],
                 child: ViewScreenScaffoldWidget(
                   appBarTitles: appBarTitles,
@@ -112,7 +112,7 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    DataProvider.animes = FirestoreProvider.animeListProvider(context);
+    DataProvider.animes = FirebaseProvider.animeListProvider(context);
     DataProvider.homePlaylists = [
       HomeList(
           listTitle: "Trending",
@@ -140,10 +140,7 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
           ]
       ),
     ];
-
     DataProvider.trendingAnime = DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
-
-
 
     return Scaffold(
 

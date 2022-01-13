@@ -6,6 +6,7 @@ import 'package:crunchyroll_app/screens/select_season_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
+import 'package:crunchyroll_app/widgets/get_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(_featuredAnime.imageURL),//getAnimeThumbail()),
+          GetImageWidget(imagePath: _featuredAnime.imageURL),
           SingleChildScrollView(
             child: Column(
               children: [
