@@ -63,8 +63,6 @@ final List<AnimeContent> animes = [
 /*
 final AnimeContent trendingAnime = animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
 
-
- */
 final List<HomeList> homePlaylists = [
   HomeList(
     listTitle: "Trending",
@@ -92,12 +90,12 @@ final List<HomeList> homePlaylists = [
     ]
   ),
 ];
+ */
 
 
+final Map<String,AnimeEpisodesList> animesEpisodesList = {
 
-final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
-
-  DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle):
+   Strings.karakaiJouzuNoTakagisanTitle:
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -122,7 +120,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
     ),
 
-  animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle) :
+  Strings.kimetsuNoYaibaTitle :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -159,7 +157,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
   ),
 
-  animes.singleWhere((element) => element.title == Strings.narutoTitle) :
+  Strings.narutoTitle :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(
@@ -184,7 +182,7 @@ final Map<AnimeContent,AnimeEpisodesList> animesEpisodesList = {
       }
   ),
 
-  animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle) :
+  Strings.quintessentialQuintupletsTitle :
     AnimeEpisodesList(
       seasons: {
         AnimeSeason(

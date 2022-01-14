@@ -63,8 +63,8 @@ class Strings {
 
   //Firebase collections & documents
   static const String animesDatabaseCollection = "AnimesDatabase";
-  static const String animesDocument = "Animes";
-  static const String animesCollection = "Animes";
+  static const String animesDocument = "AnimesDocument";
+  static const String animesCollection = "AnimesCollection";
 }
 
 class ImagePath {

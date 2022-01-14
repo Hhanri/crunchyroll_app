@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +10,9 @@ class FirebaseProvider {
 
   static Stream<List<AnimeContent>> get getAnimesStream => FirebaseFirestore
       .instance
-      .collection("animes")
-      //.collection(Strings.animesDatabaseCollection)
-      //.doc(Strings.animesDocument)
-      //.collection(Strings.animesDocument)
+      .collection(Strings.animesDatabaseCollection)
+      .doc(Strings.animesDocument)
+      .collection(Strings.animesCollection)
       .snapshots()
       .map((item) => AnimeContent.decodeAnimeContentToListFromFirebase(item.docs));
 

@@ -29,7 +29,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
 
     final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
     List<AnimeSeason> _availableSeasons = [];
-    animesEpisodesList[_featuredAnime]!.seasons.keys.forEach((key) {
+    animesEpisodesList[_featuredAnime.title]!.seasons.keys.forEach((key) {
       _availableSeasons.add(key);
     });
     AnimeSeason _selectedSeason = _availableSeasons[0];
@@ -90,7 +90,7 @@ class _EpisodesGridWidget extends StatefulWidget {
 class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
   @override
   Widget build(BuildContext context) {
-    List<AnimeEpisode> _animeEpisodes = animesEpisodesList[widget.featuredAnime]!.seasons[widget.selectedSeason]!;
+    List<AnimeEpisode> _animeEpisodes = animesEpisodesList[widget.featuredAnime.title]!.seasons[widget.selectedSeason]!;
 
     return Column(
       children: [
