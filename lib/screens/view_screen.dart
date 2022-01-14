@@ -59,27 +59,27 @@ class ViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Firebase.initializeApp(),
-        builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
-        return GetBuilder<ViewScreenController>(
+      future: Firebase.initializeApp(),
+      builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
+        return MultiProvider(
+          providers: [
+            StreamProvider<List<AnimeContent>>.value(value: FirebaseProvider.getAnimesStream, initialData: [],)
+          ],
+          child: GetBuilder<ViewScreenController>(
             builder: (controller) {
-            if (snapshot.hasError) {
-              NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              return MultiProvider(
-                providers: [
-                  StreamProvider<List<AnimeContent>>.value(value: FirebaseProvider.getAnimesStream, initialData: [],)
-                ],
-                child: ViewScreenScaffoldWidget(
+              if (snapshot.hasError) {
+                NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
+              }
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ViewScreenScaffoldWidget(
                   appBarTitles: appBarTitles,
                   bottomNavBarItems: bottomNavBarItems,
                   controller: controller,
-                )
-              );
+                );
+              }
+              return const CircularProgressIndicator();
             }
-            return const CircularProgressIndicator();
-          }
+          )
         );
       }
     );
