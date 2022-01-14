@@ -1,5 +1,6 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
   Widget build(BuildContext context) {
     
     final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
-    final AnimeEpisodesList _animeEpisodesList = animesEpisodesList[_featuredAnime]!;
+    final AnimeEpisodesList _animeEpisodesList = DataProvider.episodesList;
     int _numberOfEpisodes = 0;
     _animeEpisodesList.seasons.forEach((key, value) {
       _numberOfEpisodes += value.length;

@@ -60,37 +60,7 @@ final List<AnimeContent> animes = [
     ]
   ),
 ];
-/*
-final AnimeContent trendingAnime = animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
 
-final List<HomeList> homePlaylists = [
-  HomeList(
-    listTitle: "Trending",
-    animes: [
-      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-      animes.singleWhere((element) => element.title == Strings.narutoTitle),
-      animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
-      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-    ]
-  ),
-  HomeList(
-    listTitle: "Recently Added",
-    animes: [
-      animes.singleWhere((element) => element.title == Strings.narutoTitle),
-      animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
-      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-    ]
-  ),
-  HomeList(
-    listTitle: "Most seen",
-    animes: [
-      animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-      animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-    ]
-  ),
-];
- */
 
 
 final Map<String,AnimeEpisodesList> animesEpisodesList = {
@@ -173,7 +143,7 @@ final Map<String,AnimeEpisodesList> animesEpisodesList = {
           ),
           AnimeEpisode(
             animeTitle: Strings.narutoTitle,
-            episodeTitle: "Je m'appelle Konohamaru",
+            episodeTitle: " ",
             season: "S1",
             episode: "E2",
             thumbnail: "assets/images/anime_thumbnails/Naruto/Naruto - S1/Naruto - S1 E2 - thumbnail.jpg"
@@ -226,6 +196,8 @@ final Map<String,AnimeEpisodesList> animesEpisodesList = {
       }
     ),
 };
+
+
 
 final List<Map<String,String>> tagsList = [
   {Tags.tagTitle: Tags.action, Tags.tagThumbnail: ImagePath.whiteThumbnail},

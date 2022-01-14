@@ -3,11 +3,14 @@ import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
+
 class GetImageWidget extends StatelessWidget {
+  final String cardType;
   final String imagePath;
   const GetImageWidget({
     Key? key,
     required this.imagePath,
+    required this.cardType,
   }) : super(key: key);
 
   @override
@@ -19,13 +22,13 @@ class GetImageWidget extends StatelessWidget {
           return CachedNetworkImage(imageUrl: snapshot.data!);
         }
         if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-          return Container(
-            color: MyColors.containerColor,
-          );
+          cardType == "episode"
+              ? Container(color: MyColors.containerColor, height: 640, width: 960)
+              : Container(color: MyColors.containerColor, height: 960, width: 640);
         }
-        return Container(
-          color: MyColors.containerColor,
-        );
+        return cardType == "episode"
+            ? Container(color: MyColors.containerColor, height: 640, width: 960)
+            : Container(color: MyColors.containerColor, height: 960, width: 640);
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,10 @@ class AnimeCardWidget extends StatelessWidget {
             Expanded(
               flex: 10,
               child: Center(
-                child: GetImageWidget(imagePath: featuredAnime.imageURL,)
+                child: GetImageWidget(
+                  imagePath: featuredAnime.imageURL,
+                  cardType: cardType.anime
+                )
               ),
             ),
             Expanded(

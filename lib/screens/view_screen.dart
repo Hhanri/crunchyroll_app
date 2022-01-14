@@ -28,15 +28,6 @@ class ViewScreen extends StatelessWidget {
     Strings.browse,
     Strings.settings
   ];
-/*
-  final List<Widget> screens = [
-    HomeScreen(homePlaylist: DataProvider.homePlaylists),
-    const UnknownScreen(),
-    const BrowseGenresScreen(),
-    const SignInScreen()
-  ];
- */
-
 
   final List<BottomNavigationBarItem> bottomNavBarItems = const[
     BottomNavigationBarItem(
@@ -68,10 +59,10 @@ class ViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
+        future: Firebase.initializeApp(),
+        builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
         return GetBuilder<ViewScreenController>(
-          builder: (controller) {
+            builder: (controller) {
             if (snapshot.hasError) {
               NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
             }
@@ -97,14 +88,12 @@ class ViewScreen extends StatelessWidget {
 
 class ViewScreenScaffoldWidget extends StatelessWidget {
   final List<String> appBarTitles;
-  //final List<Widget> screens;
   final List<BottomNavigationBarItem> bottomNavBarItems;
   final ViewScreenController controller;
 
   const ViewScreenScaffoldWidget({
     Key? key,
     required this.appBarTitles,
-    //required this.screens,
     required this.bottomNavBarItems,
     required this.controller,
   }) : super(key: key);
@@ -140,7 +129,7 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
           ]
       ),
     ];
-    DataProvider.trendingAnime = DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle);
+    DataProvider.trendingAnime = DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle);
 
     return Scaffold(
 

@@ -18,7 +18,7 @@ class AnimeContent extends Equatable {
     required this.tags
   });
 
-  factory AnimeContent.fromJson(Map<String, dynamic> jsonData) {
+  factory AnimeContent.animeContentFromJson(Map<String, dynamic> jsonData) {
     return AnimeContent(
       title: jsonData[Strings.titleFormat],
       imageURL: jsonData[Strings.imageURLFormat],
@@ -27,7 +27,7 @@ class AnimeContent extends Equatable {
       tags: jsonData[Strings.tagsFormat].cast<String>()
     );
   }
-  static Map<String, dynamic> toMap(AnimeContent animeContent) => {
+  static Map<String, dynamic> animeContentToMap(AnimeContent animeContent) => {
     Strings.titleFormat: animeContent.title,
     Strings.imageURLFormat: animeContent.imageURL,
     Strings.descriptionFormat: animeContent.description,
@@ -38,29 +38,33 @@ class AnimeContent extends Equatable {
   static String encodeAnimeContent(List<AnimeContent> animes) {
     return json.encode(
       animes.map(
-        (anime) => AnimeContent.toMap(anime)
+        (anime) => AnimeContent.animeContentToMap(anime)
       )
     );
   }
 
   static List<String> encodeAnimeContentToList(List<AnimeContent> animes) {
     return animes.map(
-      (anime) => json.encode(AnimeContent.toMap(anime))
+      (anime) => json.encode(AnimeContent.animeContentToMap(anime))
     ).toList();
   }
   static List<AnimeContent> decodeAnimeContentToList(List<String>? jsonData) {
     return jsonData!.map(
-      (anime) => AnimeContent.fromJson(json.decode(anime))
+      (anime) => AnimeContent.animeContentFromJson(json.decode(anime))
     ).toList();
   }
   static List<AnimeContent> decodeAnimeContentToListFromFirebase(List<QueryDocumentSnapshot<dynamic>> queryData) {
     return queryData.map(
-      (anime) => AnimeContent.fromJson(anime.data())
+      (anime) => AnimeContent.animeContentFromJson(anime.data())
     ).toList();
   }
   static AnimeContent decodeAnimeContentFromFirebase(QueryDocumentSnapshot<dynamic> queryData) {
-    return AnimeContent.fromJson(queryData.data());
+    return AnimeContent.animeContentFromJson(queryData.data());
   }
+
+
+
+
 
   @override
   // TODO: implement props
@@ -92,10 +96,37 @@ class AnimeEpisode {
 }
 
 class AnimeEpisodesList {
+
   final Map<AnimeSeason,List<AnimeEpisode>> seasons;
   AnimeEpisodesList({
     required this.seasons
   });
+
+  static AnimeSeason createAnimeSeasonFromJson(Map<String,dynamic> jsonData) {
+    return AnimeSeason(season: jsonData["season"], seasonTitle: jsonData["seasonTitle"]);
+  }
+  static List<AnimeEpisode> createAnimeEpisodeListFromJson(Map<String, dynamic> jsonData) {
+    return jsonData["episodesList"].map(
+            (element) => AnimeEpisode(
+            animeTitle: element["animeTitle"],
+            season: element["season"],
+            episode: element["episode"],
+            episodeTitle: element["episodeTitle"],
+            thumbnail: element["thumbnail"]
+        )
+    ).toList().cast<AnimeEpisode>();
+  }
+
+  static AnimeEpisodesList decodeAnimeEpisodesListFromFirebase(DocumentSnapshot<dynamic> queryData) {
+    Map<AnimeSeason,List<AnimeEpisode>> pairs = {};
+    queryData.data().forEach((key, value){
+      AnimeSeason season = AnimeEpisodesList.createAnimeSeasonFromJson(value);
+      List<AnimeEpisode> episodes = AnimeEpisodesList.createAnimeEpisodeListFromJson(value);
+      pairs[season] = episodes;
+    });
+
+    return AnimeEpisodesList(seasons: pairs);
+  }
 }
 
 class AnimeSeason {

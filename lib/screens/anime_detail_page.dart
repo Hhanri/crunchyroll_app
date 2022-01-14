@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
+import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
@@ -26,47 +31,56 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
 
   @override
   Widget build(BuildContext homeContext) {
-
     final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
-    List<AnimeSeason> _availableSeasons = [];
-    animesEpisodesList[_featuredAnime.title]!.seasons.keys.forEach((key) {
-      _availableSeasons.add(key);
-    });
-    AnimeSeason _selectedSeason = _availableSeasons[0];
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          GetImageWidget(imagePath: _featuredAnime.imageURL),
-          SingleChildScrollView(
-            child: Column(
+    return StreamBuilder<DocumentSnapshot<dynamic>> (
+      stream: FirebaseProvider.getAnimeEpisodesListStream(_featuredAnime),
+      builder: (context, AsyncSnapshot snapshot) {
+        final DocumentSnapshot<dynamic> _docs = snapshot.data;
+        DataProvider.episodesList = AnimeEpisodesList.decodeAnimeEpisodesListFromFirebase(_docs);
+        print(DataProvider.episodesList);
+        List<AnimeSeason> _availableSeasons = [];
+        DataProvider.episodesList.seasons.keys.forEach((key) {_availableSeasons.add(key);});
+        AnimeSeason _selectedSeason = _availableSeasons[0];
+        //if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+          return Scaffold(
+            body: Stack(
               children: [
-                AnimeDetailHeader(
-                  featuredAnime: _featuredAnime
+                GetImageWidget(
+                  imagePath: _featuredAnime.imageURL,
+                  cardType: cardType.anime,
                 ),
-                Container(
-                  constraints: BoxConstraints(
-                    minHeight: AppConfig.heightScreen(context),
-                    minWidth: AppConfig.widthScreen(context)
-                  ),
-                  decoration: const BoxDecoration(
-                    color: MyColors.backgroundColor
-                  ),
+                SingleChildScrollView(
                   child: Column(
-                    children: [
-                      _EpisodesGridWidget(
-                        selectedSeason: _selectedSeason,
-                        availableSeasons: _availableSeasons,
-                        featuredAnime: _featuredAnime,
-                      )
-                    ],
+                      children: [
+                        AnimeDetailHeader(
+                            featuredAnime: _featuredAnime
+                        ),
+                        Container(
+                          constraints: BoxConstraints(
+                              minHeight: AppConfig.heightScreen(context),
+                              minWidth: AppConfig.widthScreen(context)
+                          ),
+                          decoration: const BoxDecoration(
+                              color: MyColors.backgroundColor
+                          ),
+                          child: Column(
+                            children: [
+                              _EpisodesGridWidget(
+                                selectedSeason: _selectedSeason,
+                                availableSeasons: _availableSeasons,
+                                featuredAnime: _featuredAnime,
+                              )
+                            ],
+                          ),
+                        )
+                      ]
                   ),
-                )
-              ]
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+      }
     );
   }
 }
@@ -90,7 +104,7 @@ class _EpisodesGridWidget extends StatefulWidget {
 class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
   @override
   Widget build(BuildContext context) {
-    List<AnimeEpisode> _animeEpisodes = animesEpisodesList[widget.featuredAnime.title]!.seasons[widget.selectedSeason]!;
+    List<AnimeEpisode> _animeEpisodes = DataProvider.episodesList.seasons[widget.selectedSeason]!;
 
     return Column(
       children: [
@@ -174,7 +188,10 @@ class _EpisodeCardWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 4,
-              child: Image.asset(animeEpisode.thumbnail)//getEpisodeThumbnail())
+              child: GetImageWidget(
+                imagePath: animeEpisode.thumbnail,
+                cardType: cardType.episode
+              )
             ),
             Expanded(
               flex: 5,

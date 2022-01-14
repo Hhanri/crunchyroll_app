@@ -18,6 +18,13 @@ class FirebaseProvider {
 
   static List<AnimeContent> animeListProvider(BuildContext context) => Provider.of<List<AnimeContent>>(context);
 
+  static Stream<DocumentSnapshot<dynamic>> getAnimeEpisodesListStream(AnimeContent anime) => FirebaseFirestore
+      .instance
+      .collection(Strings.animesDatabaseCollection)
+      .doc(Strings.episodesDocument)
+      .collection(Strings.episodesCollection)
+      .doc(anime.title + " - episodes")
+      .snapshots();
 }
 
 class FirebaseStorageProvider {
@@ -35,4 +42,6 @@ class DataProvider{
   static late AnimeContent trendingAnime;
 
   static late List<HomeList> homePlaylists;
+
+  static late AnimeEpisodesList episodesList;
 }

@@ -65,6 +65,8 @@ class Strings {
   static const String animesDatabaseCollection = "AnimesDatabase";
   static const String animesDocument = "AnimesDocument";
   static const String animesCollection = "AnimesCollection";
+  static const String episodesDocument = "EpisodesDocument";
+  static const String episodesCollection = "EpisodesCollection";
 }
 
 class ImagePath {
@@ -102,4 +104,9 @@ class Tags {
   static const String sport = "Sport";
   static const String supernatural = "Surnaturel";
   static const String thriller = "Thriller";
+}
+
+class cardType {
+  static const String episode = "episode";
+  static const String anime = "anime";
 }

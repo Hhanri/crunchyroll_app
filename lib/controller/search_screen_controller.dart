@@ -45,7 +45,7 @@ class HistoryControllerPreferences {
   }
 
   static void loadHistory() async {
-    List<String> jsonHistoryList = preferences.getStringList(Strings.historyListKey)!;
+    List<String> jsonHistoryList = preferences.getStringList(Strings.historyListKey) ?? [];
     List<AnimeContent> loadedList = AnimeContent.decodeAnimeContentToList(jsonHistoryList);
     SearchScreenController.searchHistory= loadedList;
   }
