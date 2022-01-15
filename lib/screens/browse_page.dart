@@ -84,6 +84,7 @@ class _GenresContainer extends StatelessWidget {
           Center(
             child: Text(
               tag,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyText1
             ),
           )

@@ -19,6 +19,8 @@ class Strings {
   //titles
   static const String signInTitle = "SIGN IN";
   static const String signUpTitle = "SIGN UP";
+  static const String knowMoreTitle = "En Savoir Plus";
+  static const String playTitle = "PLAY";
 
   //navigation utils
   static const String ok = "ok";
@@ -106,7 +108,7 @@ class Tags {
   static const String thriller = "Thriller";
 }
 
-class cardType {
+class CardType {
   static const String episode = "episode";
   static const String anime = "anime";
 }

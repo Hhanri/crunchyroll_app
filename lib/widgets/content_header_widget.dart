@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +46,7 @@ class ContentHeaderWidget extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(
+                  child: AutoSizeText(
                     featuredAnime.title.toUpperCase(),
                     style: Theme.of(context).textTheme.headline1,
                     maxLines: 2,
@@ -62,7 +64,9 @@ class ContentHeaderWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const _PlayButtonWidget()
+                _PlayButtonWidget(
+                  featuredAnime: featuredAnime,
+                )
               ],
             ),
           ),
@@ -73,7 +77,11 @@ class ContentHeaderWidget extends StatelessWidget {
 }
 
 class _PlayButtonWidget extends StatelessWidget {
-  const _PlayButtonWidget({Key? key}) : super(key: key);
+  final AnimeContent featuredAnime;
+  const _PlayButtonWidget({
+    Key? key,
+    required this.featuredAnime
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +90,7 @@ class _PlayButtonWidget extends StatelessWidget {
         padding: MaterialStateProperty.all(const EdgeInsets.fromLTRB(5, 0, 15, 0)),
       ),
       onPressed: () {
-        print("play");
+        Get.to(() => AnimeDetailScreen(featuredAnimeArgument: featuredAnime));
       },
       icon: const Icon(
         Icons.play_arrow_outlined,
@@ -90,7 +98,7 @@ class _PlayButtonWidget extends StatelessWidget {
         color: Colors.black,
       ),
       label: Text(
-        "PLAY",
+        Strings.playTitle,
         style: Theme.of(context).textTheme.headline1!.copyWith(
           color: Colors.black
         ),

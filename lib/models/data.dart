@@ -1,5 +1,4 @@
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 
 import 'content_model.dart';

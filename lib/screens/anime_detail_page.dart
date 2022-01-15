@@ -1,13 +1,10 @@
-import 'dart:convert';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
-import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
@@ -48,7 +45,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               children: [
                 GetImageWidget(
                   imagePath: _featuredAnime.imageURL,
-                  cardType: cardType.anime,
+                  cardType: CardType.anime,
                 ),
                 SingleChildScrollView(
                   child: Column(
@@ -115,9 +112,10 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
           decoration: const BoxDecoration(
             color: MyColors.containerColor2
           ),
-          child: Text(
+          child: AutoSizeText(
             Strings.episodeTitle,
-            style: Theme.of(context).textTheme.headline1
+            style: Theme.of(context).textTheme.headline1,
+            maxLines: 1,
           ),
         ),
         TextButton(
@@ -134,17 +132,14 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
               )
             );
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Text(
-                  widget.selectedSeason.displaySeasonTitle(),
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: Text(
+              widget.selectedSeason.displaySeasonTitle(),
+              style: Theme.of(context).textTheme.headline2,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           )
         ),
         ...List.generate(_animeEpisodes.length, (index) {
@@ -190,7 +185,7 @@ class _EpisodeCardWidget extends StatelessWidget {
               flex: 4,
               child: GetImageWidget(
                 imagePath: animeEpisode.thumbnail,
-                cardType: cardType.episode
+                cardType: CardType.episode
               )
             ),
             Expanded(

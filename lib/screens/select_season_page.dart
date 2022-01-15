@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
@@ -50,6 +51,7 @@ class SelectSeasonScreen extends StatelessWidget {
                 children: [
                   ...List.generate(_availableSeasons.length, (index) {
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _SelectSeasonButton(
                           onTap: (){
@@ -89,17 +91,13 @@ class _SelectSeasonButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onTap,
-      child: Row(
-        children: [
-          Text(
-            seasonTitle,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: isSelectedSeason ?
-              Theme.of(context).textTheme.headline1!.copyWith(color: MyColors.fontColor2) :
-            Theme.of(context).textTheme.headline1,
-          )
-        ],
+      child: Text(
+        seasonTitle,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        style: isSelectedSeason
+            ? Theme.of(context).textTheme.headline3!.copyWith(color: MyColors.fontColor2)
+            : Theme.of(context).textTheme.headline3,
       ),
     );
   }

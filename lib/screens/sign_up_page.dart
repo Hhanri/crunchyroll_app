@@ -4,6 +4,7 @@ import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/checkbox_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -33,6 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             horizontal: 40
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Spacer(),
@@ -127,23 +129,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    Strings.alreadyHaveAnAccount,
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  TextButton(
-                    child: Text(
-                      " " + Strings.signInTitle,
-                      style: Theme.of(context).textTheme.bodyText2,
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      Strings.alreadyHaveAnAccount,
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
+                    TextButton(
+                      child: Text(
+                        " " + Strings.signInTitle,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                ),
               ),
             ],
           )

@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/know_more_page.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class AnimeDetailHeader extends StatelessWidget {
               ),
               Expanded(
                 flex: 1,
-                child: Text(
+                child: AutoSizeText(
                   featuredAnime.title.toUpperCase(),
                   style: Theme.of(context).textTheme.headline1,
                   maxLines: 2,
@@ -51,7 +53,7 @@ class AnimeDetailHeader extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Center(
-                  child: Text(
+                  child: AutoSizeText(
                     featuredAnime.description,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       color: Colors.grey.shade500
@@ -100,7 +102,7 @@ class _KnowMoreButton extends StatelessWidget {
         color: MyColors.primaryColor
       ),
       icon: Text(
-        "En savoir plus",
+        Strings.knowMoreTitle,
         style: Theme.of(context).textTheme.headline1!.copyWith(
           color: MyColors.primaryColor
         ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
@@ -31,7 +32,7 @@ class AnimeCardWidget extends StatelessWidget {
               child: Center(
                 child: GetImageWidget(
                   imagePath: featuredAnime.imageURL,
-                  cardType: cardType.anime
+                  cardType: CardType.anime
                 )
               ),
             ),
@@ -40,7 +41,7 @@ class AnimeCardWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
                 child: SizedBox(
-                  child: Text(
+                  child: AutoSizeText(
                     featuredAnime.title,
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.headline3,

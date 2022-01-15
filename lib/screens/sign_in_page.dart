@@ -29,6 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
             horizontal: 40
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Spacer(
@@ -101,19 +102,21 @@ class _SignInScreenState extends State<SignInScreen> {
               const Spacer(
                 flex: 3
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    child: Text(
-                      Strings.forgottenPassword,
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                    onPressed: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
-                  )
-                ],
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      child: Text(
+                        Strings.forgottenPassword,
+                        style: Theme.of(context).textTheme.bodyText2,
+                      ),
+                      onPressed: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                    )
+                  ],
+                ),
               )
             ],
           ),

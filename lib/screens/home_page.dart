@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           GetImageWidget(
             imagePath: DataProvider.trendingAnime.imageURL,
-            cardType: cardType.anime
+            cardType: CardType.anime
           ),
           SingleChildScrollView(
             child: Column(

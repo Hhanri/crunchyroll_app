@@ -1,8 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/controller/search_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
+import 'package:crunchyroll_app/widgets/get_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -99,8 +102,9 @@ class AnimeTileWidget extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Image.asset(
-                    anime.imageURL,
+                  child: GetImageWidget(
+                    imagePath: anime.imageURL,
+                    cardType: CardType.anime,
                   ),
                 ),
                 Expanded(
@@ -111,9 +115,9 @@ class AnimeTileWidget extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(14.0),
-                        child: Text(
+                        child: AutoSizeText(
                           anime.title,
-                          style: Theme.of(context).textTheme.headline1,
+                          style: Theme.of(context).textTheme.headline3,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
