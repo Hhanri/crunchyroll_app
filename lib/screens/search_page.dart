@@ -1,6 +1,7 @@
 import 'package:crunchyroll_app/controller/search_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
@@ -40,7 +41,7 @@ class AnimeSearch extends SearchDelegate<AnimeContent?> {
       List<AnimeContent> suggestions = SearchScreenController.searchHistory.reversed.toList();
       return buildSuggestionsFailed(suggestions);
     } else {
-      List<AnimeContent> suggestions = animes.where((element) => element.title.toUpperCase().contains(query.toUpperCase())).toList();
+      List<AnimeContent> suggestions = DataProvider.animes.where((element) => element.title.toUpperCase().contains(query.toUpperCase())).toList();
       return buildSuggestionsSuccess(suggestions);
     }
   }
@@ -51,7 +52,7 @@ class AnimeSearch extends SearchDelegate<AnimeContent?> {
       List<AnimeContent> suggestions = SearchScreenController.searchHistory.reversed.toList();
       return buildSuggestionsFailed(suggestions);
     } else {
-      List<AnimeContent> suggestions = animes.where((element) => element.title.toUpperCase().contains(query.toUpperCase())).toList();
+      List<AnimeContent> suggestions = DataProvider.animes.where((element) => element.title.toUpperCase().contains(query.toUpperCase())).toList();
       return buildSuggestionsSuccess(suggestions);
     }
   }
@@ -97,15 +98,13 @@ class AnimeTileWidget extends StatelessWidget {
           child: IntrinsicHeight(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                   flex: 2,
-                  child: FittedBox(
-                    child: GetImageWidget(
-                      imagePath: anime.imageURL,
-                      cardType: CardType.animeSearchTile,
-                    ),
+                  child: GetImageWidget(
+                    imagePath: anime.imageURL,
+                    cardType: CardType.animeSearchTile,
                   ),
                 ),
                 Expanded(

@@ -72,10 +72,8 @@ class Strings {
 }
 
 class ImagePath {
-  static const String kimetsuNoYaibaThumbnail = "assets/images/anime_thumbnails/Kimetsu_No_Yaiba/Kimetsu_No_Yaiba.jpg";
-  static const String narutoThumbnail = "assets/images/anime_thumbnails/Naruto/Naruto.jpg";
-  static const String karakaiJouzuNoTakagiSanThumbnail = "assets/images/anime_thumbnails/Karakai_Jouzu_No_Takagi-san/Karakai_Jouzu_No_Takagi-san.jpg";
-  static const String quintessentialQuintupletsThumbnail = "assets/images/anime_thumbnails/Quintessential_Quintuplets/Quintessential_Quintuplets.jpg";
+  static const String animePlaceholderThumbnail = "assets/images/anime-placeholder-thumbnail.jpg";
+  static const String episodePlaceholderThumbnail = "assets/images/episode-placeholder-thumbnail.jpg";
   static const String whiteThumbnail = "assets/images/white-thumbnail.jpg";
 }
 

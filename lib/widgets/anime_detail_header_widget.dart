@@ -53,7 +53,7 @@ class AnimeDetailHeader extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: Center(
-                  child: AutoSizeText(
+                  child: Text(
                     featuredAnime.description,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       color: Colors.grey.shade500

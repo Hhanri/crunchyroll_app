@@ -192,9 +192,11 @@ class _EpisodeCardWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 4,
-              child: GetImageWidget(
-                imagePath: animeEpisode.thumbnail,
-                cardType: CardType.episodeCard
+              child: FittedBox(
+                child: GetImageWidget(
+                  imagePath: animeEpisode.thumbnail,
+                  cardType: CardType.episodeCard
+                ),
               )
             ),
             Expanded(

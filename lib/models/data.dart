@@ -2,7 +2,7 @@ import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 
 import 'content_model.dart';
-
+/*
 final List<AnimeContent> animes = [
   const AnimeContent(
     title: Strings.kimetsuNoYaibaTitle,
@@ -195,6 +195,8 @@ final Map<String,AnimeEpisodesList> animesEpisodesList = {
       }
     ),
 };
+
+ */
 
 
 

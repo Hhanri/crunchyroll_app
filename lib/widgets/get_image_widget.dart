@@ -24,16 +24,12 @@ class GetImageWidget extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
           return cardType == CardType.episodeCard
-              ? Container(color: MyColors.containerColor, height: 640, width: 960)
-              : cardType == CardType.animeCard
-              ? Container(color: MyColors.containerColor, height: 960, width: 640)
-              : Container(color: Colors.white, height: (960*2/7)-20, width: (640*2/7)-60);
+              ? Image.asset(ImagePath.episodePlaceholderThumbnail)
+              : Image.asset(ImagePath.animePlaceholderThumbnail);
         }
         return cardType == CardType.episodeCard
-            ? Container(color: MyColors.containerColor, height: 640, width: 960)
-            : cardType == CardType.animeCard
-            ? Container(color: MyColors.containerColor, height: 960, width: 640)
-            : Container(color: MyColors.containerColor, height: 960*2/7, width: 640*2/7);
+            ? Image.asset(ImagePath.episodePlaceholderThumbnail)
+            : Image.asset(ImagePath.animePlaceholderThumbnail);
       },
     );
   }
