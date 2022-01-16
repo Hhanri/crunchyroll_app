@@ -40,14 +40,12 @@ class AnimeCardWidget extends StatelessWidget {
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
-                child: SizedBox(
-                  child: Text(
-                    featuredAnime.title,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.headline3,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
+                child: AutoSizeText(
+                  featuredAnime.title,
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.headline3,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
             ),
