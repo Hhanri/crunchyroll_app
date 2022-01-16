@@ -109,6 +109,7 @@ class Tags {
 }
 
 class CardType {
-  static const String episode = "episode";
-  static const String anime = "anime";
+  static const String episodeCard = "episodeCard";
+  static const String animeCard = "animeCard";
+  static const String animeSearchTile = "animeSearchTile";
 }

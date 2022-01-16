@@ -19,17 +19,21 @@ class GetImageWidget extends StatelessWidget {
     return FutureBuilder(
       future: FirebaseStorageProvider().downloadURL(imagePath),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done || snapshot.hasData) {
           return CachedNetworkImage(imageUrl: snapshot.data!);
         }
         if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
-          cardType == CardType.episode
+          return cardType == CardType.episodeCard
               ? Container(color: MyColors.containerColor, height: 640, width: 960)
-              : Container(color: MyColors.containerColor, height: 960, width: 640);
+              : cardType == CardType.animeCard
+              ? Container(color: MyColors.containerColor, height: 960, width: 640)
+              : Container(color: Colors.white, height: (960*2/7)-20, width: (640*2/7)-60);
         }
-        return cardType == CardType.episode
+        return cardType == CardType.episodeCard
             ? Container(color: MyColors.containerColor, height: 640, width: 960)
-            : Container(color: MyColors.containerColor, height: 960, width: 640);
+            : cardType == CardType.animeCard
+            ? Container(color: MyColors.containerColor, height: 960, width: 640)
+            : Container(color: MyColors.containerColor, height: 960*2/7, width: 640*2/7);
       },
     );
   }

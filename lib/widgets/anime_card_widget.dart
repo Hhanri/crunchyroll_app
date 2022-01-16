@@ -32,7 +32,7 @@ class AnimeCardWidget extends StatelessWidget {
               child: Center(
                 child: GetImageWidget(
                   imagePath: featuredAnime.imageURL,
-                  cardType: CardType.anime
+                  cardType: CardType.animeCard
                 )
               ),
             ),
@@ -41,7 +41,7 @@ class AnimeCardWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
                 child: SizedBox(
-                  child: AutoSizeText(
+                  child: Text(
                     featuredAnime.title,
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.headline3,

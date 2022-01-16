@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/controller/search_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
@@ -98,13 +97,15 @@ class AnimeTileWidget extends StatelessWidget {
           child: IntrinsicHeight(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   flex: 2,
-                  child: GetImageWidget(
-                    imagePath: anime.imageURL,
-                    cardType: CardType.anime,
+                  child: FittedBox(
+                    child: GetImageWidget(
+                      imagePath: anime.imageURL,
+                      cardType: CardType.animeSearchTile,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -115,7 +116,7 @@ class AnimeTileWidget extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(14.0),
-                        child: AutoSizeText(
+                        child: Text(
                           anime.title,
                           style: Theme.of(context).textTheme.headline3,
                           maxLines: 2,

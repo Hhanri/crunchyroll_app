@@ -7,6 +7,7 @@ import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
+import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:crunchyroll_app/widgets/anime_detail_header_widget.dart';
 import 'package:crunchyroll_app/widgets/get_image_widget.dart';
 import 'package:flutter/material.dart';
@@ -33,19 +34,25 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
     return StreamBuilder<DocumentSnapshot<dynamic>> (
       stream: FirebaseProvider.getAnimeEpisodesListStream(_featuredAnime),
       builder: (context, AsyncSnapshot snapshot) {
-        final DocumentSnapshot<dynamic> _docs = snapshot.data;
-        DataProvider.episodesList = AnimeEpisodesList.decodeAnimeEpisodesListFromFirebase(_docs);
-        print(DataProvider.episodesList);
-        List<AnimeSeason> _availableSeasons = [];
-        DataProvider.episodesList.seasons.keys.forEach((key) {_availableSeasons.add(key);});
-        AnimeSeason _selectedSeason = _availableSeasons[0];
-        //if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        if (snapshot.hasError) {
+          NavigationUtils.showMyDialog(context: context, bodyText: Strings.errorFirebaseInit);
+        }
+        else if (snapshot.hasData) {
+          final DocumentSnapshot<dynamic> _docs = snapshot.data;
+          DataProvider.episodesList =
+              AnimeEpisodesList.decodeAnimeEpisodesListFromFirebase(_docs);
+          print(DataProvider.episodesList);
+          List<AnimeSeason> _availableSeasons = [];
+          DataProvider.episodesList.seasons.keys.forEach((key) {
+            _availableSeasons.add(key);
+          });
+          AnimeSeason _selectedSeason = _availableSeasons[0];
           return Scaffold(
             body: Stack(
               children: [
                 GetImageWidget(
                   imagePath: _featuredAnime.imageURL,
-                  cardType: CardType.anime,
+                  cardType: CardType.animeCard,
                 ),
                 SingleChildScrollView(
                   child: Column(
@@ -77,6 +84,8 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ],
             ),
           );
+        }
+        return const Center(child: CircularProgressIndicator());
       }
     );
   }
@@ -185,7 +194,7 @@ class _EpisodeCardWidget extends StatelessWidget {
               flex: 4,
               child: GetImageWidget(
                 imagePath: animeEpisode.thumbnail,
-                cardType: CardType.episode
+                cardType: CardType.episodeCard
               )
             ),
             Expanded(

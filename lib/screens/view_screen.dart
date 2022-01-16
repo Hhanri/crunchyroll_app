@@ -70,14 +70,14 @@ class ViewScreen extends StatelessWidget {
               if (snapshot.hasError) {
                 NavigationUtils.showMyDialog(context: initFirebaseContext, bodyText: Strings.errorFirebaseInit);
               }
-              if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
                 return ViewScreenScaffoldWidget(
                   appBarTitles: appBarTitles,
                   bottomNavBarItems: bottomNavBarItems,
                   controller: controller,
                 );
               }
-              return const CircularProgressIndicator();
+              return const Center(child: const CircularProgressIndicator());
             }
           )
         );
