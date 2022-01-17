@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/navigation_utils.dart';
@@ -22,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String _confirmPassword = "";
   String _username = "";
   bool _TOScheck = false;
+  final AutoSizeGroup textGroup = AutoSizeGroup();
 
   @override
   Widget build(BuildContext context) {
@@ -129,18 +131,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const Spacer(),
-              Center(
+              FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    AutoSizeText(
                       Strings.alreadyHaveAnAccount,
                       style: Theme.of(context).textTheme.bodyText1,
+                      group: textGroup,
                     ),
                     TextButton(
-                      child: Text(
+                      child: AutoSizeText(
                         " " + Strings.signInTitle,
                         style: Theme.of(context).textTheme.bodyText2,
+                        group: textGroup,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();

@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/screens/sign_up_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   String _password = "";
   String _email = "";
+  final AutoSizeGroup textGroup = AutoSizeGroup();
 
   @override
   Widget build(BuildContext context) {
@@ -80,24 +83,28 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(
                 height: 20
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    Strings.dontHaveAnAccount,
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  TextButton(
-                    child: Text(
-                      " " + Strings.signUpTitle,
-                      style: Theme.of(context).textTheme.bodyText2,
+              FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      Strings.dontHaveAnAccount,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      group: textGroup,
                     ),
-                    onPressed: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      Get.to(() => const SignUpScreen(),);
-                    }
-                  )
-                ],
+                    TextButton(
+                      child: AutoSizeText(
+                        " " + Strings.signUpTitle,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        group: textGroup,
+                      ),
+                      onPressed: () {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        Get.to(() => const SignUpScreen(),);
+                      }
+                    )
+                  ],
+                ),
               ),
               const Spacer(
                 flex: 3

@@ -31,7 +31,7 @@ class _BrowseGenresScreenState extends State<BrowseGenresScreen> {
           padding: const EdgeInsets.all(8),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: (960)/(640),
-            crossAxisSpacing: 13,
+            crossAxisSpacing: 2,
             crossAxisCount: 2,
           ),
           itemCount: tagsList.length,
@@ -52,44 +52,47 @@ class _GenresContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        Get.to(() => BrowseAnimesScreen(searchedItem: tag),
-        );
-      },
-      child: Stack(
-        children: [
-          Center(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(thumbnail),
-                  fit: BoxFit.contain
-                )
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton(
+        onPressed: () {
+          Get.to(() => BrowseAnimesScreen(searchedItem: tag),
+          );
+        },
+        child: Stack(
+          children: [
+            Center(
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    stops: const [0, 0.9],
-                    radius: 1,
-                    colors: [
-                      Colors.grey.shade400.withOpacity(0.6),
-                      Colors.black.withOpacity(0.8)
-                    ]
+                  image: DecorationImage(
+                    image: AssetImage(thumbnail),
+                    fit: BoxFit.contain
+                  )
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: RadialGradient(
+                      stops: const [0, 0.9],
+                      radius: 1,
+                      colors: [
+                        Colors.grey.shade400,
+                        Colors.black.withOpacity(0.8)
+                      ]
+                    ),
                   ),
                 ),
+              )
+            ),
+            Center(
+              child: Text(
+                tag,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyText1
               ),
             )
-          ),
-          Center(
-            child: Text(
-              tag,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1
-            ),
-          )
-        ],
-      )
+          ],
+        )
+      ),
     );
   }
 }

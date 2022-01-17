@@ -23,59 +23,57 @@ class AnimeCardWidget extends StatelessWidget {
           color: MyColors.containerColor
       ),
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: IntrinsicWidth(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 10,
-              child: Center(
-                child: GetImageWidget(
-                  imagePath: featuredAnime.imageURL,
-                  cardType: CardType.animeCard
-                )
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
-                child: AutoSizeText(
-                  featuredAnime.title,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline3,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Spacer(
-                    flex: 5
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: IconButton(
-                      padding: EdgeInsets.zero,
-                      iconSize: 20,
-                      icon: const Icon(
-                        Icons.more_vert
-                      ),
-                      onPressed: () {
-                        print(featuredAnime.imageURL);
-                      },
-                    ),
-                  ),
-                ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 10,
+            child: Center(
+              child: GetImageWidget(
+                imagePath: featuredAnime.imageURL,
+                cardType: CardType.animeCard
               )
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
+              child: Text(
+                featuredAnime.title,
+                textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.headline3,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Spacer(
+                  flex: 5
+                ),
+                Expanded(
+                  flex: 1,
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    iconSize: 20,
+                    icon: const Icon(
+                      Icons.more_vert
+                    ),
+                    onPressed: () {
+                      print(featuredAnime.imageURL);
+                    },
+                  ),
+                ),
+              ],
             )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

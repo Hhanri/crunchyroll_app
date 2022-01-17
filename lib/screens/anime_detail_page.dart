@@ -121,7 +121,7 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
           decoration: const BoxDecoration(
             color: MyColors.containerColor2
           ),
-          child: AutoSizeText(
+          child: Text(
             Strings.episodeTitle,
             style: Theme.of(context).textTheme.headline1,
             maxLines: 1,
