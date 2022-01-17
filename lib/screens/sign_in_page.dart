@@ -4,7 +4,6 @@ import 'package:crunchyroll_app/screens/sign_up_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

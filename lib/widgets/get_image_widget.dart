@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
-import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 
@@ -24,8 +23,8 @@ class GetImageWidget extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {
           return cardType == CardType.episodeCard
-              ? Image.asset(ImagePath.episodePlaceholderThumbnail)
-              : Image.asset(ImagePath.animePlaceholderThumbnail);
+            ? Image.asset(ImagePath.episodePlaceholderThumbnail)
+            : Image.asset(ImagePath.animePlaceholderThumbnail);
         }
         return cardType == CardType.episodeCard
             ? Image.asset(ImagePath.episodePlaceholderThumbnail)

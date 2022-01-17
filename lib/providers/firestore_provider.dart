@@ -34,6 +34,17 @@ class FirebaseProvider {
       .map((element) => AnimeContent.decodeTrendingAnime(element.data()));
 
   static AnimeContent trendingAnimeProvider(BuildContext context) => Provider.of<AnimeContent>(context);
+  
+  static Stream<List<HomeList>> get getHomeLists => FirebaseFirestore
+      .instance
+      .collection(Strings.animesDatabaseCollection)
+      .doc("HomeListsDocument")
+      .collection("HomeListsCollection")
+      .orderBy("title", descending: true)
+      .snapshots()
+      .map((item) => HomeList.decodeHomeListsFromFirebase(item.docs));
+
+  static List<HomeList> homeListsProvider(BuildContext context) => Provider.of<List<HomeList>>(context);
 }
 
 class FirebaseStorageProvider {

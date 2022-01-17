@@ -40,11 +40,10 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
           final DocumentSnapshot<dynamic> _docs = snapshot.data;
           DataProvider.episodesList =
               AnimeEpisodesList.decodeAnimeEpisodesListFromFirebase(_docs);
-          print(DataProvider.episodesList);
           List<AnimeSeason> _availableSeasons = [];
-          DataProvider.episodesList.seasons.keys.forEach((key) {
+          DataProvider.episodesList.seasons.keys.map((key) {
             _availableSeasons.add(key);
-          });
+          }).toList();
           AnimeSeason _selectedSeason = _availableSeasons[0];
           return Scaffold(
             body: Stack(

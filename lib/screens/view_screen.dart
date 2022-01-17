@@ -72,7 +72,9 @@ class ViewScreen extends StatelessWidget {
               ),
               StreamProvider<AnimeContent>.value(
                 value: FirebaseProvider.getTrendingAnime, initialData: defaultAnimeModel,
-              )
+              ),
+              StreamProvider<List<HomeList>>.value(
+                value:FirebaseProvider.getHomeLists, initialData: const [])
             ],
             child: GetBuilder<ViewScreenController>(
               builder: (controller) {
@@ -110,33 +112,7 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
 
     DataProvider.animes = FirebaseProvider.animeListProvider(context);
     DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
-    DataProvider.homePlaylists = [
-      HomeList(
-          listTitle: "Trending",
-          animes: [
-            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.narutoTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-          ]
-      ),
-      HomeList(
-          listTitle: "Recently Added",
-          animes: [
-            DataProvider.animes.singleWhere((element) => element.title == Strings.narutoTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.quintessentialQuintupletsTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-          ]
-      ),
-      HomeList(
-          listTitle: "Most seen",
-          animes: [
-            DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle),
-            DataProvider.animes.singleWhere((element) => element.title == Strings.kimetsuNoYaibaTitle),
-          ]
-      ),
-    ];
+    DataProvider.homePlaylists = FirebaseProvider.homeListsProvider(context);
 
     return Scaffold(
       extendBodyBehindAppBar: true,

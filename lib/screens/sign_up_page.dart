@@ -5,7 +5,6 @@ import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:crunchyroll_app/widgets/button_widget.dart';
 import 'package:crunchyroll_app/widgets/checkbox_widget.dart';
 import 'package:crunchyroll_app/widgets/text_field_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {

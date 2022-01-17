@@ -66,9 +66,6 @@ class AnimeContent extends Equatable {
     return DataProvider.animes.singleWhere((element) => element.title == queryData!["title"]);
   }
 
-
-
-
   @override
   // TODO: implement props
   List<Object?> get props => [title, imageURL, description, publisher, tags];
@@ -81,6 +78,19 @@ class HomeList {
     required this.listTitle,
     required this.animes
   });
+  static HomeList homeListFromJson(Map<String, dynamic> jsonData){
+    return HomeList(
+      listTitle: jsonData["title"],
+      animes: jsonData["animesList"].map(
+          (animeTitle) => DataProvider.animes.singleWhere((anime) => anime.title == animeTitle)
+      ).toList().cast<AnimeContent>()
+    );
+  }
+  static List<HomeList> decodeHomeListsFromFirebase(List<QueryDocumentSnapshot<dynamic>> queryData) {
+    return queryData.map(
+      (anime) => HomeList.homeListFromJson(anime.data())
+    ).toList();
+  }
 }
 
 class AnimeEpisode {

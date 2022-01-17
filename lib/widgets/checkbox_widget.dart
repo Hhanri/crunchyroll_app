@@ -11,8 +11,6 @@ class CheckboxWidget extends StatelessWidget {
     required this.valueChanged,
   }) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     return Checkbox(

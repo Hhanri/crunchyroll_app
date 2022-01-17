@@ -1,6 +1,5 @@
 import 'package:crunchyroll_app/controller/search_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';

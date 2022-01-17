@@ -1,7 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +63,6 @@ class AnimeCardWidget extends StatelessWidget {
                       Icons.more_vert
                     ),
                     onPressed: () {
-                      print(featuredAnime.imageURL);
                     },
                   ),
                 ),
