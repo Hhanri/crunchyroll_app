@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:equatable/equatable.dart';
 
@@ -61,7 +62,9 @@ class AnimeContent extends Equatable {
   static AnimeContent decodeAnimeContentFromFirebase(QueryDocumentSnapshot<dynamic> queryData) {
     return AnimeContent.animeContentFromJson(queryData.data());
   }
-
+  static AnimeContent decodeTrendingAnime(Map<String,dynamic>? queryData){
+    return DataProvider.animes.singleWhere((element) => element.title == queryData!["title"]);
+  }
 
 
 
@@ -124,7 +127,6 @@ class AnimeEpisodesList {
       List<AnimeEpisode> episodes = AnimeEpisodesList.createAnimeEpisodeListFromJson(value);
       pairs[season] = episodes;
     });
-
     return AnimeEpisodesList(seasons: pairs);
   }
 }

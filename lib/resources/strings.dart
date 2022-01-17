@@ -69,6 +69,7 @@ class Strings {
   static const String animesCollection = "AnimesCollection";
   static const String episodesDocument = "EpisodesDocument";
   static const String episodesCollection = "EpisodesCollection";
+  static const String trendingAnime = "TrendingAnime";
 }
 
 class ImagePath {

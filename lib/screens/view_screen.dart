@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/controller/view_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
@@ -69,7 +68,11 @@ class ViewScreen extends StatelessWidget {
           return MultiProvider(
             providers: [
               StreamProvider<List<AnimeContent>>.value(
-                value: FirebaseProvider.getAnimesStream, initialData: [],)
+                value: FirebaseProvider.getAnimesStream, initialData: const []
+              ),
+              StreamProvider<AnimeContent>.value(
+                value: FirebaseProvider.getTrendingAnime, initialData: defaultAnimeModel,
+              )
             ],
             child: GetBuilder<ViewScreenController>(
               builder: (controller) {
@@ -89,6 +92,7 @@ class ViewScreen extends StatelessWidget {
   }
 }
 
+
 class ViewScreenScaffoldWidget extends StatelessWidget {
   final List<String> appBarTitles;
   final List<BottomNavigationBarItem> bottomNavBarItems;
@@ -105,6 +109,7 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     DataProvider.animes = FirebaseProvider.animeListProvider(context);
+    DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
     DataProvider.homePlaylists = [
       HomeList(
           listTitle: "Trending",
@@ -132,10 +137,8 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
           ]
       ),
     ];
-    DataProvider.trendingAnime = DataProvider.animes.singleWhere((element) => element.title == Strings.karakaiJouzuNoTakagisanTitle);
 
     return Scaffold(
-
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: MyColors.backgroundColor,

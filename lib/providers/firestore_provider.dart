@@ -25,6 +25,15 @@ class FirebaseProvider {
       .collection(Strings.episodesCollection)
       .doc(anime.title + " - episodes")
       .snapshots();
+
+  static Stream<AnimeContent> get getTrendingAnime => FirebaseFirestore
+      .instance
+      .collection(Strings.animesDatabaseCollection)
+      .doc(Strings.trendingAnime)
+      .snapshots()
+      .map((element) => AnimeContent.decodeTrendingAnime(element.data()));
+
+  static AnimeContent trendingAnimeProvider(BuildContext context) => Provider.of<AnimeContent>(context);
 }
 
 class FirebaseStorageProvider {
