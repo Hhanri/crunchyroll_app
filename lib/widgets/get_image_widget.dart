@@ -18,7 +18,7 @@ class GetImageWidget extends StatelessWidget {
     return FutureBuilder(
       future: FirebaseStorageProvider().downloadURL(imagePath),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done || snapshot.hasData) {
+        if (snapshot.hasData) {
           return CachedNetworkImage(imageUrl: snapshot.data!);
         }
         if (snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData) {

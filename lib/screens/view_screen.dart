@@ -60,34 +60,42 @@ class ViewScreen extends StatelessWidget {
     return FutureBuilder(
       future: Firebase.initializeApp(),
       builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasError) {
-          NavigationUtils.showMyDialog(context: initFirebaseContext,
-            bodyText: Strings.errorFirebaseInit);
-        }
-        if (snapshot.hasData) {
-          return MultiProvider(
-            providers: [
-              StreamProvider<List<AnimeContent>>.value(
-                value: FirebaseProvider.getAnimesStream, initialData: const []
-              ),
-              StreamProvider<AnimeContent>.value(
-                value: FirebaseProvider.getTrendingAnime, initialData: defaultAnimeModel,
-              ),
-              StreamProvider<List<HomeList>>.value(
-                value:FirebaseProvider.getHomeLists, initialData: const [])
-            ],
-            child: GetBuilder<ViewScreenController>(
+        return MultiProvider(
+          providers: [
+            StreamProvider<List<AnimeContent>>.value(
+              value: FirebaseProvider.getAnimesStream, initialData: const []
+            ),
+            StreamProvider<AnimeContent>.value(
+              value: FirebaseProvider.getTrendingAnime, initialData: defaultAnimeModel,
+            ),
+            StreamProvider<List<HomeList>>.value(
+              value:FirebaseProvider.getHomeLists, initialData: const [])
+          ],
+          builder: (context, widget) {
+            return GetBuilder<ViewScreenController>(
               builder: (controller) {
-                return ViewScreenScaffoldWidget(
-                  appBarTitles: appBarTitles,
-                  bottomNavBarItems: bottomNavBarItems,
-                  controller: controller,
-                );
+                if (snapshot.hasError) {
+                  NavigationUtils.showMyDialog(context: initFirebaseContext,
+                    bodyText: Strings.errorFirebaseInit
+                  );
+                }
+                if (snapshot.hasData) {
+                  DataProvider.animes = FirebaseProvider.animeListProvider(context);
+                  DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
+                  DataProvider.homePlaylists = FirebaseProvider.homeListsProvider(context);
+                  if (DataProvider.animes.isNotEmpty && DataProvider.trendingAnime != defaultAnimeModel && DataProvider.homePlaylists.isNotEmpty) {
+                    return ViewScreenScaffoldWidget(
+                      appBarTitles: appBarTitles,
+                      bottomNavBarItems: bottomNavBarItems,
+                      controller: controller,
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return const Center(child: CircularProgressIndicator());
               }
-            )
-          );
-        }
-        return const Center(child: CircularProgressIndicator()
+            );
+          }
         );
       }
     );
@@ -109,10 +117,6 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    DataProvider.animes = FirebaseProvider.animeListProvider(context);
-    DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
-    DataProvider.homePlaylists = FirebaseProvider.homeListsProvider(context);
 
     return Scaffold(
       extendBodyBehindAppBar: true,

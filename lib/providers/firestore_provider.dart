@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
+import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +51,6 @@ class FirebaseProvider {
 
 class FirebaseStorageProvider {
   final firebaseStorage = FirebaseStorage.instance;
-
   Future<String> downloadURL(String imagePath) async {
     String downloadURL = await firebaseStorage.ref(imagePath).getDownloadURL();
     return downloadURL;
@@ -59,7 +60,7 @@ class FirebaseStorageProvider {
 class DataProvider{
   static late List<AnimeContent> animes;
 
-  static late AnimeContent trendingAnime;
+  static late AnimeContent trendingAnime = defaultAnimeModel;
 
   static late List<HomeList> homePlaylists;
 
