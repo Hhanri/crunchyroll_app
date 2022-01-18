@@ -4,6 +4,7 @@ import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/select_season_page.dart';
+import 'package:crunchyroll_app/screens/unknown_screen.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
 import 'package:crunchyroll_app/utils/format_utils.dart';
 import 'package:crunchyroll_app/utils/navigation_utils.dart';
@@ -152,7 +153,7 @@ class _EpisodesGridWidgetState extends State<_EpisodesGridWidget> {
         ...List.generate(_animeEpisodes.length, (index) {
           return _EpisodeCardWidget(
             animeEpisode: _animeEpisodes[index],
-            hasSeen: (index == 0) ? true : false,
+            hasSeen: false//(index == 0) ? true : false,
 
             /*
             hasSeen: (history.contains(AnimeEpisode)) ? true : false;
@@ -182,34 +183,43 @@ class _EpisodeCardWidget extends StatelessWidget {
         hasSeen ? Colors.black.withOpacity(0.7) : Colors.transparent,
         BlendMode.color
       ),
-      child: Container(
-        color: MyColors.containerColor,
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 4,
-              child: FittedBox(
-                child: GetImageWidget(
-                  imagePath: animeEpisode.thumbnail,
-                  cardType: CardType.episodeCard
-                ),
-              )
-            ),
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  animeEpisode.displayEpisodeTitle(),
-                  style: Theme.of(context).textTheme.headline3,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+      child: TextButton(
+        onPressed: (){
+          Get.to(() => const UnknownScreen());
+        },
+        child: SizedBox(
+          child: Container(
+            color: MyColors.containerColor,
+            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+            child: IntrinsicWidth(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: FittedBox(
+                      child: GetImageWidget(
+                        imagePath: animeEpisode.thumbnail,
+                        cardType: CardType.episodeCard
+                      ),
+                    )
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        animeEpisode.displayEpisodeTitle(),
+                        style: Theme.of(context).textTheme.headline3,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

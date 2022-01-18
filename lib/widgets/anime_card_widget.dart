@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
@@ -14,7 +15,6 @@ class AnimeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       decoration: BoxDecoration(
           color: MyColors.containerColor
@@ -36,7 +36,7 @@ class AnimeCardWidget extends StatelessWidget {
             flex: 2,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 4),
-              child: Text(
+              child: AutoSizeText(
                 featuredAnime.title,
                 textAlign: TextAlign.start,
                 style: Theme.of(context).textTheme.headline3,

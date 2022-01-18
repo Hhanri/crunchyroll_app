@@ -41,7 +41,7 @@ class Strings {
 
   //anime details
   static const String numberOfEpisodes = "Number of Episodes";
-  static const String episodeTitle = "Episode";
+  static const String episodeTitle = "Episodes";
   static const String publisherName = "Editor";
   static const String kimetsuNoYaibaTitle = "Kimetsu No Yaiba";
   static const String kimetsuNoYaibaS2Title = "Kimetsu No Yaiba : Yuukaku-hen";

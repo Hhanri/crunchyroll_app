@@ -76,21 +76,22 @@ class ViewScreen extends StatelessWidget {
               builder: (controller) {
                 if (snapshot.hasError) {
                   NavigationUtils.showMyDialog(context: initFirebaseContext,
-                    bodyText: Strings.errorFirebaseInit
+                      bodyText: Strings.errorFirebaseInit
                   );
                 }
                 if (snapshot.hasData) {
                   DataProvider.animes = FirebaseProvider.animeListProvider(context);
                   DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
                   DataProvider.homePlaylists = FirebaseProvider.homeListsProvider(context);
-                  if (DataProvider.animes.isNotEmpty && DataProvider.trendingAnime != defaultAnimeModel && DataProvider.homePlaylists.isNotEmpty) {
+                  if (DataProvider.animes.isNotEmpty &&
+                      DataProvider.trendingAnime != defaultAnimeModel &&
+                      DataProvider.homePlaylists.isNotEmpty) {
                     return ViewScreenScaffoldWidget(
                       appBarTitles: appBarTitles,
                       bottomNavBarItems: bottomNavBarItems,
                       controller: controller,
                     );
                   }
-                  return const Center(child: CircularProgressIndicator());
                 }
                 return const Center(child: CircularProgressIndicator());
               }
