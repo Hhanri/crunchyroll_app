@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AnimeDetailHeader extends StatelessWidget {
-
+  final AnimeEpisodesList episodesList;
   final AnimeContent featuredAnime;
 
   const AnimeDetailHeader({Key? key,
-    required this.featuredAnime
+    required this.featuredAnime,
+    required this.episodesList
   }) : super(key: key);
 
   @override
@@ -67,7 +68,8 @@ class AnimeDetailHeader extends StatelessWidget {
                 flex: 1,
                 child: Center(
                   child: _KnowMoreButton(
-                    featuredAnime: featuredAnime
+                    featuredAnime: featuredAnime,
+                    episodesList: episodesList,
                   )
                 ),
               ),
@@ -85,16 +87,17 @@ class AnimeDetailHeader extends StatelessWidget {
 class _KnowMoreButton extends StatelessWidget {
 
   final AnimeContent featuredAnime;
-
+  final AnimeEpisodesList episodesList;
   const _KnowMoreButton({Key? key,
-    required this.featuredAnime
+    required this.featuredAnime,
+    required this.episodesList
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: () {
-        Get.to(() => KnowMoreScreen(featuredAnimeArgument: featuredAnime));
+        Get.to(() => KnowMoreScreen(featuredAnimeArgument: featuredAnime, episodesList: episodesList,));
       },
       label: const Icon(
         Icons.arrow_forward_ios,

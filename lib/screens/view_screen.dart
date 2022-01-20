@@ -1,6 +1,5 @@
 import 'package:crunchyroll_app/controller/view_screen_controller.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
@@ -13,7 +12,6 @@ import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:provider/provider.dart';
 
 
 class ViewScreen extends StatelessWidget {
@@ -60,42 +58,29 @@ class ViewScreen extends StatelessWidget {
     return FutureBuilder(
       future: Firebase.initializeApp(),
       builder: (BuildContext initFirebaseContext, AsyncSnapshot<dynamic> snapshot) {
-        return MultiProvider(
-          providers: [
-            StreamProvider<List<AnimeContent>>.value(
-              value: FirebaseProvider.getAnimesStream, initialData: const []
-            ),
-            StreamProvider<AnimeContent>.value(
-              value: FirebaseProvider.getTrendingAnime, initialData: defaultAnimeModel,
-            ),
-            StreamProvider<List<HomeList>>.value(
-              value:FirebaseProvider.getHomeLists, initialData: const [])
-          ],
-          builder: (context, widget) {
-            return GetBuilder<ViewScreenController>(
-              builder: (controller) {
-                if (snapshot.hasError) {
-                  NavigationUtils.showMyDialog(context: initFirebaseContext,
-                      bodyText: Strings.errorFirebaseInit
+        return StreamBuilder<List<AnimeContent>>(
+          stream: FirebaseProvider.getAnimesStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              NavigationUtils.showMyDialog(context: context,
+                bodyText: Strings.errorFirebase
+              );
+            }
+            if (snapshot.hasData) {
+              List<AnimeContent> animes = snapshot.data!;
+              DataProvider.animes = animes;
+              return GetBuilder<ViewScreenController>(
+                builder: (controller) {
+                  return ViewScreenScaffoldWidget(
+                    appBarTitles: appBarTitles,
+                    bottomNavBarItems: bottomNavBarItems,
+                    controller: controller,
+                    animes: animes
                   );
                 }
-                if (snapshot.hasData) {
-                  DataProvider.animes = FirebaseProvider.animeListProvider(context);
-                  DataProvider.trendingAnime = FirebaseProvider.trendingAnimeProvider(context);
-                  DataProvider.homePlaylists = FirebaseProvider.homeListsProvider(context);
-                  if (DataProvider.animes.isNotEmpty &&
-                      DataProvider.trendingAnime != defaultAnimeModel &&
-                      DataProvider.homePlaylists.isNotEmpty) {
-                    return ViewScreenScaffoldWidget(
-                      appBarTitles: appBarTitles,
-                      bottomNavBarItems: bottomNavBarItems,
-                      controller: controller,
-                    );
-                  }
-                }
-                return const Center(child: CircularProgressIndicator());
-              }
-            );
+              );
+            }
+            return const Center(child: CircularProgressIndicator());
           }
         );
       }
@@ -108,19 +93,20 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
   final List<String> appBarTitles;
   final List<BottomNavigationBarItem> bottomNavBarItems;
   final ViewScreenController controller;
-
+  final List<AnimeContent> animes;
   const ViewScreenScaffoldWidget({
     Key? key,
     required this.appBarTitles,
     required this.bottomNavBarItems,
     required this.controller,
+    required this.animes,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: [0,3].contains(controller.tabIndex) ? true : false,
       appBar: AppBar(
         backgroundColor: MyColors.backgroundColor,
         title: Padding(
@@ -134,9 +120,9 @@ class ViewScreenScaffoldWidget extends StatelessWidget {
         ],
       ),
       body: IndexedStack(
-        children: [HomeScreen(homePlaylist: DataProvider.homePlaylists),
+        children: [HomeScreen(animes: animes),
           const UnknownScreen(),
-          const BrowseGenresScreen(),
+          BrowseGenresScreen(animes: animes),
           const SignInScreen()],
         index: controller.tabIndex,
       ),

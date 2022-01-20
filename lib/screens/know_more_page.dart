@@ -1,27 +1,23 @@
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/widgets/divider_widget.dart';
 import 'package:flutter/material.dart';
 
-class KnowMoreScreen extends StatefulWidget {
+class KnowMoreScreen extends StatelessWidget {
 
+  final AnimeEpisodesList episodesList;
   final AnimeContent featuredAnimeArgument;
 
   const KnowMoreScreen({Key? key,
-    required this.featuredAnimeArgument
+    required this.featuredAnimeArgument,
+    required this.episodesList
   }) : super(key: key);
 
   @override
-  State<KnowMoreScreen> createState() => _KnowMoreScreenState();
-}
-
-class _KnowMoreScreenState extends State<KnowMoreScreen> {
-  @override
   Widget build(BuildContext context) {
     
-    final AnimeContent _featuredAnime = widget.featuredAnimeArgument;
-    final AnimeEpisodesList _animeEpisodesList = DataProvider.episodesList;
+    final AnimeContent _featuredAnime = featuredAnimeArgument;
+    final AnimeEpisodesList _animeEpisodesList = episodesList;
     int _numberOfEpisodes = 0;
     _animeEpisodesList.seasons.forEach((key, value) {
       _numberOfEpisodes += value.length;
@@ -49,7 +45,7 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        widget.featuredAnimeArgument.title,
+                        featuredAnimeArgument.title,
                         style: Theme.of(context).textTheme.headline1,
                       ),
                     ),
@@ -59,7 +55,7 @@ class _KnowMoreScreenState extends State<KnowMoreScreen> {
               const SizedBox(
                 height: 20,
               ),
-              _DescriptionBox(description: widget.featuredAnimeArgument.description),
+              _DescriptionBox(description: featuredAnimeArgument.description),
               const SizedBox(
                 height: 20
               ),

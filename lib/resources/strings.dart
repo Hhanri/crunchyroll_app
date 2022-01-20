@@ -62,6 +62,7 @@ class Strings {
 
   //Firebase error
   static const String errorFirebaseInit = "Erreur d'initialisation Firebase";
+  static const String errorFirebase = "Une erreur est survenue";
 
   //Firebase collections & documents
   static const String animesDatabaseCollection = "AnimesDatabase";

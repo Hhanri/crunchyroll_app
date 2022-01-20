@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:equatable/equatable.dart';
 
@@ -62,8 +60,8 @@ class AnimeContent extends Equatable {
   static AnimeContent decodeAnimeContentFromFirebase(QueryDocumentSnapshot<dynamic> queryData) {
     return AnimeContent.animeContentFromJson(queryData.data());
   }
-  static AnimeContent decodeTrendingAnime(Map<String,dynamic>? queryData){
-    return DataProvider.animes.singleWhere((element) => element.title == queryData!["title"]);
+  static AnimeContent decodeTrendingAnime(Map<String, dynamic>? queryData, List<AnimeContent> animes){
+    return animes.singleWhere((element) => element.title == queryData!["title"]);
   }
 
   @override
@@ -78,17 +76,17 @@ class HomeList {
     required this.listTitle,
     required this.animes
   });
-  static HomeList homeListFromJson(Map<String, dynamic> jsonData){
+  static HomeList homeListFromJson(Map<String, dynamic> jsonData, List<AnimeContent> animes){
     return HomeList(
       listTitle: jsonData["title"],
       animes: jsonData["animesList"].map(
-          (animeTitle) => DataProvider.animes.singleWhere((anime) => anime.title == animeTitle)
+          (animeTitle) => animes.singleWhere((anime) => anime.title == animeTitle)
       ).toList().cast<AnimeContent>()
     );
   }
-  static List<HomeList> decodeHomeListsFromFirebase(List<QueryDocumentSnapshot<dynamic>> queryData) {
+  static List<HomeList> decodeHomeListsFromFirebase(List<QueryDocumentSnapshot<dynamic>> queryData, List<AnimeContent> animes) {
     return queryData.map(
-      (anime) => HomeList.homeListFromJson(anime.data())
+      (anime) => HomeList.homeListFromJson(anime.data(), animes)
     ).toList();
   }
 }

@@ -4,74 +4,114 @@ import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:crunchyroll_app/resources/theme.dart';
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/utils/app_config.dart';
+import 'package:crunchyroll_app/utils/navigation_utils.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:crunchyroll_app/widgets/content_header_widget.dart';
 import 'package:crunchyroll_app/widgets/get_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
 
-  final List<HomeList> homePlaylist;
 
+  final List<AnimeContent> animes;
   const HomeScreen({Key? key,
-    required this.homePlaylist,
+
+    required this.animes,
   }) : super(key: key);
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
 
-class _HomeScreenState extends State<HomeScreen> {
   
   @override
-  Widget build(BuildContext homeContext) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GetImageWidget(
-            imagePath: DataProvider.trendingAnime.imageURL,
-            cardType: CardType.animeCard
-          ),
-          SingleChildScrollView(
-            child: Column(
+  Widget build(BuildContext context) {
+    return StreamBuilder<AnimeContent>(
+      stream: FirebaseProvider.getTrendingAnimeStream(animes),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          NavigationUtils.showMyDialog(context: context,
+              bodyText: Strings.errorFirebaseInit
+          );
+        }
+        if (snapshot.hasData) {
+          AnimeContent _trendingAnime = snapshot.data!;
+          return Scaffold(
+            body: Stack(
               children: [
-                ContentHeaderWidget(
-                  featuredAnime: DataProvider.trendingAnime,
+                GetImageWidget(
+                  imagePath: _trendingAnime.imageURL,
+                  cardType: CardType.animeCard
                 ),
-                Container(
-                  constraints: BoxConstraints(
-                    minHeight: AppConfig.heightScreen(context),
-                    minWidth: AppConfig.widthScreen(context)
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ContentHeaderWidget(
+                        featuredAnime: _trendingAnime,
+                      ),
+                      Container(
+                        constraints: BoxConstraints(
+                          minHeight: AppConfig.heightScreen(context),
+                          minWidth: AppConfig.widthScreen(context)
+                        ),
+                        decoration: const BoxDecoration(
+                          color: MyColors.backgroundColor
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15.0,
+                            vertical: 10
+                          ),
+                          child: FullHomeListsWidget(animes: animes)
+                        ),
+                      )
+                    ]
                   ),
-                  decoration: const BoxDecoration(
-                    color: MyColors.backgroundColor
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                        vertical: 10
-                    ),
-                    child: Column(
-                      children: <HomeListWidget>[
-                        ...List.generate(widget.homePlaylist.length, (index) {
-                          return HomeListWidget(
-                            listTitle: widget.homePlaylist[index].listTitle,
-                            animeList: widget.homePlaylist[index].animes
-                          );
-                        })
-                      ],
-                    ),
-                  ),
-                )
-              ]
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      }
     );
   }
 }
+
+class FullHomeListsWidget extends StatelessWidget {
+  final List<AnimeContent> animes;
+  const FullHomeListsWidget({
+    Key? key,
+    required this.animes,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<HomeList>>(
+      stream: FirebaseProvider.getHomeListsStream(animes),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          NavigationUtils.showMyDialog(context: context,
+            bodyText: Strings.errorFirebaseInit
+          );
+        }
+        if (snapshot.hasData) {
+          List<HomeList> _homePlaylists = snapshot.data!;
+          return Column(
+            children: <HomeListWidget>[
+              ...List.generate(_homePlaylists.length, (index) {
+                return HomeListWidget(
+                    listTitle: _homePlaylists[index].listTitle,
+                    animeList: _homePlaylists[index].animes
+                );
+              })
+            ],
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      }
+    );
+  }
+}
+
 
 class HomeListWidget extends StatelessWidget {
 

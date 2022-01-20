@@ -36,6 +36,7 @@ class AnimeSearch extends SearchDelegate<AnimeContent?> {
 
   @override
   Widget buildResults(BuildContext context) {
+
     if (query.isEmpty){
       List<AnimeContent> suggestions = SearchScreenController.searchHistory.reversed.toList();
       return buildSuggestionsFailed(suggestions);

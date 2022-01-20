@@ -1,53 +1,51 @@
 import 'package:crunchyroll_app/models/content_model.dart';
 import 'package:crunchyroll_app/models/data.dart';
-import 'package:crunchyroll_app/providers/firestore_provider.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
-
 import 'package:crunchyroll_app/screens/anime_detail_page.dart';
 import 'package:crunchyroll_app/widgets/anime_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BrowseGenresScreen extends StatefulWidget {
-  const BrowseGenresScreen({Key? key}) : super(key: key);
+class BrowseGenresScreen extends StatelessWidget {
+  final List<AnimeContent> animes;
+  const BrowseGenresScreen({
+    Key? key,
+    required this.animes,
 
-  @override
-  _BrowseGenresScreenState createState() => _BrowseGenresScreenState();
-}
-class _BrowseGenresScreenState extends State<BrowseGenresScreen> {
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            return _GenresContainer(
-              tag: tagsList[index][Tags.tagTitle]!,
-              thumbnail: tagsList[index][Tags.tagThumbnail]!,
-            );
-          },
-          padding: const EdgeInsets.all(8),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: (960)/(640),
-            crossAxisSpacing: 2,
-            crossAxisCount: 2,
-          ),
-          itemCount: tagsList.length,
+      body: GridView.builder(
+        itemBuilder: (BuildContext context, int index) {
+          return _GenresContainer(
+            tag: tagsList[index][Tags.tagTitle]!,
+            thumbnail: tagsList[index][Tags.tagThumbnail]!,
+            animes: animes,
+          );
+        },
+        padding: const EdgeInsets.all(8),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          childAspectRatio: (960)/(640),
+          crossAxisSpacing: 2,
+          crossAxisCount: 2,
         ),
+        itemCount: tagsList.length,
       ),
     );
   }
 }
 
 class _GenresContainer extends StatelessWidget {
+  final List<AnimeContent> animes;
   final String tag;
   final String thumbnail;
   const _GenresContainer({
     Key? key,
     required this.tag,
-    required this.thumbnail
+    required this.thumbnail,
+    required this.animes
   }) : super(key: key);
 
   @override
@@ -56,7 +54,7 @@ class _GenresContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
         onPressed: () {
-          Get.to(() => BrowseAnimesScreen(searchedItem: tag),
+          Get.to(() => BrowseAnimesScreen(searchedItem: tag, animes: animes,),
           );
         },
         child: Stack(
@@ -99,11 +97,12 @@ class _GenresContainer extends StatelessWidget {
 
 
 class BrowseAnimesScreen extends StatelessWidget {
-
+  final List<AnimeContent> animes;
   final String searchedItem;
   const BrowseAnimesScreen({
     Key? key,
-    required this.searchedItem
+    required this.searchedItem,
+    required this.animes
   }) : super(key: key);
 
   @override
@@ -111,13 +110,13 @@ class BrowseAnimesScreen extends StatelessWidget {
 
     final String _searchedItem = searchedItem;
     List<AnimeContent> _listToDisplay = [];
-    DataProvider.animes.forEach((element) {
+    animes.forEach((element) {
       if (element.tags.contains(_searchedItem)) {
         _listToDisplay.add(element);
       }
     });
     if(_listToDisplay.isEmpty) {
-      DataProvider.animes.forEach((element) {
+      animes.forEach((element) {
         if(element.title.toUpperCase().contains(_searchedItem.toUpperCase()) && _listToDisplay.contains(element) == false) {
           _listToDisplay.add(element);
         }
@@ -125,14 +124,15 @@ class BrowseAnimesScreen extends StatelessWidget {
     }
 
     return _listToDisplay.isEmpty
-        ? const Scaffold(
-            body: Center(
-              child: Text(
-                Strings.noResultFound
-              ),
+      ? const Scaffold(
+          body: Center(
+            child: Text(
+              Strings.noResultFound
             ),
-          )
-        : Scaffold(
+          ),
+        )
+      : SafeArea(
+          child: Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(8),
               child: GridView.builder(
@@ -155,6 +155,7 @@ class BrowseAnimesScreen extends StatelessWidget {
                 ),
               )
             ),
-          );
+          ),
+      );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crunchyroll_app/models/content_model.dart';
-import 'package:crunchyroll_app/models/data.dart';
 import 'package:crunchyroll_app/resources/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,23 +26,23 @@ class FirebaseProvider {
       .doc(anime.title + " - episodes")
       .snapshots();
 
-  static Stream<AnimeContent> get getTrendingAnime => FirebaseFirestore
+  static Stream<AnimeContent>? getTrendingAnimeStream(List<AnimeContent> animes) => FirebaseFirestore
       .instance
       .collection(Strings.animesDatabaseCollection)
       .doc(Strings.trendingAnime)
       .snapshots()
-      .map((element) => AnimeContent.decodeTrendingAnime(element.data()));
+      .map((element) => AnimeContent.decodeTrendingAnime(element.data(), animes));
 
   static AnimeContent trendingAnimeProvider(BuildContext context) => Provider.of<AnimeContent>(context);
   
-  static Stream<List<HomeList>> get getHomeLists => FirebaseFirestore
+  static Stream<List<HomeList>> getHomeListsStream(List<AnimeContent> animes) => FirebaseFirestore
       .instance
       .collection(Strings.animesDatabaseCollection)
       .doc("HomeListsDocument")
       .collection("HomeListsCollection")
       .orderBy("title", descending: true)
       .snapshots()
-      .map((item) => HomeList.decodeHomeListsFromFirebase(item.docs));
+      .map((item) => HomeList.decodeHomeListsFromFirebase(item.docs, animes));
 
   static List<HomeList> homeListsProvider(BuildContext context) => Provider.of<List<HomeList>>(context);
 }
@@ -59,9 +58,9 @@ class FirebaseStorageProvider {
 class DataProvider{
   static late List<AnimeContent> animes;
 
-  static late AnimeContent trendingAnime = defaultAnimeModel;
+  //static late AnimeContent trendingAnime = defaultAnimeModel;
 
-  static late List<HomeList> homePlaylists;
+  //static late List<HomeList> homePlaylists;
 
-  static late AnimeEpisodesList episodesList;
+  //static late AnimeEpisodesList episodesList;
 }
